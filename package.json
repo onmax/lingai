@@ -1,0 +1,49 @@
+{
+  "name": "nuxt-app",
+  "type": "module",
+  "private": true,
+  "packageManager": "pnpm@10.11.1",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "npx nuxthub preview",
+    "deploy": "npx nuxthub deploy",
+    "prepare": "nuxt prepare",
+    "postinstall": "nuxt prepare",
+    "typecheck": "nuxt typecheck",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "dependencies": {
+    "@atinux/kysely-d1": "catalog:",
+    "@iconify-json/heroicons": "catalog:",
+    "@iconify-json/simple-icons": "catalog:",
+    "@nuxt/eslint": "catalog:",
+    "@nuxthub/core": "catalog:",
+    "@vueuse/core": "catalog:",
+    "better-auth": "catalog:",
+    "nuxt": "catalog:",
+    "nuxt-safe-runtime-config": "catalog:",
+    "ofetch": "catalog:",
+    "reka-ui": "catalog:",
+    "valibot": "catalog:",
+    "vue": "catalog:",
+    "vue-router": "catalog:"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "catalog:",
+    "@iconify/utils": "catalog:",
+    "@nuxt/eslint-config": "catalog:",
+    "@unocss/nuxt": "catalog:",
+    "eslint": "catalog:",
+    "eslint-plugin-format": "catalog:",
+    "lint-staged": "^16.1.0",
+    "nimiq-css": "catalog:",
+    "typescript": "catalog:",
+    "unocss": "catalog:",
+    "unocss-preset-onmax": "catalog:",
+    "vue-tsc": "catalog:",
+    "wrangler": "catalog:"
+  }
+}
