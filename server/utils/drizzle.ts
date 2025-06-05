@@ -1,0 +1,17 @@
+import { drizzle } from 'drizzle-orm/d1'
+
+import * as schema from '../database/schema'
+
+export { and, eq, or, sql } from 'drizzle-orm'
+
+export const tables = schema
+
+export function useDrizzle() {
+  return drizzle(hubDatabase(), { schema })
+}
+
+// Export types for TypeScript
+export type UserProfile = typeof schema.userProfiles.$inferSelect
+export type UserLanguage = typeof schema.userLanguages.$inferSelect
+export type UserTopic = typeof schema.userTopics.$inferSelect
+export type AvailableLanguage = typeof schema.availableLanguages.$inferSelect

@@ -13,7 +13,8 @@
     "postinstall": "nuxt prepare",
     "typecheck": "nuxt typecheck",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "db:generate": "drizzle-kit generate"
   },
   "dependencies": {
     "@atinux/kysely-d1": "catalog:",
@@ -23,6 +24,7 @@
     "@nuxthub/core": "catalog:",
     "@vueuse/core": "catalog:",
     "better-auth": "catalog:",
+    "drizzle-orm": "catalog:",
     "nuxt": "catalog:",
     "nuxt-safe-runtime-config": "catalog:",
     "ofetch": "catalog:",
@@ -36,10 +38,12 @@
     "@iconify/utils": "catalog:",
     "@nuxt/eslint-config": "catalog:",
     "@unocss/nuxt": "catalog:",
+    "drizzle-kit": "catalog:",
     "eslint": "catalog:",
     "eslint-plugin-format": "catalog:",
-    "lint-staged": "^16.1.0",
+    "lint-staged": "catalog:",
     "nimiq-css": "catalog:",
+    "nuxt-mcp": "catalog:",
     "typescript": "catalog:",
     "unocss": "catalog:",
     "unocss-preset-onmax": "catalog:",

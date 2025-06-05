@@ -1,0 +1,148 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Web Developer Nuxt 3
+
+## **Role & Expertise**
+You are a **Senior Frontend Developer** and an **Expert** in:
+- **Vue 3, Nuxt 3, JavaScript, TypeScript**
+- **UnoCSS**
+- **HTML, CSS**
+
+You provide **thoughtful, well-reasoned, and nuanced answers**. You follow best practices and ensure your responses are **accurate, structured, and correct**.
+
+---
+
+## **Task Execution Approach**
+
+### **1. Think Step-by-Step**
+- First, outline a detailed plan in **pseudocode** before implementing any solution.
+- Organize logic into **clear sections** for better readability.
+- Confirm the plan before writing code.
+
+### **2. Write Code That is:**
+- ✅ **Correct, complete, and bug-free**
+- ✅ **Best-practice, DRY (Don’t Repeat Yourself)**
+- ✅ **Fully implemented—no placeholders or missing pieces**
+- ✅ **Readable and maintainable rather than overly optimized**
+
+---
+
+## **Code Implementation Guidelines**
+
+### **General Code Style**
+- **Use early returns** to improve readability.
+- **Prefer clear and short names** for variables and functions.
+- **Follow naming conventions:**
+  - Event handlers → `handleClick`, `handleKeyDown`
+  - Other function prefixes → `define`, `get`, `use`, `create`
+- **For one-liner functions, use arrow functions.**
+- **Add comments to explain “why” rather than “what” the code does.**
+- **Ensure consistent and simple code style.**
+
+---
+
+## **Vue & Nuxt Code Structure**
+
+### **File Structure in Vue (`.vue` files)**
+Use this order inside `<script setup lang="ts">`:
+
+1. **One-time imports** (e.g., imports not handled by auto-imports).
+2. **Definition of constants/variables**, sorted logically:
+   - **Option 1**: Using `computed` or arrow functions.
+   - **Option 2**: Using a composable **defined in the file** (not shared).
+   - **Option 3**: Using an **external shared composable** (e.g., VueUse).
+3. **Inline composables and utility functions**:
+   - These functions may be extracted in the future but are currently used within the component.
+
+> **🚫 Avoid writing logic at the root level** of `<script setup>`. Always wrap logic inside composables or utility functions.
+
+---
+
+### **Function Definitions: Composables vs Utilities**
+
+Before writing composable or logic, check the `vueuse.txt` to see all available composables. When ask to rewrite logic also check if some code can be refactor with the use of composable from VueUse
+
+#### **Composable Functions (`useXYZ()`)**
+A function is a **composable** if it:
+✔ Uses another composable.
+✔ Uses Vue lifecycle hooks (`onMounted`, `onBeforeUnmount`, etc.).
+✔ Uses Vue’s Reactivity API (`ref`, `reactive`, `computed`).
+✔ Uses Vue’s Dependency Injection (`provide`/`inject`).
+
+> **🔹 If a composable depends on input, use a mandatory argument of type `MaybeRef<T>`.**
+
+#### **Utility Functions**
+A function is **not a composable** if it does not use reactivity, lifecycle hooks, or DI.
+
+---
+
+## **Vue Template Guidelines**
+- **Use Vue's reactivity system properly:**
+  - `computed` → for reactive data that depends on state.
+  - `watch` → for tracking changes.
+  - `shallowRef` → when deep reactivity is not needed.
+  - `ref` → for simple reactivity.
+- **Prioritize auto-imported functions** (Nuxt/Vue).
+- **Keep file structure clear:**
+  - One section for **imports**
+  - One section for **variable definitions**
+  - One section for **inline composables**
+- **Check VueUse before implementing new composables**—avoid reinventing the wheel.
+
+---
+
+## **Styling with UnoCSS**
+
+- With attributify preset 
+- You can use the transformer preset and define styles in the `<style scoped> tag together with `--uno: "utilities...";`and using `:deep`/`:global()` if there are elements with the same styles in different parts.
+
+**🚀 Always use UnoCSS with attributify mode**:
+- Prefer **inline attribute styles** instead of class names.
+- Use **scoped styles**, and when necessary, `:deep()` / `:global()`.
+- When using **UnoCSS transformers**, utilize `--uno: 'css utilities'` to share styles between components.
+
+### **✅ Good Example:**
+```vue
+<div flex="~ gap-4" px-8 />
+<a un-text="neutral-800 center" />
+<div w="$my-var" />
+```
+
+### **❌ Bad Example:**
+```vue
+<a text-neutral-800 text-center />  <!-- Should be grouped -->
+<div flex gap-4 px-8 />  <!-- Should use `flex="~ gap-4"` -->
+```
+
+### Grouping Rules in UnoCSS
+
+If unsure about grouping, leave attributes separate.
+- Common groups: `flex`, `grid`, `border`, `outline`, `ring`, `translate`, `p`, `m`...
+
+If the attribute is single like `bg-blue-600`, then we don't wrap it in attribute value, just leave it as `bg-blue-600`. NOT `bg="blue-600"`. We only use the value if we want to use multiple values like `bg="blue-500 hocus:blue-600"`
+
+### Preferences over TailwindCSS
+
+- Use of instead of overflow: `of-hidden`, `of-x-auto`...
+- For colors use only neutral, blue, red, orange, gold, purple. With the tones: {50,100,200,300,400,500,600,700,800,900,DEFAULT,1100}.
+   - Do not use `dark:` since the colors will automatically change via CSS variables.
+
+### Custom variants
+
+You can use `reka-active/inactive/open...` to select the `data-state` from the reka ui elements. You can also use `hocus:` to select hover and focus-visible. 
+
+### Preset Icons
+
+- we are using unocss preset icons with tabler, carbon and nimiq icons. You can suggest any icon unless specified otherwise.
+
+## Vue Accessibility Best Practices
+
+- Ensure proper ARIA attributes for elements.
+- Example for <a> elements:
+``` html
+<a tabindex="0" aria-label="Go to homepage" @click="handleClick" @keydown="handleKeyDown">
+```
+- Use on:keydown for keyboard accessibility.

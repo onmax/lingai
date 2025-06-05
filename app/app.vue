@@ -33,12 +33,12 @@ const footerLinks = [
     label: 'Better Auth',
     to: 'https://better-auth.com',
     target: '_blank',
-  }
+  },
 ]
 </script>
 
 <template>
   <NuxtRouteAnnouncer />
   <NuxtLoadingIndicator />
-   <NuxtLayout />
+  <NuxtLayout />
 </template>

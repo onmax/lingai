@@ -1,5 +1,5 @@
-import { defineNuxtConfig } from 'nuxt/config'
 import process from 'node:process'
+import { defineNuxtConfig } from 'nuxt/config'
 import { object, string } from 'valibot'
 
 export default defineNuxtConfig({
@@ -10,6 +10,7 @@ export default defineNuxtConfig({
     'nuxt-safe-runtime-config',
     'reka-ui/nuxt',
     '@unocss/nuxt',
+    'nuxt-mcp',
   ],
   devtools: { enabled: true },
 
@@ -17,15 +18,15 @@ export default defineNuxtConfig({
     github: {
       clientSecret: process.env.GITHUB_CLIENT_SECRET || '',
       clientId: process.env.GITHUB_CLIENT_ID || '',
-    }
+    },
   },
   safeRuntimeConfig: {
     $schema: object({
       github: object({
         clientSecret: string(),
         clientId: string(),
-      })
-    })
+      }),
+    }),
   },
 
   future: { compatibilityVersion: 4 },
@@ -35,6 +36,12 @@ export default defineNuxtConfig({
   hub: {
     database: true,
     kv: true,
+  },
+
+  nitro: {
+    experimental: {
+      tasks: true,
+    },
   },
 
   // https://eslint.nuxt.com
