@@ -22,7 +22,7 @@
     "@iconify-json/simple-icons": "catalog:",
     "@nuxt/eslint": "catalog:",
     "@nuxthub/core": "catalog:",
-    "@nuxtjs/color-mode": "^3.5.2",
+    "@nuxtjs/color-mode": "catalog:",
     "@vueuse/core": "catalog:",
     "@vueuse/nuxt": "catalog:",
     "better-auth": "catalog:",
