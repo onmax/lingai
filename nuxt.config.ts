@@ -33,7 +33,7 @@ export default defineNuxtConfig({
   },
 
   future: { compatibilityVersion: 4 },
-  compatibilityDate: '2024-07-30',
+  compatibilityDate: '2025-06-06',
 
   // https://hub.nuxt.com/docs/getting-started/installation#options
   hub: {
