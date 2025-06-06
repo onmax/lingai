@@ -1,17 +1,15 @@
 <script setup lang="ts">
-import type { LessonApiResponse, LessonsListResponse } from '~/types/lesson'
-
 const route = useRoute()
 const lessonSlug = route.params.lesson as string
 
 // Get all lessons first to find the one matching our slug
-const { data: lessonsResponse } = await useFetch<LessonsListResponse>('/api/lessons/keys', {
+const { data: lessonsResponse } = await useFetch<LessonKeysResponse>('/api/lessons/keys', {
   query: { language: 'es' },
 })
 
 // Find the lesson that matches our slug
-const matchingLesson = lessonsResponse.value?.lessons?.find((key) => {
-  const filename = key.filename?.replace('.md', '') || ''
+const matchingLesson = lessonsResponse.value?.keys?.find((item: LessonListItem) => {
+  const filename = item.filename?.replace('.md', '') || ''
   return filename === lessonSlug
 })
 

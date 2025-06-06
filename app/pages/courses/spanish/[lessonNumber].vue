@@ -4,8 +4,8 @@ const route = useRoute()
 const lessonNumber = route.params.lessonNumber as string
 
 // First, get the list of lessons to find the matching one
-const { data: lessonsResponse } = await useFetch('/api/lessons/spanish')
-const matchingLesson = lessonsResponse.value?.lessons?.find(l => l.lessonNumber === Number.parseInt(lessonNumber))
+const { data: lessonsResponse } = await useFetch<SpanishLessonsResponse>('/api/lessons/spanish')
+const matchingLesson = lessonsResponse.value?.lessons?.find((l: Lesson) => l.lessonNumber === Number.parseInt(lessonNumber))
 
 if (!matchingLesson) {
   throw createError({
@@ -15,7 +15,7 @@ if (!matchingLesson) {
 }
 
 // Then fetch the lesson content
-const { data: lessonResponse } = await useFetch<LessonApiResponse>(`/api/lessons/content/${encodeURIComponent(matchingLesson.key)}`)
+const { data: lessonResponse } = await useFetch<LessonApiResponse>(`/api/lessons/content/${encodeURIComponent(matchingLesson.blobKey)}`)
 
 const lesson = computed(() => lessonResponse.value?.lesson)
 

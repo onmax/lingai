@@ -28,7 +28,7 @@ useSeoMeta({
       <div grid="~ gap-6 cols-2 lg:cols-3">
         <NuxtLink
           v-for="lesson in lessons"
-          :key="lesson.key"
+          :key="lesson.blobKey"
           :to="lesson.path"
           nq-hoverable
         >

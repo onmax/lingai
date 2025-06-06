@@ -6,6 +6,7 @@ import { admin, anonymous } from 'better-auth/plugins'
 let _auth: ReturnType<typeof betterAuth>
 export function serverAuth() {
   if (!_auth) {
+    const config = useRuntimeConfig()
     _auth = betterAuth({
       database: {
         dialect: new D1Dialect({
@@ -26,8 +27,8 @@ export function serverAuth() {
       },
       socialProviders: {
         github: {
-          clientId: process.env.GITHUB_CLIENT_ID!,
-          clientSecret: process.env.GITHUB_CLIENT_SECRET!,
+          clientId: config.github.clientId,
+          clientSecret: config.github.clientSecret,
         },
       },
       account: {

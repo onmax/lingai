@@ -1,15 +1,15 @@
 <script setup lang="ts">
 // Fetch lessons using our API instead of queryContent
-const { data: lessonsResponse } = await useFetch<LessonsListResponse>('/api/lessons/spanish')
+const { data: lessonsResponse } = await useFetch<SpanishLessonsResponse>('/api/lessons/spanish')
 
 const lessons = computed(() => {
-  return lessonsResponse.value?.lessons?.map(lesson => ({
-    _id: lesson.key,
+  return lessonsResponse.value?.lessons?.map((lesson: Lesson) => ({
+    _id: lesson.id,
     _path: lesson.path,
     lessonNumber: lesson.lessonNumber,
     title: lesson.filename.replace('.md', '').replace(/^\d+\./, '').replace(/-/g, ' '),
     filename: lesson.filename,
-    key: lesson.key,
+    key: lesson.blobKey,
   })) || []
 })
 
