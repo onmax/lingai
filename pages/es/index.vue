@@ -19,7 +19,7 @@ useSeoMeta({
         <h1 f-text-2xl font-bold mb-16>
           Spanish Lessons
         </h1>
-        <p text="f-lg neutral-900"> 
+        <p text="f-lg neutral-900">
           Learn Spanish step by step with our interactive lessons
         </p>
       </header>
