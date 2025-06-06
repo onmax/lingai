@@ -85,7 +85,27 @@ Make the content engaging and practical for real-world use.`
           max_tokens: 4096,
         })
 
-        const lessonContent = (response as any)?.output?.generated_text || response
+        // Debug log to understand the AI response structure
+        console.warn('AI Response structure:', JSON.stringify(response, null, 2))
+
+        let lessonContent = (response as any)?.output?.generated_text || response
+
+        // Ensure the content is a string for R2 storage
+        if (typeof lessonContent !== 'string') {
+          // If it's an object or other type, try to extract text content
+          if (lessonContent && typeof lessonContent === 'object') {
+            lessonContent = lessonContent.text || lessonContent.content || lessonContent.message || JSON.stringify(lessonContent)
+          }
+          else {
+            lessonContent = String(lessonContent)
+          }
+        }
+
+        // Validate that we have meaningful content
+        if (!lessonContent || lessonContent.trim().length < 10) {
+          throw new Error('AI generated content is too short or empty')
+        }
+
         const firstTopic = topics[0].toLowerCase().replace(/\s+/g, '-')
         const filename = `01.conversation-${firstTopic}.md`
         const blobKey = `lessons/${user.id}/spanish/${filename}`

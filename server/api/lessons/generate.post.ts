@@ -1,93 +1,3 @@
-function generateLessonsFromTopics(topics: string[], language: string, targetLanguage: string) {
-  const topicLessons = topics.slice(0, 6).map((topic, index) => {
-    const lessonNumber = (index + 1).toString().padStart(2, '0')
-    const topicSlug = topic.toLowerCase().replace(/\s+/g, '-')
-
-    return {
-      filename: `${lessonNumber}.${topicSlug}.md`,
-      content: `---
-title: "${targetLanguage === 'spanish' ? 'Español' : targetLanguage.charAt(0).toUpperCase() + targetLanguage.slice(1)} para ${topic}"
-language: "${language}"
-difficulty: "${index < 2 ? 'beginner' : index < 4 ? 'intermediate' : 'advanced'}"
-topics: ["${topic}", "vocabulary", "conversation"]
-order: ${index + 1}
-description: "Learn ${targetLanguage} vocabulary and phrases related to ${topic}"
----
-
-# ${targetLanguage === 'spanish' ? 'Español' : targetLanguage.charAt(0).toUpperCase() + targetLanguage.slice(1)} para ${topic}
-
-Welcome to your ${targetLanguage} lesson focused on **${topic}**!
-
-## Vocabulario Esencial / Essential Vocabulary
-
-### Palabras Clave / Key Words
-- **Example 1** - Translation 1
-- **Example 2** - Translation 2
-- **Example 3** - Translation 3
-
-## Frases Útiles / Useful Phrases
-
-### Conversación Básica / Basic Conversation
-- **¿Te gusta...?** - Do you like...?
-- **Me encanta...** - I love...
-- **No me gusta...** - I don't like...
-
-## Ejercicios / Exercises
-
-### Ejercicio 1: Vocabulario
-Complete the sentences:
-1. Me gusta _______ (${topic})
-2. ¿Dónde está _______?
-3. Necesito _______ para...
-
-### Ejercicio 2: Conversación
-Practice these dialogues with a partner or speak them aloud.
-
-## Práctica Cultural / Cultural Practice
-
-Learn about how ${topic} is important in Spanish-speaking cultures.
-
----
-
-*¡Bien hecho! Keep practicing and you'll master these ${topic}-related phrases in no time!*
-`,
-    }
-  })
-
-  // Ensure we have at least 3 lessons by adding generic ones if needed
-  while (topicLessons.length < 3) {
-    const index = topicLessons.length
-    const lessonNumber = (index + 1).toString().padStart(2, '0')
-
-    topicLessons.push({
-      filename: `${lessonNumber}.general-conversation.md`,
-      content: `---
-title: "Conversación General ${index + 1}"
-language: "${language}"
-difficulty: "beginner"
-topics: ["conversation", "basics"]
-order: ${index + 1}
-description: "Essential conversation skills in ${targetLanguage}"
----
-
-# Conversación General ${index + 1}
-
-Practice essential conversation skills in ${targetLanguage}.
-
-## Vocabulary
-- **Hola** - Hello
-- **Gracias** - Thank you
-- **Por favor** - Please
-
-## Practice
-Try these basic conversations!
-`,
-    })
-  }
-
-  return topicLessons
-}
-
 export default defineEventHandler(async (event) => {
   try {
     const body = await readBody(event)
@@ -100,46 +10,99 @@ export default defineEventHandler(async (event) => {
       })
     }
 
-    // Generate lessons based on topics (template-based for now)
-    // TODO: Replace with NuxtHub AI when available
-    const lessonsData = generateLessonsFromTopics(topics, language, targetLanguage || language)
+    // Use AI to generate a conversation-based lesson
+    const ai = hubAI()
 
-    // Store generated lessons in blob storage
-    const generatedLessons = []
-    for (const lesson of lessonsData) {
-      const blobKey = `lessons/${userId}/${language}/${lesson.filename}`
+    // Create a comprehensive prompt for generating a conversational lesson
+    const topicsText = topics.join(', ')
+    const prompt = `Create a Spanish language learning lesson focused on the topics: ${topicsText}.
 
-      try {
-        await hubBlob().put(blobKey, lesson.content, {
-          contentType: 'text/markdown',
-        })
+The lesson should be formatted as markdown and include:
 
-        generatedLessons.push({
-          filename: lesson.filename,
-          blobKey,
-          generated: true,
-        })
+1. A conversation between two people that naturally incorporates vocabulary related to these topics
+2. Vocabulary section with key words and phrases used in the conversation  
+3. Grammar notes explaining any important structures used
+4. Practice exercises to reinforce the vocabulary and structures
+5. Cultural notes about how these topics relate to Spanish-speaking cultures
+
+The lesson should be appropriate for beginner to intermediate Spanish learners.
+The conversation should be realistic and practical, something learners might actually encounter.
+Include both Spanish text and English translations.
+
+Format the output as valid markdown with proper frontmatter that includes:
+- title: A descriptive title in Spanish
+- language: "spanish"  
+- difficulty: "beginner" or "intermediate"
+- topics: array of the topics covered
+- order: 1
+- description: Brief description of what the lesson covers
+
+Make the content engaging and practical for real-world use.`
+
+    const response = await ai.run('@cf/meta/llama-3.1-8b-instruct', {
+      prompt,
+      max_tokens: 4096,
+    })
+
+    // Debug log to understand the AI response structure
+    console.warn('AI Response structure:', JSON.stringify(response, null, 2))
+
+    // Extract the generated content and ensure it's a string
+    let lessonContent = (response as any)?.output?.generated_text || response
+
+    // Ensure the content is a string for R2 storage
+    if (typeof lessonContent !== 'string') {
+      // If it's an object or other type, try to extract text content
+      if (lessonContent && typeof lessonContent === 'object') {
+        lessonContent = lessonContent.text || lessonContent.content || lessonContent.message || JSON.stringify(lessonContent)
       }
-      catch (error) {
-        console.error(`Failed to store lesson ${lesson.filename}:`, error)
+      else {
+        lessonContent = String(lessonContent)
       }
     }
+
+    // Validate that we have meaningful content
+    if (!lessonContent || lessonContent.trim().length < 10) {
+      throw new Error('AI generated content is too short or empty')
+    }
+
+    // Generate filename based on first topic
+    const firstTopic = topics[0].toLowerCase().replace(/\s+/g, '-')
+    const filename = `01.conversation-${firstTopic}.md`
+
+    // Store in blob storage
+    const blobKey = `lessons/${userId}/${language}/${filename}`
+
+    await hubBlob().put(blobKey, lessonContent, {
+      contentType: 'text/markdown',
+    })
 
     return {
       success: true,
-      message: 'Lessons generated successfully',
-      generated: generatedLessons.length,
-      lessons: generatedLessons,
+      message: 'AI-generated lesson created successfully',
+      filename,
+      blobKey,
       topics,
-      language,
+      language: targetLanguage,
+      userId,
     }
   }
-  catch (error) {
-    console.error('Lesson generation error:', error)
+  catch (error: any) {
+    console.error('AI lesson generation error:', error)
+
+    // Provide more specific error messages
+    let errorMessage = 'Failed to generate AI lesson'
+    if (error.message) {
+      errorMessage = `AI lesson generation failed: ${error.message}`
+    }
+
     throw createError({
       statusCode: 500,
-      statusMessage: 'Failed to generate lessons',
-      data: error,
+      statusMessage: errorMessage,
+      data: {
+        originalError: error.message || error,
+        stack: error.stack,
+      },
     })
   }
 })

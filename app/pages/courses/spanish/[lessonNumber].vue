@@ -92,7 +92,7 @@ useHead({
 
     <!-- Error state -->
     <div v-else text="center py-12">
-      <div i-nimiq:exclamation-triangle size-20 text-red-300 mx-auto mb-4 />
+      <div i-nimiq:alert size-20 text-red-300 mx-auto mb-4 />
       <h2 text="f-xl neutral-600" font-medium mb-2>
         Lección no encontrada
       </h2>

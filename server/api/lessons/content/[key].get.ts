@@ -1,3 +1,5 @@
+import matter from 'gray-matter'
+
 export default defineEventHandler(async (event) => {
   try {
     const key = getRouterParam(event, 'key')
@@ -19,30 +21,54 @@ export default defineEventHandler(async (event) => {
       })
     }
 
-    const markdownContent = await blob.text()
+    const rawContent = await blob.text()
 
-    // Parse frontmatter and content
-    const frontmatterMatch = markdownContent.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/)
+    let content = ''
+    let frontmatter: Record<string, any> = {}
 
-    if (!frontmatterMatch) {
-      throw createError({
-        statusCode: 500,
-        statusMessage: 'Invalid lesson format',
-      })
-    }
+    // Try to parse as JSON first (new format)
+    try {
+      const jsonData = JSON.parse(rawContent)
+      if (jsonData.response) {
+        const markdownContent = jsonData.response
 
-    const [, frontmatterStr, content] = frontmatterMatch
-    const frontmatter: Record<string, any> = {}
+        // Parse the markdown content using gray-matter
+        const parsed = matter(markdownContent)
+        content = parsed.content
+        frontmatter = parsed.data
 
-    // Simple frontmatter parsing
-    frontmatterStr?.split('\n').forEach((line) => {
-      const colonIndex = line.indexOf(':')
-      if (colonIndex > 0) {
-        const key = line.substring(0, colonIndex).trim()
-        const value = line.substring(colonIndex + 1).trim().replace(/^["']|["']$/g, '')
-        frontmatter[key] = value
+        // If no frontmatter found in the content, try to extract from markdown structure
+        if (Object.keys(frontmatter).length === 0) {
+          // Look for frontmatter section in the markdown
+          const frontmatterSection = markdownContent.match(/\*\*Frontmatter\*\*\n-+\n\n([\s\S]*?)\n\n\*\*/)
+          if (frontmatterSection) {
+            const frontmatterText = frontmatterSection[1]
+            // Parse bullet point format: * key: value
+            frontmatterText.split('\n').forEach((line: string) => {
+              if (line.startsWith('*') && line.includes(':')) {
+                const colonIndex = line.indexOf(':')
+                const key = line.substring(1, colonIndex).trim()
+                const value = line.substring(colonIndex + 1).trim()
+                let parsedValue = value
+
+                // Handle arrays like [travel, food, family]
+                if (parsedValue.startsWith('[') && parsedValue.endsWith(']')) {
+                  parsedValue = parsedValue.slice(1, -1).split(',').map((item: string) => item.trim())
+                }
+
+                frontmatter[key] = parsedValue
+              }
+            })
+          }
+        }
       }
-    })
+    }
+    catch {
+      // If JSON parsing fails, try standard markdown with frontmatter
+      const parsed = matter(rawContent)
+      content = parsed.content
+      frontmatter = parsed.data
+    }
 
     const filename = key.split('/').pop()
     const lessonNumber = filename ? Number.parseInt(filename.split('.')[0] || '1', 10) : 1
@@ -56,10 +82,13 @@ export default defineEventHandler(async (event) => {
         content,
         frontmatter,
         blobKey: key,
+        title: frontmatter.title || `Lesson ${lessonNumber}`,
+        language: frontmatter.language || 'spanish',
       },
     }
   }
   catch (error) {
+    console.error('Error processing lesson content:', error)
     throw createError({
       statusCode: 500,
       statusMessage: 'Failed to fetch lesson content',
