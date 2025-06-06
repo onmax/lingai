@@ -19,6 +19,7 @@ catalog:
   drizzle-orm: ^0.44.2
   eslint: ^9.28.0
   eslint-plugin-format: ^1.0.1
+  gray-matter: ^4.0.3
   lint-staged: ^16.1.0
   marked: ^15.0.12
   motion: ^12.16.0

@@ -28,6 +28,7 @@
     "@vueuse/nuxt": "catalog:",
     "better-auth": "catalog:",
     "drizzle-orm": "catalog:",
+    "gray-matter": "catalog:",
     "marked": "catalog:",
     "motion": "catalog:",
     "motion-v": "catalog:",
