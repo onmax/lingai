@@ -38,3 +38,6 @@ jobs:
         id: deploy
         with:
           project-key: lingai-6rcz
+        env:
+          GITHUB_CLIENT_SECRET: ${{ secrets.GITHUB_CLIENT_SECRET }}
+          GITHUB_CLIENT_ID: ${{ secrets.GITHUB_CLIENT_ID }}
