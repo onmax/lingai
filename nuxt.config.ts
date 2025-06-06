@@ -1,5 +1,4 @@
 import process from 'node:process'
-import { defineNuxtConfig } from 'nuxt/config'
 import { object, string } from 'valibot'
 
 export default defineNuxtConfig({
@@ -14,6 +13,7 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     'motion-v/nuxt',
     '@nuxtjs/color-mode',
+    '@nuxt/content',
   ],
   devtools: { enabled: true },
 
@@ -39,6 +39,8 @@ export default defineNuxtConfig({
   hub: {
     database: true,
     kv: true,
+    blob: true,
+    ai: true,
   },
 
   nitro: {

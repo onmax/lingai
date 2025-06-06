@@ -1,21 +1,18 @@
 <script setup lang="ts">
+import {
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuPortal,
+  DropdownMenuRoot,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from 'reka-ui'
+
 // Auth composable for authentication state and methods
 const { user, loggedIn, signOut } = useAuth()
 
-// Dropdown state for profile menu
-const showProfileDropdown = ref(false)
-
-// Template ref for dropdown
-const dropdownRef = ref<HTMLElement>()
-
-// Close dropdown when clicking outside
-onClickOutside(dropdownRef, () => {
-  showProfileDropdown.value = false
-})
-
 // Handle sign out
 async function handleSignOut() {
-  showProfileDropdown.value = false
   await signOut({ redirectTo: '/' })
 }
 
@@ -25,8 +22,8 @@ const profilePicture = computed(() => {
     return ''
 
   const name = user.value.name || user.value.email || 'User'
-  // Generate a simple avatar using initials
-  return `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=3b82f6&color=ffffff&size=32`
+  // Generate a simple avatar using initials with Nimiq blue
+  return `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=1F6FEB&color=ffffff&size=32`
 })
 
 // Get user display name
@@ -36,80 +33,86 @@ const displayName = computed(() => {
 </script>
 
 <template>
-  <header bg="white" border="b neutral-200" px-4 py-3 relative z-10>
-    <div flex="~ items-center justify-between" max-w-7xl mx="auto">
+  <header bg="white" border="b-1 border-neutral-200" px-f-sm py-f-xs relative z-10>
+    <div flex="~ items-center justify-between" max-w-f-6xl mx="auto">
       <!-- Logo/Brand -->
       <div flex="~ items-center">
-        <NuxtLink to="/" text="xl blue-600" font="bold" hover:text="blue-700" transition-colors>
+        <NuxtLink to="/" text="f-xl nq-blue" font="bold" hover:text="nq-600" transition-colors>
           LingAI
         </NuxtLink>
       </div>
 
       <!-- Right side - Auth buttons -->
-      <div flex="~ items-center gap-4">
-        <div v-if="!loggedIn" flex="~ items-center gap-2">
+      <div flex="~ items-center gap-f-lg">
+        <div v-if="!loggedIn" flex="~ items-center gap-f-sm">
           <NuxtLink
             to="/"
-            px-4 py-2 text="sm neutral-600" font="medium"
-            hover:text="neutral-900" transition-colors
+            px-f-2xs py-f-3xs text="f-sm neutral-700 hocus:neutral-800" font-medium
+            rounded-f-xs transition-colors
           >
             Sign In
           </NuxtLink>
         </div>
 
         <!-- Authenticated user dropdown -->
-        <div v-else relative>
-          <button
-            flex="~ items-center gap-2" px-3 py-2 rounded="full"
-            hover:bg="neutral-100" transition-colors
-            @click="showProfileDropdown = !showProfileDropdown"
-          >
-            <img
-              :src="profilePicture"
-              :alt="`${displayName}'s profile`"
-              w-8 h-8 rounded="full"
-              loading="lazy"
-            >
-            <span text="sm neutral-700" font="medium">
-              {{ displayName }}
-            </span>
-            <div
-              i-tabler:chevron-down w-4 h-4 text="neutral-500"
-              :class="{ 'rotate-180': showProfileDropdown }"
-              transition="transform"
-            />
-          </button>
-
-          <!-- Dropdown menu -->
-          <div
-            v-show="showProfileDropdown"
-            ref="dropdownRef"
-            absolute top="full" right-0 mt-2 w-48
-            bg="white" rounded="lg" shadow="lg" border="neutral-200"
-            py-2 z-20
-          >
-            <NuxtLink
-              to="/user"
-              flex="~ items-center gap-2" px-4 py-2 text="sm neutral-700"
-              hover:bg="neutral-100" transition-colors
-              @click="showProfileDropdown = false"
-            >
-              <div i-tabler:user w-4 h-4 />
-              Profile
-            </NuxtLink>
-
-            <hr border="neutral-200" my-1>
-
+        <DropdownMenuRoot v-else>
+          <DropdownMenuTrigger as-child>
             <button
-              flex="~ items-center gap-2" w="full" px-4 py-2 text="sm red-600 left"
-              hover:bg="red-50" transition-colors
-              @click="handleSignOut"
+              flex="~ items-center gap-f-2xs" hocus:bg="neutral-100" px-f-xs py-f-2xs rounded-full
+              transition-colors outline="none reka-active:ring-2 reka-active:ring-blue-500"
             >
-              <div i-tabler:logout w-4 h-4 />
-              Sign Out
+              <img
+                :src="profilePicture"
+                :alt="`${displayName}'s profile`"
+                w-f-md h-f-md rounded-full
+                loading="lazy"
+              >
+              <span text="f-sm neutral-700" font-medium>
+                {{ displayName }}
+              </span>
+              <div
+                i-tabler:chevron-down w-f-xs h-f-xs text="neutral-500"
+                transition="transform"
+                data-state-open:rotate-180
+              />
             </button>
-          </div>
-        </div>
+          </DropdownMenuTrigger>
+
+          <DropdownMenuPortal>
+            <DropdownMenuContent
+              min-w-f-2xl p-f-3xs bg="white" rounded="f-md" shadow="f-lg" border="1 neutral-200"
+              z-50 origin-top-right
+              :side-offset="8"
+              align="end"
+            >
+              <DropdownMenuItem as-child>
+                <NuxtLink
+                  to="/courses/spanish"
+                  flex="~ items-center gap-f-3xs" px-f-2xs py-f-3xs text="f-sm neutral-700"
+                  hover:bg="neutral-100" hocus:bg="neutral-100" transition-colors rounded-f-xs
+                  outline="none reka-active:ring-2 reka-active:ring-blue-500"
+                >
+                  <div i-tabler:book w-f-xs h-f-xs />
+                  Spanish Lessons
+                </NuxtLink>
+              </DropdownMenuItem>
+
+              <DropdownMenuSeparator my-f-4xs h-px bg="neutral-200" />
+
+              <DropdownMenuItem as-child>
+                <button
+                  flex="~ items-center gap-f-3xs" w="full" px-f-2xs py-f-3xs text="f-sm red-600 left"
+                  hover:bg="red-50" hocus:bg="red-50" transition-colors rounded-f-xs
+                  outline="none reka-active:ring-2 reka-active:ring-red-500"
+                  @click="handleSignOut"
+                >
+                  <div i-tabler:logout w-f-xs h-f-xs />
+                  Sign Out
+                </button>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenuPortal>
+        </DropdownMenuRoot>
       </div>
     </div>
   </header>

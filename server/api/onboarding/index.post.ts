@@ -50,7 +50,13 @@ export default eventHandler(async (event) => {
       await db.insert(tables.userTopics).values(topicValues).run()
     }
 
-    return { success: true, message: 'Onboarding data saved successfully' }
+    return {
+      success: true,
+      message: 'Onboarding completed successfully! Call /api/lessons/generate to create your personalized lessons.',
+      topics,
+      targetLanguage,
+      userId: user.id,
+    }
   }
   catch {
     throw createError({

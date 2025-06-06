@@ -2,11 +2,33 @@
 definePageMeta({
   auth: {
     only: 'guest',
-    redirectUserTo: '/user',
+    redirectUserTo: '/courses/spanish',
   },
 })
 
 const auth = useAuth()
+
+// Composable to handle post-login navigation
+async function navigateAfterLogin() {
+  try {
+    // Fetch user profile to check onboarding status
+    const userProfile = await $fetch('/api/user/profile')
+
+    // If user has no profile or no topics, redirect to onboarding
+    if (!userProfile?.profile || !userProfile?.topics?.length) {
+      await navigateTo('/onboarding')
+    }
+    else {
+      // User is onboarded, redirect to Spanish lessons
+      await navigateTo('/courses/spanish')
+    }
+  }
+  catch (error) {
+    // If there's an error fetching profile, redirect to onboarding to be safe
+    console.error('Error checking user profile:', error)
+    await navigateTo('/onboarding')
+  }
+}
 
 const email = ref('')
 const password = ref('')
@@ -28,7 +50,7 @@ async function signIn() {
     // })
   }
   else {
-    await navigateTo('/user')
+    await navigateAfterLogin()
     // toast.add({
     //   title: `You have been signed in!`,
     // })
@@ -55,7 +77,7 @@ async function signUp() {
     // toast.add({
     //   title: `You have been signed up!`,
     // })
-    await navigateTo('/user')
+    await navigateAfterLogin()
   }
   loading.value = false
 }
@@ -104,7 +126,7 @@ async function signUp() {
         </button>
         <button
           type="button" nq-pill-blue nq-arrow
-          @click="auth.signIn.social({ provider: 'github', callbackURL: '/user' })"
+          @click="auth.signIn.social({ provider: 'github', callbackURL: '/courses/spanish' })"
         >
           <div i-nimiq:logos-github-mono />
           Sign In with Github

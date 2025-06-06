@@ -6,6 +6,14 @@ definePageMeta({
   middleware: 'auth',
 })
 
+// Check if user is already onboarded
+const { data: userProfile } = await useFetch('/api/user/profile')
+
+// If user is already onboarded (has profile and topics), redirect to Spanish lessons
+if (userProfile.value?.profile && userProfile.value?.topics?.length > 0) {
+  await navigateTo('/courses/spanish')
+}
+
 // Use VueUse stepper
 const stepper = useStepper([
   'topics',
@@ -41,26 +49,27 @@ function handleTopicKeydown(event: KeyboardEvent) {
 }
 
 // Submit onboarding data using useFetch - hardcode Spanish
-const { data: submitResult, status: submitStatus, execute: submitOnboarding } = await useFetch('/api/onboarding', {
+const { status: submitStatus, execute: submitOnboarding } = await useFetch('/api/onboarding', {
   method: 'POST',
   body: {
     topics: selectedTopics,
     targetLanguage: 'spanish', // Hardcoded
   },
   immediate: false,
+  onResponse: ({ response }) => {
+    if (response._data?.success) {
+      navigateTo('/courses/spanish')
+    }
+  },
+  onResponseError: ({ error }) => {
+    console.error('Onboarding submission failed:', error)
+  },
 })
 
 // Handle button click for submit
 function handleSubmitClick() {
   submitOnboarding()
 }
-
-// Watch for successful submission
-watch(submitResult, (result) => {
-  if (result?.success) {
-    navigateTo('/user')
-  }
-})
 </script>
 
 <template>
@@ -68,18 +77,18 @@ watch(submitResult, (result) => {
     :initial="{ opacity: 0, y: 20 }"
     :animate="{ opacity: 1, y: 0 }"
     :transition="{ duration: 0.6, ease: 'easeOut' }"
-    min-h-screen bg-neutral-50 flex="~ items-center justify-center" py-12 px-4
+    bg-neutral-50 h-full f-px-sm flex="~ items-center justify-center"
   >
-    <div w="320 full" flex="~ col gap-8">
+    <div w="f-lg full" flex="~ col gap-f-sm">
       <motion.div
         :initial="{ opacity: 0, y: -10 }"
         :animate="{ opacity: 1, y: 0 }"
         :transition="{ duration: 0.5, delay: 0.2 }"
       >
-        <h2 mt-6 text="center neutral-900 3xl" font-extrabold>
-          Welcome to Lingua!
+        <h2 mt-f-xs text="center nq-900 f-2xl" font-extrabold>
+          Welcome to Lingai!
         </h2>
-        <p mt-2 text="center neutral-600 f-sm">
+        <p mt-f-3xs text="center neutral-600 f-sm">
           Let's personalize your language learning experience
         </p>
       </motion.div>
@@ -308,7 +317,11 @@ watch(submitResult, (result) => {
               :transition="{ duration: 0.1 }"
               @click="handleSubmitClick"
             >
-              ¡Empezar!
+              <span v-if="submitStatus !== 'pending'">¡Empezar!</span>
+              <span v-else flex="~ items-center gap-2">
+                <div i-tabler:loader-2 w-4 h-4 animate-spin />
+                Loading...
+              </span>
             </motion.button>
           </motion.div>
         </motion.div>

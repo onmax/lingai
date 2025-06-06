@@ -8,13 +8,13 @@ const isMobile = computed(() => screenWidth.value < 768)
 
 <template>
   <!-- Mobile: Show app directly -->
-  <div v-if="isMobile" w-full min-h-screen>
+  <div v-if="isMobile" w-full>
     <AppHeader />
     <NuxtPage />
   </div>
 
   <!-- Tablet/Desktop: Show app wrapped in iPhone mockup -->
-  <div v-else min-h-screen bg-neutral-100 dark:bg-neutral-900 flex="~ items-center justify-center" p-8>
+  <div v-else bg-neutral-100 dark:bg-neutral-900 flex="~ items-center justify-center" p-8>
     <IPhoneMockup
       :width="375"
       :height="812"
