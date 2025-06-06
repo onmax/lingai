@@ -25,16 +25,13 @@ export default eventHandler(async (event) => {
       .where(eq(tables.userTopics.userId, user.id))
       .all()
 
-    // Get user languages
-    const languages = await db.select()
-      .from(tables.userLanguages)
-      .where(eq(tables.userLanguages.userId, user.id))
-      .all()
+    // Hardcode language info - user speaks English and learns Spanish
+    const languages = [{ language: 'english', level: 'native' }]
 
     return {
       profile,
       topics: topics.map(t => t.topic),
-      languages: languages.map(l => ({ language: l.language, level: l.level })),
+      languages,
     }
   }
   catch {

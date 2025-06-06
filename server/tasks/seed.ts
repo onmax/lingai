@@ -1,40 +1,41 @@
 export default defineTask({
   meta: {
     name: 'db:seed',
-    description: 'Seed database with initial topics and languages',
+    description: 'Seed database with dummy user data',
   },
   async run() {
-    console.warn('Seeding database...')
+    console.warn('Seeding database with dummy data...')
 
     const db = useDrizzle()
 
-    // Seed available languages
-    const languages = [
-      { code: 'en', name: 'English', nativeName: 'English' },
-      { code: 'es', name: 'Spanish', nativeName: 'Español' },
-      { code: 'fr', name: 'French', nativeName: 'Français' },
-      { code: 'de', name: 'German', nativeName: 'Deutsch' },
-      { code: 'it', name: 'Italian', nativeName: 'Italiano' },
-      { code: 'pt', name: 'Portuguese', nativeName: 'Português' },
-      { code: 'ru', name: 'Russian', nativeName: 'Русский' },
-      { code: 'ja', name: 'Japanese', nativeName: '日本語' },
-      { code: 'ko', name: 'Korean', nativeName: '한국어' },
-      { code: 'zh', name: 'Chinese', nativeName: '中文' },
-    ]
-
-    // Note: Topics removed - users can add custom topics
+    // Dummy user ID (this would normally come from better-auth)
+    const dummyUserId = 'dummy-user-123'
 
     try {
-      // Insert languages (ignore duplicates)
-      for (const language of languages) {
-        await db.insert(tables.availableLanguages)
-          .values(language)
+      // Create dummy user profile
+      await db.insert(tables.userProfiles)
+        .values({
+          userId: dummyUserId,
+          targetLanguage: 'spanish',
+        })
+        .onConflictDoNothing()
+        .run()
+
+      // Add some dummy topics
+      const dummyTopics = ['travel', 'food', 'business', 'culture', 'music']
+
+      for (const topic of dummyTopics) {
+        await db.insert(tables.userTopics)
+          .values({
+            userId: dummyUserId,
+            topic,
+          })
           .onConflictDoNothing()
           .run()
       }
 
       console.warn('Database seeded successfully!')
-      return { result: 'success', languages: languages.length }
+      return { result: 'success', userId: dummyUserId, topics: dummyTopics.length }
     }
     catch (error) {
       console.error('Error seeding database:', error)

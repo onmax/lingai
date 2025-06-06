@@ -15,6 +15,13 @@
       "when": 1749126898773,
       "tag": "0001_lyrical_red_wolf",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1749182757183,
+      "tag": "0002_cuddly_khan",
+      "breakpoints": true
     }
   ]
 }

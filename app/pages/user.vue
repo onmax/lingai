@@ -59,7 +59,7 @@ watch(needsOnboarding, (needs) => {
             <strong>Name:</strong> {{ user?.name }}
           </div>
           <div>
-            <strong>Member since:</strong> {{ new Date(user?.createdAt).toLocaleDateString() }}
+            <strong>Member since:</strong> {{ user?.createdAt ? new Date(user.createdAt).toLocaleDateString() : 'Unknown' }}
           </div>
         </div>
 

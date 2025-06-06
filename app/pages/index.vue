@@ -99,16 +99,15 @@ async function signUp() {
         </label>
         <button
           type="submit" nq-pill-blue nq-arrow :disabled="!email || !password || loading"
-          flex="~ items-center gap-6"
         >
           {{ loading ? 'Signing In...' : 'Sign In' }}
-          <button
-            type="button" nq-pill-blue nq-arrow
-            @click="auth.signIn.social({ provider: 'github', callbackURL: '/user' })"
-          >
-            <div i-nimiq:logos-github-mono />
-            Sign In with Github
-          </button>
+        </button>
+        <button
+          type="button" nq-pill-blue nq-arrow
+          @click="auth.signIn.social({ provider: 'github', callbackURL: '/user' })"
+        >
+          <div i-nimiq:logos-github-mono />
+          Sign In with Github
         </button>
       </form>
     </TabsContent>

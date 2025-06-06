@@ -12,6 +12,4 @@ export function useDrizzle() {
 
 // Export types for TypeScript
 export type UserProfile = typeof schema.userProfiles.$inferSelect
-export type UserLanguage = typeof schema.userLanguages.$inferSelect
 export type UserTopic = typeof schema.userTopics.$inferSelect
-export type AvailableLanguage = typeof schema.availableLanguages.$inferSelect

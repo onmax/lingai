@@ -1,46 +1,28 @@
 <script setup lang="ts">
+import { AnimatePresence, motion } from 'motion-v'
+
 // Set page meta for authentication
 definePageMeta({
   middleware: 'auth',
 })
 
-// Onboarding state
-const currentStep = ref(1)
-const totalSteps = 3
+// Use VueUse stepper
+const stepper = useStepper([
+  'topics',
+  'ready',
+])
 
-// Form data
+// Form data - hardcode Spanish learning
 const selectedTopics = ref<string[]>([])
-const userLanguages = ref<Array<{ language: string, level: string }>>([])
-const targetLanguage = ref('spanish')
 
-// Available languages data using useFetch
-const { data: availableLanguages } = await useFetch('/api/languages', {
-  default: () => [],
-})
+// Topic input
+const newTopicInput = ref('')
 
-// Available topics data using useFetch
-const { data: availableTopics } = await useFetch('/api/topics', {
-  default: () => [],
-})
-
-// Topic selection with combobox
-const topicSearchValue = ref('')
-const isTopicComboboxOpen = ref(false)
-
-// Filtered topics based on search
-const filteredTopics = computed(() => {
-  if (!topicSearchValue.value)
-    return availableTopics.value
-  return availableTopics.value?.filter((topic: string) =>
-    topic.toLowerCase().includes(topicSearchValue.value.toLowerCase()),
-  ) || []
-})
-
-function addTopic(topic: string) {
-  if (topic.trim() && !selectedTopics.value.includes(topic.trim())) {
-    selectedTopics.value.push(topic.trim())
-    topicSearchValue.value = ''
-    isTopicComboboxOpen.value = false
+function addTopic() {
+  const topic = newTopicInput.value.trim()
+  if (topic && !selectedTopics.value.includes(topic)) {
+    selectedTopics.value.push(topic)
+    newTopicInput.value = ''
   }
 }
 
@@ -51,46 +33,27 @@ function removeTopic(topic: string) {
   }
 }
 
-const languageLevels = [
-  { value: 'beginner', label: 'Beginner' },
-  { value: 'intermediate', label: 'Intermediate' },
-  { value: 'advanced', label: 'Advanced' },
-  { value: 'native', label: 'Native' },
-]
-
-// Add a language to the user's list
-function addLanguage() {
-  userLanguages.value.push({ language: '', level: 'beginner' })
-}
-
-// Remove a language from the user's list
-function removeLanguage(index: number) {
-  userLanguages.value.splice(index, 1)
-}
-
-// Navigate between steps
-function nextStep() {
-  if (currentStep.value < totalSteps) {
-    currentStep.value++
+function handleTopicKeydown(event: KeyboardEvent) {
+  if (event.key === 'Enter') {
+    event.preventDefault()
+    addTopic()
   }
 }
 
-function prevStep() {
-  if (currentStep.value > 1) {
-    currentStep.value--
-  }
-}
-
-// Submit onboarding data using useFetch
+// Submit onboarding data using useFetch - hardcode Spanish
 const { data: submitResult, status: submitStatus, execute: submitOnboarding } = await useFetch('/api/onboarding', {
   method: 'POST',
   body: {
     topics: selectedTopics,
-    languages: userLanguages,
-    targetLanguage,
+    targetLanguage: 'spanish', // Hardcoded
   },
   immediate: false,
 })
+
+// Handle button click for submit
+function handleSubmitClick() {
+  submitOnboarding()
+}
 
 // Watch for successful submission
 watch(submitResult, (result) => {
@@ -98,265 +61,258 @@ watch(submitResult, (result) => {
     navigateTo('/user')
   }
 })
-
-// Initialize with one language input
-if (userLanguages.value.length === 0) {
-  addLanguage()
-}
 </script>
 
 <template>
-  <div min-h-screen bg-neutral-50 flex="~ items-center justify-center" py-12 px-4>
+  <motion.div
+    :initial="{ opacity: 0, y: 20 }"
+    :animate="{ opacity: 1, y: 0 }"
+    :transition="{ duration: 0.6, ease: 'easeOut' }"
+    min-h-screen bg-neutral-50 flex="~ items-center justify-center" py-12 px-4
+  >
     <div w="320 full" flex="~ col gap-8">
-      <div>
+      <motion.div
+        :initial="{ opacity: 0, y: -10 }"
+        :animate="{ opacity: 1, y: 0 }"
+        :transition="{ duration: 0.5, delay: 0.2 }"
+      >
         <h2 mt-6 text="center neutral-900 3xl" font-extrabold>
           Welcome to Lingua!
         </h2>
         <p mt-2 text="center neutral-600 f-sm">
           Let's personalize your language learning experience
         </p>
-      </div>
+      </motion.div>
 
       <!-- Progress indicator -->
-      <div flex="~ justify-center gap-4" mb-8>
-        <div
-          v-for="step in totalSteps"
+      <motion.div
+        :initial="{ opacity: 0 }"
+        :animate="{ opacity: 1 }"
+        :transition="{ duration: 0.4, delay: 0.3 }"
+        flex="~ justify-center gap-4" mb-8
+      >
+        <motion.div
+          v-for="(step, index) in stepper.steps.value"
           :key="step"
           w-3 h-3 rounded-full
-          :class="step <= currentStep ? 'bg-blue' : 'bg-neutral-300'"
+          :class="index <= stepper.index.value ? 'bg-blue' : 'bg-neutral-300'"
+          :animate="{
+            scale: index <= stepper.index.value ? 1.1 : 1,
+            backgroundColor: index <= stepper.index.value ? 'rgb(59, 130, 246)' : 'rgb(209, 213, 219)',
+          }"
+          :transition="{ duration: 0.3, ease: 'easeOut' }"
         />
-      </div>
+      </motion.div>
 
-      <!-- Step 1: Topics Selection -->
-      <div v-if="currentStep === 1" flex="~ col gap-6">
-        <div>
-          <h3 text="neutral-900 f-lg" font-medium mb-4>
-            What topics interest you?
-          </h3>
-          <p text="neutral-600 f-sm" mb-4>
-            Add the topics you'd like to focus on in your language learning journey.
-          </p>
-
-          <!-- Topic selection with Reka UI Combobox -->
-          <div mb-4>
-            <ComboboxRoot
-              v-model:open="isTopicComboboxOpen"
-              v-model:search-term="topicSearchValue"
+      <!-- Step Content Container -->
+      <AnimatePresence mode="wait">
+        <!-- Step 1: Topics Selection -->
+        <motion.div
+          v-if="stepper.isCurrent('topics')"
+          key="topics"
+          :initial="{ opacity: 0, x: 20 }"
+          :animate="{ opacity: 1, x: 0 }"
+          :exit="{ opacity: 0, x: -20 }"
+          :transition="{ duration: 0.4, ease: 'easeOut' }"
+          flex="~ col gap-6"
+        >
+          <div>
+            <motion.h3
+              :initial="{ opacity: 0, y: 10 }"
+              :animate="{ opacity: 1, y: 0 }"
+              :transition="{ duration: 0.3, delay: 0.1 }"
+              text="neutral-900 f-lg" font-medium mb-4
             >
-              <ComboboxAnchor as-child>
-                <div relative>
-                  <ComboboxInput
-                    placeholder="Search and select topics..."
-                    flex-1 block w-full px-3 py-2 border="~ neutral-300" rounded-md shadow-sm text="f-sm"
-                    focus="outline-none ring-blue border-blue"
-                  />
-                  <ComboboxTrigger
-                    absolute right-2 top="1/2" translate-y="-1/2" p-1 text="neutral-500 hocus:neutral-700"
-                  >
-                    <div i-heroicons-chevron-down-20-solid w-4 h-4 />
-                  </ComboboxTrigger>
-                </div>
-              </ComboboxAnchor>
-
-              <ComboboxContent
-                position="popper"
-                side="bottom"
-                align="start"
-                avoid-collisions
-                z-50 max-h-60 w="[--reka-combobox-trigger-width]" of-auto rounded-md border="~ neutral-200" bg-white py-1 shadow-lg
-              >
-                <ComboboxViewport>
-                  <ComboboxEmpty px-2 py-3 text="f-sm neutral-500 center">
-                    No topics found.
-                  </ComboboxEmpty>
-                  <ComboboxItem
-                    v-for="topic in filteredTopics"
-                    :key="topic"
-                    :value="topic"
-                    relative flex="~ items-center" cursor-default select-none py-2 px-3 text="f-sm neutral-900"
-                    bg="hocus:neutral-100 reka-highlighted:neutral-100" outline-none capitalize
-                    @select="() => addTopic(topic)"
-                  >
-                    <ComboboxItemIndicator
-                      absolute left-2 flex="~ items-center justify-center" h-3.5 w-3.5
-                    >
-                      <div i-heroicons-check-20-solid w-4 h-4 />
-                    </ComboboxItemIndicator>
-                    <span ml-6>{{ topic }}</span>
-                  </ComboboxItem>
-                </ComboboxViewport>
-              </ComboboxContent>
-            </ComboboxRoot>
-          </div>
-
-          <!-- Selected topics -->
-          <div v-if="selectedTopics.length > 0" flex="~ wrap gap-2">
-            <span
-              v-for="topic in selectedTopics"
-              :key="topic"
-              inline-flex="~ items-center" px-3 py-1 rounded-full text="f-sm blue" bg-blue-50 capitalize
+              What topics interest you?
+            </motion.h3>
+            <motion.p
+              :initial="{ opacity: 0 }"
+              :animate="{ opacity: 1 }"
+              :transition="{ duration: 0.3, delay: 0.2 }"
+              text="neutral-600 f-sm" mb-4
             >
-              {{ topic }}
-              <button
-                ml-2 text="blue hocus:blue-700"
-                @click="removeTopic(topic)"
-              >
-                ×
-              </button>
-            </span>
-          </div>
+              Add the topics you'd like to focus on in your language learning journey.
+            </motion.p>
 
-          <p v-if="selectedTopics.length === 0" text="neutral-500 f-sm" mt-2>
-            No topics added yet. Add some topics that interest you!
-          </p>
-        </div>
-
-        <div flex="~ justify-end">
-          <button
-            nq-pill-blue nq-arrow
-            :disabled="selectedTopics.length === 0"
-            @click="nextStep"
-          >
-            Next
-          </button>
-        </div>
-      </div>
-
-      <!-- Step 2: Languages & Levels -->
-      <div v-if="currentStep === 2" flex="~ col gap-6">
-        <div>
-          <h3 text="neutral-900 f-lg" font-medium mb-4>
-            What languages do you speak?
-          </h3>
-          <p text="neutral-600 f-sm" mb-4>
-            Tell us about your current language skills.
-          </p>
-
-          <div v-if="availableLanguages && availableLanguages.length > 0" flex="~ col gap-4">
-            <div
-              v-for="(lang, index) in userLanguages"
-              :key="index"
-              flex="~ items-center gap-3"
+            <!-- Simple topic input -->
+            <motion.div
+              :initial="{ opacity: 0, y: 10 }"
+              :animate="{ opacity: 1, y: 0 }"
+              :transition="{ duration: 0.3, delay: 0.3 }"
+              mb-4 flex="~ gap-2"
             >
-              <select
-                v-model="lang.language"
+              <input
+                v-model="newTopicInput"
+                placeholder="Enter a topic (e.g., travel, food, business...)"
                 flex-1 block w-full px-3 py-2 border="~ neutral-300" rounded-md shadow-sm text="f-sm"
                 focus="outline-none ring-blue border-blue"
+                @keydown="handleTopicKeydown"
               >
-                <option value="">
-                  Select a language
-                </option>
-                <option
-                  v-for="availableLang in availableLanguages"
-                  :key="availableLang.id"
-                  :value="availableLang.code"
-                >
-                  {{ availableLang.name }}
-                </option>
-              </select>
+              <motion.button
+                nq-pill-blue
+                :disabled="!newTopicInput.trim()"
+                :while-hover="{ scale: 1.02 }"
+                :while-tap="{ scale: 0.98 }"
+                :transition="{ duration: 0.1 }"
+                @click="addTopic"
+              >
+                Add
+              </motion.button>
+            </motion.div>
 
-              <select
-                v-model="lang.level"
-                block w-32 px-3 py-2 border="~ neutral-300" rounded-md shadow-sm text="f-sm"
-                focus="outline-none ring-blue border-blue"
+            <!-- Selected topics -->
+            <AnimatePresence>
+              <motion.div
+                v-if="selectedTopics.length > 0"
+                :initial="{ opacity: 0, height: 0 }"
+                :animate="{ opacity: 1, height: 'auto' }"
+                :exit="{ opacity: 0, height: 0 }"
+                :transition="{ duration: 0.3 }"
+                flex="~ wrap gap-2"
               >
-                <option
-                  v-for="level in languageLevels"
-                  :key="level.value"
-                  :value="level.value"
+                <motion.span
+                  v-for="topic in selectedTopics"
+                  :key="topic"
+                  :initial="{ opacity: 0, scale: 0.8, y: 10 }"
+                  :animate="{ opacity: 1, scale: 1, y: 0 }"
+                  :exit="{ opacity: 0, scale: 0.8, y: -10 }"
+                  :transition="{ duration: 0.3, ease: 'backOut' }"
+                  :while-hover="{ scale: 1.05 }"
+                  inline-flex="~ items-center" px-3 py-1 rounded-full text="f-sm blue" bg-blue-50 capitalize
                 >
-                  {{ level.label }}
-                </option>
-              </select>
+                  {{ topic }}
+                  <motion.button
+                    ml-2 text="blue hocus:blue-700"
+                    :while-hover="{ scale: 1.2 }"
+                    :while-tap="{ scale: 0.9 }"
+                    :transition="{ duration: 0.1 }"
+                    @click="removeTopic(topic)"
+                  >
+                    ×
+                  </motion.button>
+                </motion.span>
+              </motion.div>
+            </AnimatePresence>
 
-              <button
-                v-if="userLanguages.length > 1"
-                nq-pill text="red-600 hocus:red-800"
-                @click="removeLanguage(index)"
-              >
-                ×
-              </button>
-            </div>
+            <motion.p
+              v-if="selectedTopics.length === 0"
+              :initial="{ opacity: 0 }"
+              :animate="{ opacity: 1 }"
+              :transition="{ duration: 0.3, delay: 0.4 }"
+              text="neutral-500 f-sm" mt-2
+            >
+              No topics added yet. Add some topics that interest you!
+            </motion.p>
           </div>
 
-          <div v-else text="center" py-8>
-            <p text="f-sm neutral-500">
-              Loading languages...
-            </p>
-          </div>
-
-          <button
-            v-if="availableLanguages && availableLanguages.length > 0"
-            nq-pill-blue nq-arrow
-            @click="addLanguage"
+          <motion.div
+            :initial="{ opacity: 0, y: 10 }"
+            :animate="{ opacity: 1, y: 0 }"
+            :transition="{ duration: 0.3, delay: 0.5 }"
+            flex="~ justify-end"
           >
-            Add Another Language
-          </button>
-        </div>
+            <motion.button
+              nq-pill-blue nq-arrow
+              :disabled="selectedTopics.length === 0"
+              :while-hover="selectedTopics.length > 0 ? { scale: 1.02 } : {}"
+              :while-tap="selectedTopics.length > 0 ? { scale: 0.98 } : {}"
+              :transition="{ duration: 0.1 }"
+              @click="stepper.goToNext"
+            >
+              Next
+            </motion.button>
+          </motion.div>
+        </motion.div>
 
-        <div flex="~ justify-between">
-          <button
-            nq-pill
-            @click="prevStep"
-          >
-            Back
-          </button>
-          <button
-            nq-pill-blue nq-arrow
-            :disabled="userLanguages.some(lang => !lang.language)"
-            @click="nextStep"
-          >
-            Next
-          </button>
-        </div>
-      </div>
+        <!-- Step 2: Ready to Learn Spanish -->
+        <motion.div
+          v-if="stepper.isCurrent('ready')"
+          key="ready"
+          :initial="{ opacity: 0, x: 20 }"
+          :animate="{ opacity: 1, x: 0 }"
+          :exit="{ opacity: 0, x: -20 }"
+          :transition="{ duration: 0.4, ease: 'easeOut' }"
+          flex="~ col gap-6"
+        >
+          <div text-center>
+            <motion.div
+              :initial="{ opacity: 0, scale: 0.5, rotate: -10 }"
+              :animate="{ opacity: 1, scale: 1, rotate: 0 }"
+              :transition="{ duration: 0.5, ease: 'backOut', delay: 0.1 }"
+              text="6xl" mb-6
+            >
+              🎉
+            </motion.div>
+            <motion.h3
+              :initial="{ opacity: 0, y: 10 }"
+              :animate="{ opacity: 1, y: 0 }"
+              :transition="{ duration: 0.4, delay: 0.2 }"
+              text="neutral-900 2xl" font-bold mb-4
+            >
+              ¡Vamos a aprender español!
+            </motion.h3>
+            <motion.p
+              :initial="{ opacity: 0 }"
+              :animate="{ opacity: 1 }"
+              :transition="{ duration: 0.4, delay: 0.3 }"
+              text="neutral-600 f-base" mb-6
+            >
+              You're all set! Let's start your Spanish learning journey with the topics you've chosen.
+            </motion.p>
 
-      <!-- Step 3: Target Language -->
-      <div v-if="currentStep === 3" flex="~ col gap-6">
-        <div>
-          <h3 text="neutral-900 f-lg" font-medium mb-4>
-            What language do you want to learn?
-          </h3>
-          <p text="neutral-600 f-sm" mb-4>
-            For now, we're focusing on Spanish, but more languages are coming soon!
-          </p>
-
-          <div flex="~ col gap-3">
-            <label relative flex="~ items-center gap-3" rounded-lg border-blue-200 bg-white px-6 py-4 shadow-sm ring="2 blue">
-              <input
-                v-model="targetLanguage"
-                value="spanish"
-                type="radio"
-                h-4 w-4 text-blue border-neutral-300 focus:ring-blue
-              >
-              <div min-w-0 flex-1>
-                <span text="f-sm neutral-900" font-medium>
-                  Spanish (Español)
-                </span>
-                <p text="f-xs neutral-500">
-                  Learn Spanish with our Assimil + Anki method
-                </p>
+            <motion.div
+              v-if="selectedTopics.length > 0"
+              :initial="{ opacity: 0, y: 10 }"
+              :animate="{ opacity: 1, y: 0 }"
+              :transition="{ duration: 0.4, delay: 0.4 }"
+              mb-6
+            >
+              <p text="neutral-700 f-sm" mb-3>
+                Your selected topics:
+              </p>
+              <div flex="~ wrap gap-2 justify-center">
+                <motion.span
+                  v-for="(topic, index) in selectedTopics"
+                  :key="topic"
+                  :initial="{ opacity: 0, scale: 0.8 }"
+                  :animate="{ opacity: 1, scale: 1 }"
+                  :transition="{ duration: 0.3, delay: 0.5 + index * 0.1 }"
+                  inline-flex="~ items-center" px-3 py-1 rounded-full text="f-sm blue" bg-blue-50 capitalize
+                >
+                  {{ topic }}
+                </motion.span>
               </div>
-            </label>
+            </motion.div>
           </div>
-        </div>
 
-        <div flex="~ justify-between">
-          <button
-            nq-pill
-            @click="prevStep"
+          <motion.div
+            :initial="{ opacity: 0, y: 10 }"
+            :animate="{ opacity: 1, y: 0 }"
+            :transition="{ duration: 0.4, delay: 0.6 }"
+            flex="~ justify-between"
           >
-            Back
-          </button>
-          <button
-            nq-pill-blue nq-arrow
-            :disabled="submitStatus === 'pending'"
-            @click="submitOnboarding"
-          >
-            Complete Setup
-          </button>
-        </div>
-      </div>
+            <motion.button
+              nq-pill
+              :while-hover="{ scale: 1.02 }"
+              :while-tap="{ scale: 0.98 }"
+              :transition="{ duration: 0.1 }"
+              @click="stepper.goToPrevious"
+            >
+              Back
+            </motion.button>
+            <motion.button
+              nq-pill-blue nq-arrow
+              :disabled="submitStatus === 'pending'"
+              :while-hover="submitStatus !== 'pending' ? { scale: 1.02 } : {}"
+              :while-tap="submitStatus !== 'pending' ? { scale: 0.98 } : {}"
+              :transition="{ duration: 0.1 }"
+              @click="handleSubmitClick"
+            >
+              ¡Empezar!
+            </motion.button>
+          </motion.div>
+        </motion.div>
+      </AnimatePresence>
     </div>
-  </div>
+  </motion.div>
 </template>

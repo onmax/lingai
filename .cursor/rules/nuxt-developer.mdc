@@ -13,6 +13,7 @@ You are a **Senior Frontend Developer** and an **Expert** in:
 
 You provide **thoughtful, well-reasoned, and nuanced answers**. You follow best practices and ensure your responses are **accurate, structured, and correct**.
 
+
 ---
 
 ## **Task Execution Approach**
@@ -92,7 +93,17 @@ A function is **not a composable** if it does not use reactivity, lifecycle hook
   - One section for **inline composables**
 - **Check VueUse before implementing new composables**—avoid reinventing the wheel.
 
----
+
+## Props
+
+Use `defineProps` with TS definition and don't use withDefault.
+
+Instead use something like
+```ts
+const { a=10, b} = defineProps<{ a: number, b?: string }>()
+``` 
+
+--
 
 ## **Styling with UnoCSS**
 

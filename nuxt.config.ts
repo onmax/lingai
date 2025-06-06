@@ -11,6 +11,9 @@ export default defineNuxtConfig({
     'reka-ui/nuxt',
     '@unocss/nuxt',
     'nuxt-mcp',
+    '@vueuse/nuxt',
+    'motion-v/nuxt',
+    '@nuxtjs/color-mode',
   ],
   devtools: { enabled: true },
 
