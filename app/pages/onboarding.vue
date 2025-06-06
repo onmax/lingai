@@ -49,7 +49,7 @@ function handleTopicKeydown(event: KeyboardEvent) {
 }
 
 // Submit onboarding data using useFetch - hardcode Spanish
-const { status: submitStatus, execute: submitOnboarding } = await useFetch('/api/onboarding', {
+const { status: submitStatus, data: submitData, execute: submitOnboarding } = await useFetch('/api/onboarding', {
   method: 'POST',
   body: {
     topics: selectedTopics,
@@ -58,7 +58,10 @@ const { status: submitStatus, execute: submitOnboarding } = await useFetch('/api
   immediate: false,
   onResponse: ({ response }) => {
     if (response._data?.success) {
-      navigateTo('/courses/spanish')
+      // Show a brief message about lesson generation before redirecting
+      setTimeout(() => {
+        navigateTo('/courses/spanish')
+      }, 2000)
     }
   },
   onResponseError: ({ error }) => {
@@ -311,16 +314,20 @@ function handleSubmitClick() {
             </motion.button>
             <motion.button
               nq-pill-blue nq-arrow
-              :disabled="submitStatus === 'pending'"
-              :while-hover="submitStatus !== 'pending' ? { scale: 1.02 } : {}"
-              :while-tap="submitStatus !== 'pending' ? { scale: 0.98 } : {}"
+              :disabled="submitStatus === 'pending' || submitStatus === 'success'"
+              :while-hover="submitStatus === 'idle' ? { scale: 1.02 } : {}"
+              :while-tap="submitStatus === 'idle' ? { scale: 0.98 } : {}"
               :transition="{ duration: 0.1 }"
               @click="handleSubmitClick"
             >
-              <span v-if="submitStatus !== 'pending'">¡Empezar!</span>
-              <span v-else flex="~ items-center gap-2">
+              <span v-if="submitStatus === 'idle'">¡Empezar!</span>
+              <span v-else-if="submitStatus === 'pending'" flex="~ items-center gap-2">
                 <div i-tabler:loader-2 w-4 h-4 animate-spin />
-                Loading...
+                Setting up...
+              </span>
+              <span v-else-if="submitStatus === 'success'" flex="~ items-center gap-2">
+                <div i-tabler:check w-4 h-4 />
+                {{ submitData?.message || 'Success!' }}
               </span>
             </motion.button>
           </motion.div>

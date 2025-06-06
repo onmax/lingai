@@ -22,20 +22,6 @@ useHead({
 })
 </script>
 
-<script lang="ts">
-async function uploadLessons() {
-  try {
-    const response = await $fetch('/api/lessons/upload', { method: 'POST' })
-    console.warn('Upload response:', response)
-    // Refresh the page to show uploaded lessons
-    await navigateTo('/courses/spanish', { replace: true })
-  }
-  catch (error) {
-    console.error('Upload failed:', error)
-  }
-}
-</script>
-
 <template>
   <div max-w-512 mx-auto p-24>
     <header mb-32>
@@ -98,28 +84,6 @@ async function uploadLessons() {
       <p text-neutral-500>
         Las lecciones se cargarán pronto.
       </p>
-    </div>
-
-    <!-- Upload button for development -->
-    <div mt-12 pt-8 border-t border-neutral-200>
-      <details>
-        <summary text-sm text-neutral-500 cursor-pointer>
-          Opciones de desarrollo
-        </summary>
-        <div mt-4>
-          <button
-            bg-blue-600
-            text-white
-            px-4
-            py-2
-            rounded-lg
-            hover="bg-blue-700"
-            @click="uploadLessons"
-          >
-            Subir lecciones a blob storage
-          </button>
-        </div>
-      </details>
     </div>
   </div>
 </template>

@@ -1,7 +1,18 @@
 export default defineEventHandler(async (event) => {
   try {
-    // For now, we'll use a default user ID. Later this will come from auth
-    const userId = 'demo-user'
+    // Get authenticated user
+    const authRequest = toWebRequest(event)
+    const sessionData = await serverAuth().api.getSession(authRequest)
+    const user = sessionData?.user
+
+    if (!user) {
+      throw createError({
+        statusCode: 401,
+        statusMessage: 'Unauthorized - login required to access lessons',
+      })
+    }
+
+    const userId = user.id
     const language = getQuery(event).language as string || 'es'
 
     // List all files in the user's lesson directory

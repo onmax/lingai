@@ -5,13 +5,21 @@ export default defineEventHandler(async (event) => {
     // Get language from route params
     const language = getRouterParam(event, 'language') || 'es'
 
-    // For demo purposes, using a dummy user ID
-    // In production, this would come from authentication
-    const dummyUserId = 'user-123'
+    // Get authenticated user
+    const authRequest = toWebRequest(event)
+    const sessionData = await serverAuth().api.getSession(authRequest)
+    const user = sessionData?.user
+
+    if (!user) {
+      throw createError({
+        statusCode: 401,
+        statusMessage: 'Unauthorized - login required to access lessons',
+      })
+    }
 
     // List all lessons for this user and language
     const { blobs } = await hubBlob().list({
-      prefix: `lessons/${dummyUserId}/${language}/`,
+      prefix: `lessons/${user.id}/${language}/`,
     })
 
     const lessons = []

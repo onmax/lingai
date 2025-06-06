@@ -1,10 +1,6 @@
-import { defineCollection, defineContentConfig } from '@nuxt/content'
+import { defineContentConfig } from '@nuxt/content'
 
 export default defineContentConfig({
-  collections: {
-    content: defineCollection({
-      type: 'page',
-      source: '**/*.md',
-    }),
-  },
+  // No static collections - all content is user-specific and loaded from blob storage
+  collections: {},
 })
