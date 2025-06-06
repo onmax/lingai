@@ -18,6 +18,8 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
 
   runtimeConfig: {
+    betterAuthSecret: process.env.BETTER_AUTH_SECRET || '',
+    betterAuthUrl: process.env.BETTER_AUTH_URL || '',
     github: {
       clientSecret: process.env.GITHUB_CLIENT_SECRET || '',
       clientId: process.env.GITHUB_CLIENT_ID || '',
@@ -25,6 +27,8 @@ export default defineNuxtConfig({
   },
   safeRuntimeConfig: {
     $schema: object({
+      betterAuthSecret: string(),
+      betterAuthUrl: string(),
       github: object({
         clientSecret: string(),
         clientId: string(),

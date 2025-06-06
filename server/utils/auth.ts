@@ -21,7 +21,8 @@ export function serverAuth() {
         },
         delete: key => hubKV().del(`_auth:${key}`),
       },
-      baseURL: getBaseURL(),
+      secret: config.betterAuthSecret,
+      baseURL: config.betterAuthUrl || getBaseURL(),
       emailAndPassword: {
         enabled: true,
       },
