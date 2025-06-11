@@ -5,7 +5,7 @@ const lessonNumber = route.params.lessonNumber as string
 
 // First, get the list of lessons to find the matching one
 const { data: lessonsResponse } = await useFetch<SpanishLessonsResponse>('/api/lessons/spanish')
-const matchingLesson = lessonsResponse.value?.lessons?.find((l: Lesson) => l.lessonNumber === Number.parseInt(lessonNumber))
+const matchingLesson = lessonsResponse.value?.lessons?.find((l: FileLesson) => l.lessonNumber === Number.parseInt(lessonNumber))
 
 if (!matchingLesson) {
   throw createError({
@@ -52,26 +52,26 @@ useHead({
       <header mb-32>
         <div flex="~ items-center gap-12 mb-16">
           <span bg-neutral-100 text-blue px-12 py-4 rounded-full f-text-sm bg-blue-100>
-            Lección {{ lesson.lessonNumber }}
+            Lección {{ lesson.lessonNumber || matchingLesson.lessonNumber }}
           </span>
           <span text="f-sm neutral-500">
-            {{ lesson.language }}
+            {{ lesson.targetLanguage || matchingLesson.language }}
           </span>
         </div>
         <h1 text="f-3xl neutral-900" font-bold>
-          {{ lesson.frontmatter?.title || lesson.title }}
+          {{ lesson.title || matchingLesson.title }}
         </h1>
       </header>
 
       <!-- Content rendered as markdown -->
-      <div nq-prose v-html="useMarkdown(lesson.content || '')" />
+      <div nq-prose v-html="useMarkdown(lesson.description || matchingLesson.content || '')" />
 
       <!-- Navigation -->
       <div mt-12 pt-12 border="t-1 neutral-200">
         <div flex="~ items-center justify-between">
           <NuxtLink
-            v-if="lesson.lessonNumber > 1"
-            :to="`/courses/spanish/${lesson.lessonNumber - 1}`"
+            v-if="matchingLesson.lessonNumber > 1"
+            :to="`/courses/spanish/${matchingLesson.lessonNumber - 1}`"
             nq-hoverable
           >
             <div i-nimiq:arrow-left size-20 />
@@ -80,7 +80,7 @@ useHead({
           <div v-else />
 
           <NuxtLink
-            :to="`/courses/spanish/${lesson.lessonNumber + 1}`"
+            :to="`/courses/spanish/${matchingLesson.lessonNumber + 1}`"
             nq-hoverable
           >
             <span>Siguiente lección</span>

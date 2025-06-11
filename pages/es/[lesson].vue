@@ -33,12 +33,12 @@ if (!lessonResponse.value?.success || !lessonResponse.value.lesson) {
 const lesson = lessonResponse.value.lesson
 
 // Parse markdown content
-const htmlContent = useMarkdown(lesson.content || '')
+const htmlContent = useMarkdown(lesson.description || '')
 
 // Set page meta
 useSeoMeta({
-  title: lesson.frontmatter?.title || 'Spanish Lesson',
-  description: lesson.frontmatter?.description || `Spanish lesson: ${lesson.frontmatter?.title || 'Learn Spanish'}`,
+  title: lesson.title || 'Spanish Lesson',
+  description: lesson.description || `Spanish lesson: ${lesson.title || 'Learn Spanish'}`,
 })
 </script>
 
@@ -58,21 +58,21 @@ useSeoMeta({
         </div>
 
         <h1 class="text-3xl font-bold mb-2">
-          {{ lesson.frontmatter?.title || 'Spanish Lesson' }}
+          {{ lesson.title || 'Spanish Lesson' }}
         </h1>
 
         <div class="flex flex-wrap gap-3 text-sm text-gray-600">
           <span class="flex items-center gap-1">
             <div class="i-tabler-world" />
-            {{ lesson.frontmatter?.language || 'es' }}
+            {{ lesson.targetLanguage || 'es' }}
           </span>
           <span class="flex items-center gap-1">
             <div class="i-tabler-chart-line" />
-            {{ lesson.frontmatter?.difficulty || 'beginner' }}
+            {{ lesson.difficulty || 'beginner' }}
           </span>
-          <span v-if="lesson.frontmatter?.topics" class="flex items-center gap-1">
+          <span v-if="lesson.topics && lesson.topics.length > 0" class="flex items-center gap-1">
             <div class="i-tabler-tags" />
-            {{ Array.isArray(lesson.frontmatter.topics) ? lesson.frontmatter.topics.join(', ') : lesson.frontmatter.topics }}
+            {{ Array.isArray(lesson.topics) ? lesson.topics.join(', ') : lesson.topics }}
           </span>
         </div>
       </header>

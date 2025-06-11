@@ -211,7 +211,7 @@ function extractSentencesFromText(content: string, targetLanguage: string): Pars
       for (const separator of separators) {
         if (line.includes(separator)) {
           const parts = line.split(separator)
-          if (parts.length === 2) {
+          if (parts.length === 2 && parts[0] && parts[1]) {
             const sentence1 = parts[0].trim().replace(/^[*-]\s*/, '')
             const sentence2 = parts[1].trim()
 

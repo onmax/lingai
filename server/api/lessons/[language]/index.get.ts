@@ -54,7 +54,7 @@ export default defineEventHandler(async (event) => {
                       const key = line.substring(1, colonIndex).trim()
                       const value = line.substring(colonIndex + 1).trim()
 
-                      let parsedValue = value
+                      let parsedValue: string | string[] = value
                       if (parsedValue.startsWith('[') && parsedValue.endsWith(']')) {
                         parsedValue = parsedValue.slice(1, -1).split(',').map((item: string) => item.trim())
                       }

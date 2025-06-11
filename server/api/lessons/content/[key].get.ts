@@ -49,7 +49,7 @@ export default defineEventHandler(async (event) => {
                 const colonIndex = line.indexOf(':')
                 const key = line.substring(1, colonIndex).trim()
                 const value = line.substring(colonIndex + 1).trim()
-                let parsedValue = value
+                let parsedValue: string | string[] = value
 
                 // Handle arrays like [travel, food, family]
                 if (parsedValue.startsWith('[') && parsedValue.endsWith(']')) {

@@ -20,7 +20,6 @@
     "@atinux/kysely-d1": "catalog:",
     "@iconify-json/heroicons": "catalog:",
     "@iconify-json/simple-icons": "catalog:",
-    "@nuxt/content": "catalog:",
     "@nuxt/eslint": "catalog:",
     "@nuxthub/core": "catalog:",
     "@nuxtjs/color-mode": "catalog:",
