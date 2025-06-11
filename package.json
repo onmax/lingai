@@ -26,7 +26,7 @@
     "@nuxtjs/color-mode": "catalog:",
     "@vueuse/core": "catalog:",
     "@vueuse/nuxt": "catalog:",
-    "ai": "^4.3.16",
+    "ai": "catalog:",
     "better-auth": "catalog:",
     "drizzle-orm": "catalog:",
     "gray-matter": "catalog:",
@@ -36,16 +36,16 @@
     "nuxt": "catalog:",
     "nuxt-safe-runtime-config": "catalog:",
     "ofetch": "catalog:",
-    "pathe": "^2.0.3",
+    "pathe": "catalog:",
     "reka-ui": "catalog:",
     "valibot": "catalog:",
     "vue": "catalog:",
     "vue-router": "catalog:",
-    "workers-ai-provider": "^0.6.1"
+    "workers-ai-provider": "catalog:"
   },
   "devDependencies": {
     "@antfu/eslint-config": "catalog:",
-    "@cloudflare/workers-types": "^4.20250610.0",
+    "@cloudflare/workers-types": "catalog:",
     "@iconify/utils": "catalog:",
     "@nuxt/eslint-config": "catalog:",
     "@unocss/nuxt": "catalog:",
