@@ -25,67 +25,77 @@ export function useLessonNavigation(currentLessonId: MaybeRef<number>) {
 
   // Generate next lesson if it doesn't exist
   async function generateNextLesson() {
-    if (isGeneratingNext.value) return null
+    if (isGeneratingNext.value)
+      return null
 
     try {
       isGeneratingNext.value = true
-      
-      const response = await $fetch<{ success: boolean; lesson: any }>(`/api/lessons/${lessonId.value}/generate-next`, {
-        method: 'POST'
+
+      const response = await $fetch<{ success: boolean, lesson: any }>(`/api/lessons/${lessonId.value}/generate-next`, {
+        method: 'POST',
       })
-      
+
       return response.lesson
-    } catch (error) {
+    }
+    catch (error) {
       console.error('Error generating next lesson:', error)
       throw error
-    } finally {
+    }
+    finally {
       isGeneratingNext.value = false
     }
   }
 
   // Navigate to next lesson (generate if needed)
   async function goToNextLesson() {
-    if (isNavigating.value) return
+    if (isNavigating.value)
+      return
 
     try {
       isNavigating.value = true
-      
+
       const navigation = await getLessonNavigation()
-      
+
       if (navigation.nextLessonId) {
         // Next lesson exists, navigate to it
         await navigateTo(`/courses/spanish/${navigation.nextLessonId}`)
-      } else {
+      }
+      else {
         // Generate next lesson and navigate
         const newLesson = await generateNextLesson()
         if (newLesson) {
           await navigateTo(`/courses/spanish/${newLesson.id}`)
         }
       }
-    } catch (error) {
+    }
+    catch (error) {
       console.error('Error navigating to next lesson:', error)
       throw error
-    } finally {
+    }
+    finally {
       isNavigating.value = false
     }
   }
 
   // Navigate to previous lesson
   async function goToPreviousLesson() {
-    if (isNavigating.value) return
+    if (isNavigating.value)
+      return
 
     try {
       isNavigating.value = true
-      
+
       const navigation = await getLessonNavigation()
-      
+
       if (navigation.previousLessonId) {
         await navigateTo(`/courses/spanish/${navigation.previousLessonId}`)
       }
-    } catch (error) {
+    }
+    catch (error) {
       console.error('Error navigating to previous lesson:', error)
       throw error
-    } finally {
+    }
+    finally {
       isNavigating.value = false
     }
   }
@@ -96,10 +106,11 @@ export function useLessonNavigation(currentLessonId: MaybeRef<number>) {
       await $fetch('/api/user/progress', {
         method: 'PUT',
         body: {
-          lastLessonId: lessonId.value
-        }
+          lastLessonId: lessonId.value,
+        },
       })
-    } catch (error) {
+    }
+    catch (error) {
       console.error('Error updating user progress:', error)
     }
   }
@@ -109,7 +120,8 @@ export function useLessonNavigation(currentLessonId: MaybeRef<number>) {
     try {
       const response = await $fetch<{ progress: UserProgress }>('/api/user/progress')
       return response.progress
-    } catch (error) {
+    }
+    catch (error) {
       console.error('Error getting user progress:', error)
       return null
     }
@@ -123,6 +135,6 @@ export function useLessonNavigation(currentLessonId: MaybeRef<number>) {
     goToNextLesson,
     goToPreviousLesson,
     updateProgress,
-    getLastLesson
+    getLastLesson,
   }
-} 
+}

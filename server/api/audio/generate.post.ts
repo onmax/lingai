@@ -77,7 +77,8 @@ export default defineEventHandler(async (event) => {
       response_format: 'mp3',
       speed,
     })
-    console.log({ mp3 })
+
+    consola.debug('OpenAI TTS response received successfully')
 
     // Get the audio buffer
     const audioBuffer = Buffer.from(await mp3.arrayBuffer())

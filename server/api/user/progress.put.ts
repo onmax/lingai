@@ -73,7 +73,8 @@ export default defineEventHandler(async (event) => {
             eq(tables.userSentenceProgress.userId, user.id),
             eq(tables.userSentenceProgress.sentenceId, sentence.id),
           ))
-      } else {
+      }
+      else {
         // Create new progress record
         await db.insert(tables.userSentenceProgress)
           .values({
@@ -104,4 +105,4 @@ export default defineEventHandler(async (event) => {
       statusMessage: `Failed to update user progress: ${error instanceof Error ? error.message : String(error)}`,
     })
   }
-}) 
+})

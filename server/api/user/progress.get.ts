@@ -26,7 +26,7 @@ export default defineEventHandler(async (event) => {
       .innerJoin(tables.lessons, eq(tables.lessons.id, tables.userSentenceProgress.lessonId))
       .where(and(
         eq(tables.userSentenceProgress.userId, user.id),
-        eq(tables.lessons.userId, user.id)
+        eq(tables.lessons.userId, user.id),
       ))
       .orderBy(desc(tables.userSentenceProgress.lastPracticedAt))
       .limit(1)
@@ -50,7 +50,7 @@ export default defineEventHandler(async (event) => {
           progress: {
             lastLessonId: firstLesson.id,
             lastLessonNumber: firstLesson.lessonNumber,
-          }
+          },
         }
       }
 
@@ -65,7 +65,7 @@ export default defineEventHandler(async (event) => {
       progress: {
         lastLessonId: lastProgress.lessonId,
         lastLessonNumber: lastProgress.lessonNumber,
-      }
+      },
     }
   }
   catch (error: any) {
@@ -78,4 +78,4 @@ export default defineEventHandler(async (event) => {
       statusMessage: `Failed to get user progress: ${error instanceof Error ? error.message : String(error)}`,
     })
   }
-}) 
+})

@@ -52,7 +52,7 @@ export default defineEventHandler(async (event) => {
 
     // Parse topics from current lesson
     const currentTopics = JSON.parse(currentLesson.topics || '[]')
-    
+
     // Get user profile to get additional topics
     let topics = currentTopics
     try {
@@ -62,7 +62,8 @@ export default defineEventHandler(async (event) => {
         const userTopics = userProfile.topics
         topics = [...new Set([...currentTopics, ...userTopics])]
       }
-    } catch (error) {
+    }
+    catch (error) {
       // If we can't get user profile, just use current lesson topics
       consola.warn('Could not fetch user profile for topic enrichment:', error)
     }
@@ -98,4 +99,4 @@ export default defineEventHandler(async (event) => {
       statusMessage: `Failed to generate next lesson: ${error instanceof Error ? error.message : String(error)}`,
     })
   }
-}) 
+})

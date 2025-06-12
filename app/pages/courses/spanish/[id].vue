@@ -31,9 +31,10 @@ watch(lesson, async (newLesson) => {
       const navInfo = await getLessonNavigation()
       navigationInfo.value = {
         hasPrevious: navInfo.hasPrevious,
-        hasNext: navInfo.hasNext
+        hasNext: navInfo.hasNext,
       }
-    } catch (error) {
+    }
+    catch (error) {
       console.error('Error getting navigation info:', error)
     }
   }
@@ -225,16 +226,16 @@ useHead({
       </div>
 
       <!-- Navigation - inline in content flow -->
-      <nav 
-        v-if="navigationInfo || isGeneratingNext" 
-        mt-16 
-        pt-8 
+      <nav
+        v-if="navigationInfo || isGeneratingNext"
+        mt-16
+        pt-8
         border="t-1 neutral-200"
         w-full
         pb-8
         mb-8
       >
-        <div 
+        <div
           flex="~ items-center justify-between wrap gap-4"
           w-full
           min-h-12
@@ -264,7 +265,7 @@ useHead({
             <span class="hidden sm:inline">Previous Lesson</span>
             <span class="sm:hidden">Previous</span>
           </button>
-          
+
           <!-- Spacer when no previous button -->
           <div v-else />
 
@@ -296,7 +297,7 @@ useHead({
     </div>
 
     <!-- Fixed navigation for accessibility - shows when scrolled or for mobile -->
-    <div 
+    <div
       v-if="navigationInfo || isGeneratingNext"
       fixed
       bottom-0
@@ -308,7 +309,7 @@ useHead({
       z-50
       class="md:hidden"
     >
-      <div 
+      <div
         flex="~ items-center justify-between gap-4"
         max-w-512
         mx-auto
@@ -334,7 +335,7 @@ useHead({
           <div i-heroicons-chevron-left w-4 h-4 flex-shrink-0 />
           <span>Previous</span>
         </button>
-        
+
         <!-- Spacer when no previous button -->
         <div v-else />
 
@@ -357,9 +358,9 @@ useHead({
           <div v-if="isGeneratingNext" i-heroicons-arrow-path w-4 h-4 animate-spin flex-shrink-0 />
           <div v-else i-heroicons-chevron-right w-4 h-4 flex-shrink-0 />
           <span>{{ isGeneratingNext ? 'Generating...' : 'Next' }}</span>
-                 </button>
-       </div>
-     </div>
+        </button>
+      </div>
+    </div>
 
     <!-- Not found state -->
     <div v-else text="center py-12">

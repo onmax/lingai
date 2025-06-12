@@ -55,7 +55,7 @@ export default defineEventHandler(async (event) => {
       .where(and(
         eq(tables.lessons.userId, user.id),
         eq(tables.lessons.targetLanguage, currentLesson.targetLanguage),
-        lt(tables.lessons.lessonNumber, currentLesson.lessonNumber)
+        lt(tables.lessons.lessonNumber, currentLesson.lessonNumber),
       ))
       .orderBy(desc(tables.lessons.lessonNumber))
       .limit(1)
@@ -67,7 +67,7 @@ export default defineEventHandler(async (event) => {
       .where(and(
         eq(tables.lessons.userId, user.id),
         eq(tables.lessons.targetLanguage, currentLesson.targetLanguage),
-        gt(tables.lessons.lessonNumber, currentLesson.lessonNumber)
+        gt(tables.lessons.lessonNumber, currentLesson.lessonNumber),
       ))
       .orderBy(tables.lessons.lessonNumber)
       .limit(1)
@@ -92,4 +92,4 @@ export default defineEventHandler(async (event) => {
       statusMessage: `Failed to get lesson navigation: ${error instanceof Error ? error.message : String(error)}`,
     })
   }
-}) 
+})

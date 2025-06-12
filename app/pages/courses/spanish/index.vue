@@ -18,7 +18,7 @@ const isGeneratingLessons = ref(false)
 
 // Progress tracking
 const { getLastLesson } = useLessonNavigation(0)
-const lastLesson = ref<{ lastLessonId: number; lastLessonNumber: number } | null>(null)
+const lastLesson = ref<{ lastLessonId: number, lastLessonNumber: number } | null>(null)
 const isLoadingProgress = ref(false)
 
 // Get user's last lesson progress
@@ -34,9 +34,11 @@ onMounted(async () => {
           lastLesson.value = progress
         }
       }
-    } catch (error) {
+    }
+    catch (error) {
       console.warn('Could not get user progress:', error)
-    } finally {
+    }
+    finally {
       isLoadingProgress.value = false
     }
   }
