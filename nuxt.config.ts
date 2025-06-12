@@ -71,14 +71,6 @@ export default defineNuxtConfig({
         },
       ],
     },
-    // Configure AI SDK packages for server-side usage
-    rollupConfig: {
-      external: [
-        '@ai-sdk/openai',
-        '@ai-sdk/valibot',
-        'ai',
-      ],
-    },
   },
 
   // https://eslint.nuxt.com
