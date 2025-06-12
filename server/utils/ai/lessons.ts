@@ -77,7 +77,8 @@ export async function generateLessons({
     const nextLessonNumber = (lastLesson?.lessonNumber || 0) + 1
 
     // Create lesson
-    const capitalizedTopic = topics[0].charAt(0).toUpperCase() + topics[0].slice(1)
+    const firstTopic = topics[0] || 'General'
+    const capitalizedTopic = firstTopic.charAt(0).toUpperCase() + firstTopic.slice(1)
     const lessonTitle = `${capitalizedTopic} - Lesson ${nextLessonNumber}`
 
     const [newLesson] = await db.insert(tables.lessons).values({
