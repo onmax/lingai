@@ -16,6 +16,39 @@ const { user } = useAuth()
 // Loading state for lesson generation
 const isGeneratingLessons = ref(false)
 
+// Progress tracking
+const { getLastLesson } = useLessonNavigation(0)
+const lastLesson = ref<{ lastLessonId: number; lastLessonNumber: number } | null>(null)
+const isLoadingProgress = ref(false)
+
+// Get user's last lesson progress
+onMounted(async () => {
+  if (lessons.value && lessons.value.length > 0) {
+    try {
+      isLoadingProgress.value = true
+      const progress = await getLastLesson()
+      if (progress?.lastLessonId) {
+        // Check if the last lesson still exists in current lessons
+        const lessonExists = lessons.value.find(l => l.id === progress.lastLessonId)
+        if (lessonExists) {
+          lastLesson.value = progress
+        }
+      }
+    } catch (error) {
+      console.warn('Could not get user progress:', error)
+    } finally {
+      isLoadingProgress.value = false
+    }
+  }
+})
+
+// Resume learning function
+async function resumeLearning() {
+  if (lastLesson.value) {
+    await navigateTo(`/courses/spanish/${lastLesson.value.lastLessonId}`)
+  }
+}
+
 // Generate lessons function
 async function generateLessons() {
   if (isGeneratingLessons.value)
@@ -81,9 +114,20 @@ useHead({
       <h1 text="f-xl neutral-900" font-bold mb-16>
         Cursos de Español
       </h1>
-      <p text="f-lg neutral-600">
+      <p text="f-lg neutral-600" mb-6>
         Aprende español paso a paso con nuestro método interactivo
       </p>
+
+      <!-- Resume Learning Button -->
+      <div v-if="lastLesson && !isLoadingProgress" mb-6>
+        <button
+          nq-pill-blue
+          @click="resumeLearning"
+        >
+          <div i-heroicons-play w-4 h-4 />
+          Continue Learning - Lesson {{ lastLesson.lastLessonNumber }}
+        </button>
+      </div>
     </header>
 
     <div v-if="lessons && lessons.length > 0" flex="~ col gap-4">

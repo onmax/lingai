@@ -20,9 +20,11 @@ const isMobile = computed(() => screenWidth.value < 768)
       :height="812"
       class="mx-auto"
     >
-      <div w-full h-full of="y-auto">
+      <div w-full h-full of="y-auto" style="scroll-behavior: smooth;">
         <AppHeader />
-        <NuxtPage />
+        <div w-full min-h-full>
+          <NuxtPage />
+        </div>
       </div>
     </IPhoneMockup>
   </div>

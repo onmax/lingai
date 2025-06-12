@@ -1,12 +1,50 @@
 <script setup lang="ts">
 // Get lesson ID from route
 const route = useRoute()
-const lessonId = route.params.id as string
+const lessonId = computed(() => Number.parseInt(route.params.id as string, 10))
 
 // Fetch the lesson with sentences
-const { data: lessonResponse, pending, error, refresh } = await useFetch<LessonApiResponse>(`/api/lessons/${lessonId}`)
+const { data: lessonResponse, pending, error, refresh } = await useFetch<LessonApiResponse>(`/api/lessons/${lessonId.value}`)
 
 const lesson = computed(() => lessonResponse.value?.lesson)
+
+// Lesson navigation
+const {
+  isGeneratingNext,
+  isNavigating,
+  getLessonNavigation,
+  goToNextLesson,
+  goToPreviousLesson,
+  updateProgress,
+} = useLessonNavigation(lessonId)
+
+// Navigation state
+const navigationInfo = ref<{
+  hasPrevious: boolean
+  hasNext: boolean
+} | null>(null)
+
+// Get navigation info when lesson loads
+watch(lesson, async (newLesson) => {
+  if (newLesson) {
+    try {
+      const navInfo = await getLessonNavigation()
+      navigationInfo.value = {
+        hasPrevious: navInfo.hasPrevious,
+        hasNext: navInfo.hasNext
+      }
+    } catch (error) {
+      console.error('Error getting navigation info:', error)
+    }
+  }
+}, { immediate: true })
+
+// Update progress when lesson loads
+watch(lesson, (newLesson) => {
+  if (newLesson) {
+    updateProgress()
+  }
+}, { immediate: true })
 
 // Audio generation state
 const isGeneratingAudio = ref(false)
@@ -26,7 +64,7 @@ async function generateAudioForAllSentences() {
   try {
     isGeneratingAudio.value = true
 
-    const response = await $fetch(`/api/lessons/${lessonId}/generate-audio`, {
+    const response = await $fetch(`/api/lessons/${lessonId.value}/generate-audio`, {
       method: 'POST',
     })
 
@@ -67,7 +105,7 @@ useHead({
 </script>
 
 <template>
-  <div max-w-512 mx-auto p-24>
+  <div max-w-512 mx-auto px-6 py-8 md:px-24 md:py-12 pb-32 md:pb-48 min-h-screen>
     <!-- Back button -->
     <div mb-6>
       <NuxtLink
@@ -186,18 +224,142 @@ useHead({
         </p>
       </div>
 
-      <!-- Navigation -->
-      <div mt-12 pt-12 border="t-1 neutral-200">
-        <div flex="~ items-center justify-between">
-          <div>
-            <!-- Previous lesson would go here -->
-          </div>
-          <div>
-            <!-- Next lesson would go here -->
-          </div>
+      <!-- Navigation - inline in content flow -->
+      <nav 
+        v-if="navigationInfo || isGeneratingNext" 
+        mt-16 
+        pt-8 
+        border="t-1 neutral-200"
+        w-full
+        pb-8
+        mb-8
+      >
+        <div 
+          flex="~ items-center justify-between wrap gap-4"
+          w-full
+          min-h-12
+          sm:gap-6
+        >
+          <!-- Previous lesson button -->
+          <button
+            v-if="navigationInfo?.hasPrevious"
+            type="button"
+            :disabled="isNavigating"
+            flex="~ items-center gap-2"
+            px-6
+            py-3
+            rounded-lg
+            border="1 neutral-300"
+            text="neutral-700 hover:neutral-900"
+            bg="neutral-50 hover:neutral-100"
+            transition-all
+            font-medium
+            min-w-fit
+            shadow-sm
+            hover:shadow-md
+            :class="{ 'opacity-50 cursor-not-allowed': isNavigating }"
+            @click="goToPreviousLesson"
+          >
+            <div i-heroicons-chevron-left w-4 h-4 flex-shrink-0 />
+            <span class="hidden sm:inline">Previous Lesson</span>
+            <span class="sm:hidden">Previous</span>
+          </button>
+          
+          <!-- Spacer when no previous button -->
+          <div v-else />
+
+          <!-- Next lesson button (always show, generates if needed) -->
+          <button
+            type="button"
+            :disabled="isNavigating || isGeneratingNext"
+            flex="~ items-center gap-2"
+            px-6
+            py-3
+            rounded-lg
+            bg="blue-600 hover:blue-700"
+            text="white"
+            transition-all
+            font-medium
+            min-w-fit
+            shadow-sm
+            hover:shadow-lg
+            :class="{ 'opacity-50 cursor-not-allowed': isNavigating || isGeneratingNext }"
+            @click="goToNextLesson"
+          >
+            <div v-if="isGeneratingNext" i-heroicons-arrow-path w-4 h-4 animate-spin flex-shrink-0 />
+            <div v-else i-heroicons-chevron-right w-4 h-4 flex-shrink-0 />
+            <span class="hidden sm:inline">{{ isGeneratingNext ? 'Generating Next...' : (navigationInfo?.hasNext ? 'Next Lesson' : 'Generate Next Lesson') }}</span>
+            <span class="sm:hidden">{{ isGeneratingNext ? 'Generating...' : 'Next' }}</span>
+          </button>
         </div>
-      </div>
+      </nav>
     </div>
+
+    <!-- Fixed navigation for accessibility - shows when scrolled or for mobile -->
+    <div 
+      v-if="navigationInfo || isGeneratingNext"
+      fixed
+      bottom-0
+      left-0
+      right-0
+      bg="white/95 backdrop-blur-sm"
+      border="t-1 neutral-200"
+      p-4
+      z-50
+      class="md:hidden"
+    >
+      <div 
+        flex="~ items-center justify-between gap-4"
+        max-w-512
+        mx-auto
+      >
+        <!-- Previous lesson button -->
+        <button
+          v-if="navigationInfo?.hasPrevious"
+          type="button"
+          :disabled="isNavigating"
+          flex="~ items-center gap-2"
+          px-4
+          py-2
+          rounded-lg
+          border="1 neutral-300"
+          text="neutral-700 hover:neutral-900"
+          bg="neutral-50 hover:neutral-100"
+          transition-all
+          font-medium
+          text-sm
+          :class="{ 'opacity-50 cursor-not-allowed': isNavigating }"
+          @click="goToPreviousLesson"
+        >
+          <div i-heroicons-chevron-left w-4 h-4 flex-shrink-0 />
+          <span>Previous</span>
+        </button>
+        
+        <!-- Spacer when no previous button -->
+        <div v-else />
+
+        <!-- Next lesson button (always show, generates if needed) -->
+        <button
+          type="button"
+          :disabled="isNavigating || isGeneratingNext"
+          flex="~ items-center gap-2"
+          px-4
+          py-2
+          rounded-lg
+          bg="blue-600 hover:blue-700"
+          text="white"
+          transition-all
+          font-medium
+          text-sm
+          :class="{ 'opacity-50 cursor-not-allowed': isNavigating || isGeneratingNext }"
+          @click="goToNextLesson"
+        >
+          <div v-if="isGeneratingNext" i-heroicons-arrow-path w-4 h-4 animate-spin flex-shrink-0 />
+          <div v-else i-heroicons-chevron-right w-4 h-4 flex-shrink-0 />
+          <span>{{ isGeneratingNext ? 'Generating...' : 'Next' }}</span>
+                 </button>
+       </div>
+     </div>
 
     <!-- Not found state -->
     <div v-else text="center py-12">
