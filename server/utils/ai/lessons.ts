@@ -23,6 +23,7 @@ import { openai } from '@ai-sdk/openai'
 import { valibotSchema } from '@ai-sdk/valibot'
 import { generateObject } from 'ai'
 import { desc, eq } from 'drizzle-orm'
+import OpenAI from 'openai'
 import { array, string, object as valibotObject } from 'valibot'
 import { SYSTEM_PROMPTS, USER_PROMPTS } from './prompts'
 
@@ -189,7 +190,7 @@ async function generateWithOpenAI(
 }
 
 /**
- * Generate audio for sentences using Cloudflare AI
+ * Generate audio for sentences using OpenAI's official SDK with latest TTS model
  * This runs asynchronously and updates the database when complete
  */
 async function generateAudioForSentences(
@@ -199,42 +200,64 @@ async function generateAudioForSentences(
   consola.warn(`Starting audio generation for ${sentences.length} sentences in ${targetLanguage}`)
 
   const db = useDrizzle()
+  const config = useRuntimeConfig()
+
+  if (!config.openaiApiKey) {
+    consola.error('OpenAI API key not configured')
+    throw new Error('OpenAI API key is required for audio generation')
+  }
+
+  // Initialize OpenAI client
+  const openaiClient = new OpenAI({
+    apiKey: config.openaiApiKey,
+  })
+
+  // Map language codes to OpenAI TTS voices
+  const getVoiceForLanguage = (language: string): 'alloy' | 'echo' | 'fable' | 'onyx' | 'nova' | 'shimmer' => {
+    const langLower = language.toLowerCase()
+    switch (langLower) {
+      case 'spanish':
+      case 'es':
+        return 'nova' // Good for Spanish
+      case 'french':
+      case 'fr':
+        return 'shimmer' // Good for French
+      case 'german':
+      case 'de':
+        return 'echo' // Good for German
+      case 'italian':
+      case 'it':
+        return 'fable' // Good for Italian
+      case 'portuguese':
+      case 'pt':
+        return 'onyx' // Good for Portuguese
+      case 'english':
+      case 'en':
+      default:
+        return 'alloy' // Default English voice
+    }
+  }
+
+  const voice = getVoiceForLanguage(targetLanguage)
 
   for (const sentence of sentences) {
     try {
-      // Use MeloTTS model for text-to-speech generation
-      const ai = hubAI()
-
-      // Map language codes (Spanish -> 'es', English -> 'en', etc.)
-      const langCode = targetLanguage.toLowerCase() === 'spanish'
-        ? 'es'
-        : targetLanguage.toLowerCase() === 'english'
-          ? 'en'
-          : targetLanguage.toLowerCase().substring(0, 2)
-
       consola.warn(`Generating audio for sentence ${sentence.id}: "${sentence.targetText}"`)
 
-      const audioResponse = await ai.run('@cf/myshell-ai/melotts', {
-        prompt: sentence.targetText,
-        lang: langCode,
+      // Generate audio using OpenAI's official SDK with latest TTS model
+      const mp3 = await openaiClient.audio.speech.create({
+        model: 'tts-1-hd', // Latest high-definition TTS model
+        voice,
+        input: sentence.targetText,
+        response_format: 'mp3',
+        speed: 1.0,
       })
 
-      // The response contains base64-encoded MP3 audio
-      let audioBase64: string
-      if (typeof audioResponse === 'object' && audioResponse !== null && 'audio' in audioResponse) {
-        audioBase64 = (audioResponse as any).audio
-      }
-      else if (typeof audioResponse === 'string') {
-        audioBase64 = audioResponse
-      }
-      else {
-        throw new TypeError('Unexpected audio response format')
-      }
-
-      // Store the audio in blob storage using hubBlob()
-      const audioBuffer = Buffer.from(audioBase64, 'base64')
+      // Get the audio buffer
+      const audioBuffer = Buffer.from(await mp3.arrayBuffer())
       const audioKey = `audio/sentences/${sentence.id}.mp3`
 
+      // Store the audio in blob storage using hubBlob()
       await hubBlob().put(audioKey, audioBuffer, {
         httpMetadata: {
           contentType: 'audio/mpeg',
@@ -250,10 +273,10 @@ async function generateAudioForSentences(
         })
         .where(eq(tables.sentences.id, sentence.id))
 
-      consola.warn(`✅ Audio generated successfully for sentence ${sentence.id}`)
+      consola.success(`✅ Audio generated successfully for sentence ${sentence.id} using OpenAI TTS-1-HD`)
 
-      // Add a small delay to avoid overwhelming the AI service
-      await new Promise(resolve => setTimeout(resolve, 500))
+      // Add a small delay to respect rate limits
+      await new Promise(resolve => setTimeout(resolve, 100))
     }
     catch (error) {
       consola.error(`❌ Failed to generate audio for sentence ${sentence.id}:`, error)
@@ -273,5 +296,5 @@ async function generateAudioForSentences(
     }
   }
 
-  consola.warn(`Completed audio generation for ${sentences.length} sentences`)
+  consola.success(`Completed audio generation for ${sentences.length} sentences using OpenAI TTS-1-HD`)
 }
