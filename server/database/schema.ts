@@ -23,7 +23,6 @@ export const lessons = sqliteTable('lessons', {
   id: integer('id').primaryKey({ autoIncrement: true }),
   userId: text('user_id').notNull(), // UUID from better-auth
   title: text('title').notNull(),
-  description: text('description'),
   targetLanguage: text('target_language').notNull().default('spanish'),
   userLanguage: text('user_language').notNull().default('english'),
   difficulty: text('difficulty').notNull().default('intermediate'), // beginner, intermediate, advanced

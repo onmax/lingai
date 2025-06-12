@@ -87,13 +87,13 @@ export default defineEventHandler(async (event) => {
     }
   }
   catch (error: any) {
-    consola.error('Error fetching lesson sentences:', error)
+    consola.error('Error fetching lesson:', error)
     if (error.statusCode) {
       throw error
     }
     throw createError({
       statusCode: 500,
-      statusMessage: `Failed to fetch lesson sentences: ${error instanceof Error ? error.message : String(error)}`,
+      statusMessage: `Failed to fetch lesson: ${error instanceof Error ? error.message : String(error)}`,
     })
   }
 })

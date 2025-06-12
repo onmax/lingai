@@ -3,11 +3,16 @@ import { readFile } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
 import { dirname, resolve } from 'pathe'
 
-export type PromptName = 'generate-lesson'
+export type PromptName = 'generate-lesson' | 'generate-sentences'
 
 export interface PromptArgs {
   ['generate-lesson']: {
     topics: string
+  }
+  ['generate-sentences']: {
+    topics: string
+    targetLanguage: string
+    userLanguage: string
   }
 }
 
@@ -16,6 +21,55 @@ export interface RunPromptArgs<T extends PromptName> {
   promptName: T
   promptArgs: PromptArgs[T]
   aiOptions?: Partial<AiOptions>
+}
+
+// Centralized prompt templates
+const PROMPT_TEMPLATES: Record<PromptName, string> = {
+  'generate-lesson': `Generate a single Spanish learning sentence for the given topics.
+
+Create ONE sentence that:
+
+- Uses vocabulary related to the provided topics
+- Is appropriate for intermediate Spanish learners
+- Is practical and realistic for real-world conversations
+- Can be easily understood and practiced
+
+The sentence should be clear, useful, and focused on the topics provided.
+
+Return only one sentence in Spanish with its English translation.
+
+Topics: {{ topics }}`,
+
+  'generate-sentences': `You are a language learning content generator. Generate exactly 5 simple {{ targetLanguage }} sentences for language learning.
+
+REQUIREMENTS:
+- Use vocabulary related to the provided topics
+- Appropriate for beginner to intermediate {{ targetLanguage }} learners  
+- Practical and realistic for everyday conversations
+- Short and easy to understand (no more than 10-12 words each)
+- Each sentence should be unique and cover different aspects of the topics
+
+Generate sentences about: {{ topics }}`,
+}
+
+// System prompts for OpenAI structured generation
+export const SYSTEM_PROMPTS = {
+  generateSentences: (targetLanguage: string) =>
+    `You are a language learning content generator. Generate exactly 5 simple ${targetLanguage} sentences for language learning.
+
+REQUIREMENTS:
+- Use vocabulary related to the provided topics
+- Appropriate for beginner to intermediate ${targetLanguage} learners  
+- Practical and realistic for everyday conversations
+- Short and easy to understand (no more than 10-12 words each)
+- Each sentence should be unique and cover different aspects of the topics`,
+}
+
+// User prompts for OpenAI structured generation
+export const USER_PROMPTS = {
+  generateSentences: (topicsString: string, targetLanguage: string, userLanguage: string) =>
+    `Generate 5 simple ${targetLanguage} sentences about: ${topicsString}. 
+            Each sentence should be beginner-friendly and include a natural ${userLanguage} translation with usage context.`,
 }
 
 /**
@@ -27,7 +81,7 @@ export async function storePromptTemplates() {
   const currentDir = dirname(fileURLToPath(import.meta.url))
   const promptsDir = resolve(currentDir, 'prompts')
 
-  const promptNames: PromptName[] = ['generate-lesson']
+  const promptNames: PromptName[] = ['generate-lesson', 'generate-sentences']
 
   for (const promptName of promptNames) {
     try {
@@ -39,24 +93,22 @@ export async function storePromptTemplates() {
       })
     }
     catch (error) {
-      console.error(`Failed to store prompt template '${promptName}':`, error)
+      consola.error(`Failed to store prompt template '${promptName}':`, error)
     }
   }
 }
 
 export async function runPrompt<T extends PromptName>({ aiModel, promptName, promptArgs, aiOptions }: RunPromptArgs<T>) {
-  // Read prompt from blob storage instead of file system
-  const blob = hubBlob()
-  const promptBlob = await blob.get(`prompts/${promptName}.md`)
+  const template = PROMPT_TEMPLATES[promptName]
 
-  if (!promptBlob) {
+  if (!template) {
     throw createError({
       statusCode: 404,
-      statusMessage: `Prompt template '${promptName}' not found in blob storage`,
+      statusMessage: `Prompt template '${promptName}' not found`,
     })
   }
 
-  let prompt = await promptBlob.text()
+  let prompt = template
 
   // Replace template variables with prompt arguments
   Object.entries(promptArgs).forEach(([key, value]) => {

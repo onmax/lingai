@@ -1,4 +1,12 @@
+import { array, object, safeParse, string } from 'valibot'
 import { generateLessons } from '../../utils/ai/lessons'
+
+// Validation schema for the request body
+const GenerateLessonsSchema = object({
+  topics: array(string('Topic must be a string'), 'Topics must be an array of strings'),
+  targetLanguage: string('Target language is required'),
+  userLanguage: string('User language is required'),
+})
 
 export default defineEventHandler(async (event) => {
   try {
@@ -15,14 +23,17 @@ export default defineEventHandler(async (event) => {
     }
 
     const body = await readBody(event)
-    const { topics, targetLanguage, userLanguage } = body
 
-    if (!topics || !Array.isArray(topics) || !targetLanguage) {
+    // Validate input using Valibot
+    const { output: validatedData, issues, success } = safeParse(GenerateLessonsSchema, body)
+    if (!success || !validatedData) {
       throw createError({
         statusCode: 400,
-        statusMessage: 'Missing required fields: topics (array), targetLanguage',
+        statusMessage: `Invalid request data: ${issues?.map(issue => issue.message).join(', ')}`,
       })
     }
+
+    const { topics, targetLanguage, userLanguage } = validatedData
 
     // Generate lesson with sentences using AI
     const result = await generateLessons({
@@ -41,7 +52,7 @@ export default defineEventHandler(async (event) => {
     }
   }
   catch (error: any) {
-    console.error('AI lesson generation error:', error)
+    consola.error('AI lesson generation error:', error)
 
     // Handle specific error types
     if (error.statusCode) {

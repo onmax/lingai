@@ -25,7 +25,7 @@ async function navigateAfterLogin() {
   }
   catch (error) {
     // If there's an error fetching profile, redirect to onboarding to be safe
-    console.error('Error checking user profile:', error)
+    consola.error('Error checking user profile:', error)
     await navigateTo('/onboarding')
   }
 }

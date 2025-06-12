@@ -17,6 +17,7 @@
     "db:generate": "drizzle-kit generate"
   },
   "dependencies": {
+    "@ai-sdk/valibot": "catalog:",
     "@atinux/kysely-d1": "catalog:",
     "@iconify-json/heroicons": "catalog:",
     "@iconify-json/simple-icons": "catalog:",

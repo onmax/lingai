@@ -25,7 +25,7 @@ export default defineEventHandler(async (event) => {
     return audioBlob
   }
   catch (error) {
-    console.error('Error serving audio:', error)
+    consola.error('Error serving audio:', error)
     throw createError({
       statusCode: 500,
       statusMessage: 'Failed to serve audio file',

@@ -13,6 +13,7 @@ export function serverAuth() {
           database: hubDatabase() as any,
         }),
         type: 'sqlite',
+        generateTables: true, // This will auto-create tables if they don't exist
       },
       secondaryStorage: {
         get: key => hubKV().getItemRaw(`_auth:${key}`),

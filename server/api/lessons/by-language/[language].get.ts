@@ -1,4 +1,5 @@
 import { eq } from 'drizzle-orm'
+import { object, parse, picklist } from 'valibot'
 
 export default defineEventHandler(async (event) => {
   try {
@@ -14,8 +15,11 @@ export default defineEventHandler(async (event) => {
       })
     }
 
-    const query = getQuery(event)
-    const language = query.language as string || 'spanish'
+    // Validate route parameters
+    const paramsSchema = object({
+      language: picklist(['spanish', 'french', 'german', 'italian', 'portuguese'], 'Supported languages: spanish, french, german, italian, portuguese'),
+    })
+    const { language } = await getValidatedRouterParams(event, data => parse(paramsSchema, data))
 
     const db = useDrizzle()
 
@@ -28,10 +32,9 @@ export default defineEventHandler(async (event) => {
 
     // Parse and format lessons
     const lessons = rawLessons
-      .filter(lesson => lesson.targetLanguage === language.toLowerCase())
+      .filter(lesson => lesson.targetLanguage === language)
       .map(lesson => ({
         ...lesson,
-        description: lesson.description || undefined,
         topics: JSON.parse(lesson.topics || '[]'),
         createdAt: new Date(lesson.createdAt),
         updatedAt: new Date(lesson.updatedAt),
@@ -40,12 +43,15 @@ export default defineEventHandler(async (event) => {
     return {
       success: true,
       lessons,
-      total: lessons.length,
       language,
+      count: lessons.length,
     }
   }
-  catch (error) {
-    console.error('Error fetching lessons:', error)
+  catch (error: any) {
+    consola.error('Error fetching lessons:', error)
+    if (error.statusCode) {
+      throw error
+    }
     throw createError({
       statusCode: 500,
       statusMessage: `Failed to fetch lessons: ${error instanceof Error ? error.message : String(error)}`,

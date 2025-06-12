@@ -1,45 +1,55 @@
-export default eventHandler(async (event) => {
-  const authRequest = toWebRequest(event)
-  const sessionData = await serverAuth().api.getSession(authRequest)
-  const user = sessionData?.user
-
-  if (!user) {
-    throw createError({
-      statusCode: 401,
-      statusMessage: 'Unauthorized',
-    })
-  }
-
-  const body = await readBody(event)
-  const { topics, targetLanguage } = body
-
-  if (!topics || !targetLanguage) {
-    throw createError({
-      statusCode: 400,
-      statusMessage: 'Missing required fields: topics, targetLanguage',
-    })
-  }
-
-  const db = useDrizzle()
-
+export default defineEventHandler(async (event) => {
   try {
-    // Create or update user profile
-    await db.insert(tables.userProfiles)
-      .values({
+    // Get authenticated user
+    const authRequest = toWebRequest(event)
+    const sessionData = await serverAuth().api.getSession(authRequest)
+    const user = sessionData?.user
+
+    if (!user) {
+      throw createError({
+        statusCode: 401,
+        statusMessage: 'Unauthorized',
+      })
+    }
+
+    const body = await readBody(event)
+    const { topics, targetLanguage } = body
+
+    if (!topics || !Array.isArray(topics) || !targetLanguage) {
+      throw createError({
+        statusCode: 400,
+        statusMessage: 'Missing required fields: topics (array), targetLanguage',
+      })
+    }
+
+    // Save user preferences to database
+    const db = useDrizzle()
+
+    // Check if user profile already exists
+    const existingProfile = await db.select()
+      .from(tables.userProfiles)
+      .where(eq(tables.userProfiles.userId, user.id))
+      .get()
+
+    if (existingProfile) {
+      // Update existing profile
+      await db.update(tables.userProfiles)
+        .set({
+          targetLanguage: targetLanguage.toLowerCase(),
+          updatedAt: sql`(unixepoch())`,
+        })
+        .where(eq(tables.userProfiles.userId, user.id))
+    }
+    else {
+      // Create new profile
+      await db.insert(tables.userProfiles).values({
         userId: user.id,
-        targetLanguage,
+        targetLanguage: targetLanguage.toLowerCase(),
       })
-      .onConflictDoUpdate({
-        target: tables.userProfiles.userId,
-        set: {
-          targetLanguage,
-          updatedAt: new Date(),
-        },
-      })
-      .run()
+    }
 
     // Delete existing user topics
-    await db.delete(tables.userTopics).where(eq(tables.userTopics.userId, user.id)).run()
+    await db.delete(tables.userTopics).where(eq(tables.userTopics.userId, user.id))
 
     // Insert new topics
     if (topics.length > 0) {
@@ -47,83 +57,12 @@ export default eventHandler(async (event) => {
         userId: user.id,
         topic,
       }))
-      await db.insert(tables.userTopics).values(topicValues).run()
+      await db.insert(tables.userTopics).values(topicValues)
     }
-
-    // Automatically generate first lesson with AI after onboarding
-    // We'll trigger this as a background task to avoid blocking the response
-    Promise.resolve().then(async () => {
-      try {
-        const ai = hubAI()
-        const topicsText = topics.join(', ')
-        const prompt = `Create a Spanish language learning lesson focused on the topics: ${topicsText}.
-
-The lesson should be formatted as markdown and include:
-
-1. A conversation between two people that naturally incorporates vocabulary related to these topics
-2. Vocabulary section with key words and phrases used in the conversation  
-3. Grammar notes explaining any important structures used
-4. Practice exercises to reinforce the vocabulary and structures
-5. Cultural notes about how these topics relate to Spanish-speaking cultures
-
-The lesson should be appropriate for beginner to intermediate Spanish learners.
-The conversation should be realistic and practical, something learners might actually encounter.
-Include both Spanish text and English translations.
-
-Format the output as valid markdown with proper frontmatter that includes:
-- title: A descriptive title in Spanish
-- language: "spanish"  
-- difficulty: "beginner" or "intermediate"
-- topics: array of the topics covered
-- order: 1
-- description: Brief description of what the lesson covers
-
-Make the content engaging and practical for real-world use.`
-
-        const response = await ai.run('@cf/meta/llama-3.1-8b-instruct', {
-          prompt,
-          max_tokens: 4096,
-        })
-
-        // Debug log to understand the AI response structure
-        console.warn('AI Response structure:', JSON.stringify(response, null, 2))
-
-        let lessonContent = (response as any)?.output?.generated_text || response
-
-        // Ensure the content is a string for R2 storage
-        if (typeof lessonContent !== 'string') {
-          // If it's an object or other type, try to extract text content
-          if (lessonContent && typeof lessonContent === 'object') {
-            lessonContent = lessonContent.text || lessonContent.content || lessonContent.message || JSON.stringify(lessonContent)
-          }
-          else {
-            lessonContent = String(lessonContent)
-          }
-        }
-
-        // Validate that we have meaningful content
-        if (!lessonContent || lessonContent.trim().length < 10) {
-          throw new Error('AI generated content is too short or empty')
-        }
-
-        const firstTopic = topics[0].toLowerCase().replace(/\s+/g, '-')
-        const filename = `01.conversation-${firstTopic}.md`
-        const blobKey = `lessons/${user.id}/spanish/${filename}`
-
-        await hubBlob().put(blobKey, lessonContent, {
-          contentType: 'text/markdown',
-        })
-
-        console.warn(`First lesson generated successfully for user ${user.id}`)
-      }
-      catch (lessonError) {
-        console.error(`Failed to generate first lesson for user ${user.id}:`, lessonError)
-      }
-    })
 
     return {
       success: true,
-      message: 'Onboarding completed successfully! Your first personalized lesson is being generated.',
+      message: 'Onboarding completed successfully! You can now generate personalized lessons.',
       topics,
       targetLanguage,
       userId: user.id,

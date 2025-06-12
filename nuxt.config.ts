@@ -37,6 +37,16 @@ export default defineNuxtConfig({
 
   compatibilityDate: '2025-06-06',
 
+  imports: {
+    imports: [
+      {
+        name: 'default',
+        as: 'consola',
+        from: 'consola',
+      },
+    ],
+  },
+
   // https://hub.nuxt.com/docs/getting-started/installation#options
   hub: {
     database: true,
@@ -48,6 +58,15 @@ export default defineNuxtConfig({
   nitro: {
     experimental: {
       tasks: true,
+    },
+    imports: {
+      imports: [
+        {
+          name: 'default',
+          as: 'consola',
+          from: 'consola',
+        },
+      ],
     },
   },
 

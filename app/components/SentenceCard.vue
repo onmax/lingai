@@ -1,22 +1,18 @@
 <script setup lang="ts">
 interface Props {
   sentence: Sentence
-  showTranslation?: boolean
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  showTranslation: false,
-})
+const props = defineProps<Props>()
+const emit = defineEmits<{
+  audioGenerated: [sentenceId: number]
+}>()
 
-const showTranslation = ref(props.showTranslation)
 const isPlayingAudio = ref(false)
-
-function toggleTranslation() {
-  showTranslation.value = !showTranslation.value
-}
+const isGeneratingAudio = ref(false)
 
 async function playAudio() {
-  if (isPlayingAudio.value)
+  if (isPlayingAudio.value || isGeneratingAudio.value)
     return
 
   if (props.sentence.audioUrl) {
@@ -30,26 +26,44 @@ async function playAudio() {
 
       audio.onerror = () => {
         isPlayingAudio.value = false
-        console.error('Failed to play audio')
+        consola.error('Failed to play audio')
       }
 
       await audio.play()
     }
     catch (error) {
-      console.error('Error playing audio:', error)
+      consola.error('Error playing audio:', error)
       isPlayingAudio.value = false
     }
   }
   else {
-    // TODO: Generate audio on demand when not available
-    console.warn('Audio not available for this sentence')
+    // Audio not available - try to generate it
+    await generateAudio()
   }
 }
 
-function handleKeyDown(event: KeyboardEvent) {
-  if (event.key === 'Enter' || event.key === ' ') {
-    event.preventDefault()
-    toggleTranslation()
+async function generateAudio() {
+  if (isGeneratingAudio.value)
+    return
+
+  try {
+    isGeneratingAudio.value = true
+
+    // Get lesson ID from the sentence to call the generation endpoint
+    const response = await $fetch(`/api/lessons/${props.sentence.lessonId}/generate-audio`, {
+      method: 'POST',
+    })
+
+    if (response.success && response.generated > 0) {
+      // Emit event to parent to refresh data
+      emit('audioGenerated', props.sentence.id)
+    }
+  }
+  catch (error) {
+    consola.error('Error generating audio:', error)
+  }
+  finally {
+    isGeneratingAudio.value = false
   }
 }
 
@@ -63,7 +77,6 @@ function handleAudioKeyDown(event: KeyboardEvent) {
 
 <template>
   <div
-    class="sentence-card"
     bg="white"
     border="1 neutral-200 rounded-12"
     p-24
@@ -71,10 +84,7 @@ function handleAudioKeyDown(event: KeyboardEvent) {
     transition="all duration-200"
   >
     <!-- Target Language Sentence -->
-    <div
-      flex="~ items-start gap-16"
-      mb-16
-    >
+    <div flex="~ items-start gap-16" mb-16>
       <div flex-1>
         <p
           text="f-lg neutral-900"
@@ -85,12 +95,11 @@ function handleAudioKeyDown(event: KeyboardEvent) {
           {{ sentence.targetText }}
         </p>
 
-        <!-- Translation (with opacity when shown) -->
+        <!-- Translation -->
         <div
-          v-if="showTranslation"
           text="f-md neutral-600"
-          opacity-75
           leading-relaxed
+          mb-8
         >
           {{ sentence.userText }}
         </div>
@@ -99,7 +108,6 @@ function handleAudioKeyDown(event: KeyboardEvent) {
         <div
           v-if="sentence.context"
           text="f-sm neutral-500"
-          mt-12
           italic
         >
           {{ sentence.context }}
@@ -109,49 +117,58 @@ function handleAudioKeyDown(event: KeyboardEvent) {
       <!-- Audio Button -->
       <button
         type="button"
-        bg="blue-50 hover:blue-100"
-        text="blue-600"
         border="none"
         rounded-full
         p-12
         transition="all duration-200"
-        :disabled="isPlayingAudio"
-        :class="{ 'animate-pulse': isPlayingAudio }"
-        :aria-label="`Play audio for: ${sentence.targetText}`"
+        :disabled="isPlayingAudio || isGeneratingAudio"
+        :class="{
+          'bg-blue-50 hover:bg-blue-100 text-blue-600': sentence.audioUrl && !isGeneratingAudio,
+          'bg-orange-50 hover:bg-orange-100 text-orange-600': !sentence.audioUrl && !isGeneratingAudio,
+          'bg-neutral-100 text-neutral-400': isGeneratingAudio,
+          'animate-pulse': isPlayingAudio || isGeneratingAudio,
+        }"
+        :aria-label="sentence.audioUrl
+          ? `Play audio for: ${sentence.targetText}`
+          : `Generate audio for: ${sentence.targetText}`"
         @click="playAudio"
         @keydown="handleAudioKeyDown"
       >
         <div
-          v-if="isPlayingAudio"
+          v-if="isGeneratingAudio"
+          i-heroicons-arrow-path
+          w-20
+          h-20
+          animate-spin
+        />
+        <div
+          v-else-if="isPlayingAudio"
+          i-heroicons-speaker-wave
+          w-20
+          h-20
+        />
+        <div
+          v-else-if="sentence.audioUrl"
           i-heroicons-speaker-wave
           w-20
           h-20
         />
         <div
           v-else
-          i-heroicons-speaker-wave
+          i-heroicons-musical-note
           w-20
           h-20
         />
       </button>
     </div>
 
-    <!-- Toggle Translation Button -->
-    <button
-      type="button"
-      text="f-sm blue-600 hover:blue-800"
-      bg="transparent hover:blue-50"
-      border="1 blue-200 hover:blue-300 rounded-8"
-      px-16
-      py-8
-      transition="all duration-200"
-      w-full
-      :aria-label="showTranslation ? 'Hide translation' : 'Show translation'"
-      @click="toggleTranslation"
-      @keydown="handleKeyDown"
-    >
-      {{ showTranslation ? 'Hide Translation' : 'Show Translation' }}
-    </button>
+    <!-- Audio status indicator -->
+    <div v-if="!sentence.audioUrl && !isGeneratingAudio" text="f-xs neutral-400" italic>
+      Click the audio button to generate speech
+    </div>
+    <div v-else-if="isGeneratingAudio" text="f-xs blue-600" italic>
+      Generating audio...
+    </div>
   </div>
 </template>
 

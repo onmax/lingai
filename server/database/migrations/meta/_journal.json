@@ -43,6 +43,13 @@
       "when": 1749649677461,
       "tag": "0005_cool_logan",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "6",
+      "when": 1749704757534,
+      "tag": "0006_silky_prodigy",
+      "breakpoints": true
     }
   ]
 }

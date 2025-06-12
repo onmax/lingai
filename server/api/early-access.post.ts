@@ -20,8 +20,8 @@ export default defineEventHandler(async (event) => {
     }
 
     // Here you would typically save to database
-    // For now, we'll just log it to server console
-    // console.log('New early access signup:', body.email)
+    // For now, we'll just log it to server consola
+    // consola.log('New early access signup:', body.email)
 
     // Return success response
     return {

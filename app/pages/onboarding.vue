@@ -65,7 +65,7 @@ const { status: submitStatus, data: submitData, execute: submitOnboarding } = aw
     }
   },
   onResponseError: ({ error }) => {
-    console.error('Onboarding submission failed:', error)
+    consola.error('Onboarding submission failed:', error)
   },
 })
 
