@@ -1,0 +1,1 @@
+DROP TABLE `user_sentence_progress`;
