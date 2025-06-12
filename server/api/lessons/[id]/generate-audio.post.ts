@@ -1,5 +1,6 @@
 import { Buffer } from 'node:buffer'
-import { and, eq } from 'drizzle-orm'
+import { and, eq, sql } from 'drizzle-orm'
+import OpenAI from 'openai'
 import { object, parse, pipe, string, transform } from 'valibot'
 
 export default defineEventHandler(async (event) => {
@@ -72,46 +73,84 @@ export default defineEventHandler(async (event) => {
 
     consola.warn(`Generating audio for ${sentences.length} sentences in lesson ${lessonId}`)
 
-    const ai = hubAI()
+    const config = useRuntimeConfig()
+
+    if (!config.openaiApiKey) {
+      throw createError({
+        statusCode: 500,
+        statusMessage: 'OpenAI API key not configured',
+      })
+    }
+
+    // Initialize OpenAI client
+    const openaiClient = new OpenAI({
+      apiKey: config.openaiApiKey,
+    })
+
     let generatedCount = 0
 
-    // Map language codes
-    const langCode = lesson.targetLanguage.toLowerCase() === 'spanish'
-      ? 'es'
-      : lesson.targetLanguage.toLowerCase() === 'english'
-        ? 'en'
-        : lesson.targetLanguage.toLowerCase().substring(0, 2)
+    // Map language to appropriate voice
+    const getVoiceForLanguage = (language: string): 'alloy' | 'echo' | 'fable' | 'onyx' | 'nova' | 'shimmer' => {
+      const langLower = language.toLowerCase()
+      switch (langLower) {
+        case 'spanish':
+        case 'es':
+          return 'nova' // Good for Spanish
+        case 'french':
+        case 'fr':
+          return 'shimmer' // Good for French
+        case 'german':
+        case 'de':
+          return 'echo' // Good for German
+        case 'italian':
+        case 'it':
+          return 'fable' // Good for Italian
+        case 'portuguese':
+        case 'pt':
+          return 'onyx' // Good for Portuguese
+        case 'english':
+        case 'en':
+        default:
+          return 'alloy' // Default English voice
+      }
+    }
+
+    const voice = getVoiceForLanguage(lesson.targetLanguage)
 
     for (const sentence of sentences) {
       try {
         consola.warn(`Generating audio for sentence ${sentence.id}: "${sentence.targetText}"`)
+        consola.warn(`Using OpenAI model: tts-1-hd, voice: ${voice}`)
 
-        const audioResponse = await ai.run('@cf/myshell-ai/melotts', {
-          prompt: sentence.targetText,
-          lang: langCode,
+        // Generate audio using OpenAI's official SDK
+        const mp3 = await openaiClient.audio.speech.create({
+          model: 'tts-1-hd', // Use high-definition TTS model
+          voice,
+          input: sentence.targetText,
+          response_format: 'mp3',
+          instructions: 'Speak in a natural, conversational tone. Do not use any special characters or symbols. Speak in Spanish.',
+          speed: 1.0,
         })
 
-        // The response contains base64-encoded MP3 audio
-        let audioBase64: string
-        if (typeof audioResponse === 'object' && audioResponse !== null && 'audio' in audioResponse) {
-          audioBase64 = (audioResponse as any).audio
-        }
-        else if (typeof audioResponse === 'string') {
-          audioBase64 = audioResponse
-        }
-        else {
-          throw new TypeError('Unexpected audio response format')
-        }
+        consola.warn(`✅ OpenAI TTS request successful for sentence ${sentence.id}`)
 
-        // Store the audio in blob storage
-        const audioBuffer = Buffer.from(audioBase64, 'base64')
+        // Get the audio as ArrayBuffer, then convert to Uint8Array for Cloudflare Workers compatibility
+        const arrayBuffer = await mp3.arrayBuffer()
+        const audioData = new Uint8Array(arrayBuffer)
         const audioKey = `audio/sentences/${sentence.id}.mp3`
+        console.warn(`Audio key: ${audioKey}, data size: ${audioData.length} bytes`)
 
-        await hubBlob().put(audioKey, audioBuffer, {
-          httpMetadata: {
-            contentType: 'audio/mpeg',
-          },
-        })
+        try {
+          await hubBlob().put(audioKey, audioData, {
+            httpMetadata: {
+              contentType: 'audio/mpeg',
+            },
+          })
+        }
+        catch (error) {
+          console.error({ error })
+        }
+        console.warn(`✅ Audio uploaded successfully to: ${audioKey}`)
 
         // Update the sentence record
         await db.update(tables.sentences)
