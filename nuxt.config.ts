@@ -19,6 +19,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     betterAuthSecret: process.env.BETTER_AUTH_SECRET || '',
     betterAuthUrl: process.env.BETTER_AUTH_URL || '',
+    openaiApiKey: process.env.OPENAI_API_KEY || '',
     github: {
       clientSecret: process.env.GITHUB_CLIENT_SECRET || '',
       clientId: process.env.GITHUB_CLIENT_ID || '',
@@ -28,6 +29,7 @@ export default defineNuxtConfig({
     $schema: object({
       betterAuthSecret: string(),
       betterAuthUrl: string(),
+      openaiApiKey: string(),
       github: object({
         clientSecret: string(),
         clientId: string(),
@@ -58,6 +60,7 @@ export default defineNuxtConfig({
   nitro: {
     experimental: {
       tasks: true,
+      wasm: true,
     },
     imports: {
       imports: [
@@ -66,6 +69,14 @@ export default defineNuxtConfig({
           as: 'consola',
           from: 'consola',
         },
+      ],
+    },
+    // Configure AI SDK packages for server-side usage
+    rollupConfig: {
+      external: [
+        '@ai-sdk/openai',
+        '@ai-sdk/valibot',
+        'ai',
       ],
     },
   },
