@@ -13,12 +13,12 @@ export default defineEventHandler(async (event) => {
     }
 
     const body = await readBody(event)
-    const { topics, targetLanguage } = body
+    const { topics } = body
 
-    if (!topics || !Array.isArray(topics) || !targetLanguage) {
+    if (!topics || !Array.isArray(topics)) {
       throw createError({
         statusCode: 400,
-        statusMessage: 'Missing required fields: topics (array), targetLanguage',
+        statusMessage: 'Missing required field: topics (array)',
       })
     }
 
@@ -35,7 +35,7 @@ export default defineEventHandler(async (event) => {
       // Update existing profile
       await db.update(tables.userProfiles)
         .set({
-          targetLanguage: targetLanguage.toLowerCase(),
+          targetLanguage: 'spanish',
           updatedAt: sql`(unixepoch())`,
         })
         .where(eq(tables.userProfiles.userId, user.id))
@@ -44,7 +44,7 @@ export default defineEventHandler(async (event) => {
       // Create new profile
       await db.insert(tables.userProfiles).values({
         userId: user.id,
-        targetLanguage: targetLanguage.toLowerCase(),
+        targetLanguage: 'spanish',
       })
     }
 
@@ -60,25 +60,19 @@ export default defineEventHandler(async (event) => {
       await db.insert(tables.userTopics).values(topicValues)
     }
 
-    // Automatically generate the first lesson with audio
+    // Automatically generate the first Spanish lesson with audio
     try {
       const { generateLessons } = await import('../../utils/ai/lessons')
 
       const lessonResult = await generateLessons({
         topics,
-        targetLanguage: targetLanguage.toLowerCase(),
-        userLanguage: 'english', // Hardcoded for now
         userId: user.id,
       })
 
-      // Return success with lesson information
       return {
         success: true,
-        message: 'Welcome to LingAI! Your first lesson is ready.',
+        message: 'Welcome to LingAI! Your Spanish lesson is ready.',
         topics,
-        targetLanguage,
-        userId: user.id,
-        lessonGenerated: true,
         lesson: {
           id: lessonResult.lesson.id,
           lessonNumber: lessonResult.lesson.lessonNumber,
@@ -89,15 +83,11 @@ export default defineEventHandler(async (event) => {
     catch (lessonError) {
       consola.error('Failed to generate initial lesson:', lessonError)
 
-      // Still return success for onboarding, but indicate lesson generation failed
       return {
         success: true,
-        message: 'Onboarding completed successfully! We\'ll set up your first lesson shortly.',
+        message: 'Onboarding completed! We\'ll set up your lesson shortly.',
         topics,
-        targetLanguage,
-        userId: user.id,
-        lessonGenerated: false,
-        error: 'Failed to generate initial lesson, but you can create lessons manually.',
+        error: 'Failed to generate initial lesson',
       }
     }
   }

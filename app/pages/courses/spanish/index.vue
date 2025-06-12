@@ -1,138 +1,40 @@
 <script setup lang="ts">
-// Fetch lessons using our database API
-const { data: lessonsResponse, refresh: refreshLessons, error: lessonsError, pending: lessonsPending } = await useFetch<LessonsListResponse>(`/api/lessons/by-language/spanish`)
+definePageMeta({
+  middleware: 'auth',
+})
+
+// Fetch Spanish lessons
+const { data: lessonsResponse, error: lessonsError, pending: lessonsPending, refresh } = await useFetch<LessonsListResponse>(`/api/lessons/by-language/spanish`)
 
 const lessons = computed(() => {
-  if (lessonsError.value)
+  if (lessonsError.value) {
     consola.error('lessonsError:', lessonsError.value)
-  if (!lessonsResponse.value)
-    consola.error('No lessonsResponse data')
+  }
   return lessonsResponse.value?.lessons || []
 })
 
-// Get user authentication
-const { user } = useAuth()
-
-// Loading state for lesson generation
-const isGeneratingLessons = ref(false)
-
-// Progress tracking
-const { getLastLesson } = useLessonNavigation(0)
-const lastLesson = ref<{ lastLessonId: number, lastLessonNumber: number } | null>(null)
-const isLoadingProgress = ref(false)
-
-// Get user's last lesson progress
-onMounted(async () => {
-  if (lessons.value && lessons.value.length > 0) {
-    try {
-      isLoadingProgress.value = true
-      const progress = await getLastLesson()
-      if (progress?.lastLessonId) {
-        // Check if the last lesson still exists in current lessons
-        const lessonExists = lessons.value.find((l: Lesson) => l.id === progress.lastLessonId)
-        if (lessonExists) {
-          lastLesson.value = progress
-        }
-      }
-    }
-    catch (error) {
-      console.warn('Could not get user progress:', error)
-    }
-    finally {
-      isLoadingProgress.value = false
-    }
-  }
-})
-
-// Resume learning function
-async function resumeLearning() {
-  if (lastLesson.value) {
-    await navigateTo(`/courses/spanish/${lastLesson.value.lastLessonId}`)
-  }
-}
-
-// Generate lessons function
-async function generateLessons() {
-  if (isGeneratingLessons.value)
-    return
-
-  try {
-    isGeneratingLessons.value = true
-
-    // First, get user profile to fetch their topics
-    const userProfile = await $fetch('/api/user/profile')
-
-    if (!userProfile?.topics?.length) {
-      // If user has no topics, use default ones for Spanish learning
-      const defaultTopics = ['travel', 'food', 'family', 'work', 'hobbies']
-
-      await $fetch('/api/lessons/generate', {
-        method: 'POST',
-        body: {
-          userId: user.value?.id,
-          topics: defaultTopics,
-          targetLanguage: 'spanish',
-          userLanguage: 'english',
-        },
-      })
-    }
-    else {
-      // Use user's topics
-      await $fetch('/api/lessons/generate', {
-        method: 'POST',
-        body: {
-          userId: user.value?.id,
-          topics: userProfile.topics,
-          targetLanguage: 'spanish',
-          userLanguage: 'english',
-        },
-      })
-    }
-
-    // Refresh the lessons list after generation
-    await refreshLessons()
-  }
-  catch (error) {
-    consola.error('Error generating lessons:', error)
-    // You could add a toast notification here
-  }
-  finally {
-    isGeneratingLessons.value = false
-  }
-}
-
 // Page meta
 useHead({
-  title: 'Cursos de Español - LingAI',
+  title: 'Learn Spanish - LingAI',
   meta: [
-    { name: 'description', content: 'Aprende español con nuestro método interactivo' },
+    { name: 'description', content: 'Learn Spanish step by step with our interactive method' },
   ],
 })
 </script>
 
 <template>
-  <div max-w-512 mx-auto p-24>
-    <header mb-32>
-      <h1 text="f-xl neutral-900" font-bold mb-16>
-        Cursos de Español
+  <div max-w-4xl mx-auto p-6>
+    <header mb-8>
+      <h1 text="3xl neutral-900" font-bold mb-2>
+        Learn Spanish
       </h1>
-      <p text="f-lg neutral-600" mb-6>
-        Aprende español paso a paso con nuestro método interactivo
+      <p text="neutral-600">
+        Practice Spanish with interactive lessons
       </p>
-
-      <!-- Resume Learning Button -->
-      <div v-if="lastLesson && !isLoadingProgress" mb-6>
-        <button
-          nq-pill-blue
-          @click="resumeLearning"
-        >
-          <div i-heroicons-play w-4 h-4 />
-          Continue Learning - Lesson {{ lastLesson.lastLessonNumber }}
-        </button>
-      </div>
     </header>
 
-    <div v-if="lessons && lessons.length > 0" flex="~ col gap-4">
+    <!-- Lessons List -->
+    <div v-if="lessons && lessons.length > 0" space-y-4>
       <div
         v-for="lesson in lessons"
         :key="lesson.id"
@@ -144,8 +46,8 @@ useHead({
         @click="navigateTo(`/courses/spanish/${lesson.id}`)"
       >
         <div flex="~ items-center justify-between">
-          <div flex="~ col gap-2">
-            <div flex="~ items-center gap-3">
+          <div>
+            <div flex="~ items-center gap-3 mb-2">
               <span
                 bg-blue-100
                 text-blue-800
@@ -155,9 +57,9 @@ useHead({
                 text-sm
                 font-medium
               >
-                Lección {{ lesson.lessonNumber }}
+                Lesson {{ lesson.lessonNumber }}
               </span>
-              <h2 f-text-xl font-semibold>
+              <h2 text="xl" font-semibold>
                 {{ lesson.title }}
               </h2>
             </div>
@@ -177,59 +79,46 @@ useHead({
       </div>
     </div>
 
+    <!-- Loading State -->
     <div v-else-if="lessonsPending" text-center py-12>
-      <div i-heroicons-arrow-path w-16 h-16 text-neutral-300 mx-auto mb-4 animate-spin />
-      <h3 f-text-xl font-medium text-neutral-600 mb-2>
-        Cargando lecciones...
-      </h3>
+      <div i-heroicons-arrow-path w-8 h-8 text-neutral-300 mx-auto mb-4 animate-spin />
+      <p text="neutral-600">
+        Loading lessons...
+      </p>
     </div>
 
+    <!-- Error State -->
     <div v-else-if="lessonsError" text-center py-12>
-      <div i-nimiq:alert w-16 h-16 text-red-300 mx-auto mb-4 />
-      <h3 f-text-xl font-medium text-neutral-600 mb-2>
-        Error al cargar lecciones
+      <div i-heroicons-exclamation-triangle w-8 h-8 text-red-400 mx-auto mb-4 />
+      <h3 text="lg neutral-900" font-medium mb-2>
+        Error loading lessons
       </h3>
-      <p text-neutral-500 mb-6>
-        {{ lessonsError?.message || 'Ocurrió un error inesperado' }}
+      <p text="neutral-600" mb-6>
+        {{ lessonsError?.message || 'Something went wrong' }}
       </p>
       <button
         nq-pill-blue
-        @click="refreshLessons()"
+        @click="refresh()"
       >
-        <div i-heroicons-arrow-path w-4 h-4 />
-        Reintentar
+        Try Again
       </button>
     </div>
 
+    <!-- No Lessons State -->
     <div v-else text-center py-12>
-      <div i-heroicons-document-text w-16 h-16 text-neutral-300 mx-auto mb-4 />
-      <h3 f-text-xl font-medium text-neutral-600 mb-2>
-        No hay lecciones disponibles
+      <div i-heroicons-document-text w-8 h-8 text-neutral-300 mx-auto mb-4 />
+      <h3 text="lg neutral-900" font-medium mb-2>
+        No lessons yet
       </h3>
-      <p text-neutral-500 mb-6>
-        Genera tu primera lección con IA.
+      <p text="neutral-600" mb-6>
+        Complete your onboarding to get started with personalized lessons.
       </p>
-
-      <!-- Generate Lessons Button -->
-      <button
-        :disabled="isGeneratingLessons"
+      <NuxtLink
+        to="/onboarding"
         nq-pill-blue
-        @click="generateLessons"
       >
-        <div
-          v-if="isGeneratingLessons"
-          i-heroicons-arrow-path
-          size-16
-          animate-spin
-        />
-        <div
-          v-else
-          i-heroicons-sparkles
-          w-4
-          h-4
-        />
-        {{ isGeneratingLessons ? 'Generando lecciones...' : 'Generar lecciones con IA' }}
-      </button>
+        Get Started
+      </NuxtLink>
     </div>
   </div>
 </template>

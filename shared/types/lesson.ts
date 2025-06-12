@@ -30,19 +30,6 @@ export interface Sentence {
   updatedAt: Date
 }
 
-export interface SentenceProgress {
-  id: number
-  userId: string
-  sentenceId: number
-  lessonId: number
-  completed: boolean
-  practiceCount: number
-  lastPracticedAt?: Date
-  masteryLevel: number
-  createdAt: Date
-  updatedAt: Date
-}
-
 // API Response types
 export interface LessonWithSentences extends Lesson {
   sentences: Sentence[]
@@ -64,13 +51,4 @@ export interface SentencesApiResponse {
   sentences: Sentence[]
   total: number
   lesson: Lesson
-}
-
-// For sentence practice and learning
-export interface SentenceWithProgress extends Sentence {
-  progress?: SentenceProgress
-}
-
-export interface LessonWithProgressSentences extends Lesson {
-  sentences: SentenceWithProgress[]
 }

@@ -49,17 +49,3 @@ export const sentences = sqliteTable('sentences', {
   createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`(unixepoch())`),
   updatedAt: integer('updated_at', { mode: 'timestamp' }).notNull().default(sql`(unixepoch())`),
 })
-
-// User progress tracking for sentences
-export const userSentenceProgress = sqliteTable('user_sentence_progress', {
-  id: integer('id').primaryKey({ autoIncrement: true }),
-  userId: text('user_id').notNull(), // UUID from better-auth
-  sentenceId: integer('sentence_id').notNull().references(() => sentences.id, { onDelete: 'cascade' }),
-  lessonId: integer('lesson_id').notNull().references(() => lessons.id, { onDelete: 'cascade' }),
-  completed: integer('completed', { mode: 'boolean' }).notNull().default(false),
-  practiceCount: integer('practice_count').notNull().default(0),
-  lastPracticedAt: integer('last_practiced_at', { mode: 'timestamp' }),
-  masteryLevel: integer('mastery_level').notNull().default(0), // 0-5 scale
-  createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`(unixepoch())`),
-  updatedAt: integer('updated_at', { mode: 'timestamp' }).notNull().default(sql`(unixepoch())`),
-})
