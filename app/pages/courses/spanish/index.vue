@@ -29,7 +29,7 @@ onMounted(async () => {
       const progress = await getLastLesson()
       if (progress?.lastLessonId) {
         // Check if the last lesson still exists in current lessons
-        const lessonExists = lessons.value.find(l => l.id === progress.lastLessonId)
+        const lessonExists = lessons.value.find((l: Lesson) => l.id === progress.lastLessonId)
         if (lessonExists) {
           lastLesson.value = progress
         }

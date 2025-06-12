@@ -60,15 +60,49 @@ export default defineEventHandler(async (event) => {
       await db.insert(tables.userTopics).values(topicValues)
     }
 
-    return {
-      success: true,
-      message: 'Onboarding completed successfully! You can now generate personalized lessons.',
-      topics,
-      targetLanguage,
-      userId: user.id,
+    // Automatically generate the first lesson with audio
+    try {
+      const { generateLessons } = await import('../../utils/ai/lessons')
+
+      const lessonResult = await generateLessons({
+        topics,
+        targetLanguage: targetLanguage.toLowerCase(),
+        userLanguage: 'english', // Hardcoded for now
+        userId: user.id,
+      })
+
+      // Return success with lesson information
+      return {
+        success: true,
+        message: 'Welcome to LingAI! Your first lesson is ready.',
+        topics,
+        targetLanguage,
+        userId: user.id,
+        lessonGenerated: true,
+        lesson: {
+          id: lessonResult.lesson.id,
+          lessonNumber: lessonResult.lesson.lessonNumber,
+          title: lessonResult.lesson.title,
+        },
+      }
+    }
+    catch (lessonError) {
+      consola.error('Failed to generate initial lesson:', lessonError)
+
+      // Still return success for onboarding, but indicate lesson generation failed
+      return {
+        success: true,
+        message: 'Onboarding completed successfully! We\'ll set up your first lesson shortly.',
+        topics,
+        targetLanguage,
+        userId: user.id,
+        lessonGenerated: false,
+        error: 'Failed to generate initial lesson, but you can create lessons manually.',
+      }
     }
   }
-  catch {
+  catch (error) {
+    consola.error('Onboarding error:', error)
     throw createError({
       statusCode: 500,
       statusMessage: 'Failed to save onboarding data',

@@ -323,11 +323,14 @@ function handleSubmitClick() {
               <span v-if="submitStatus === 'idle'">¡Empezar!</span>
               <span v-else-if="submitStatus === 'pending'" flex="~ items-center gap-2">
                 <div i-tabler:loader-2 w-4 h-4 animate-spin />
-                Setting up...
+                Creating your lesson...
               </span>
               <span v-else-if="submitStatus === 'success'" flex="~ items-center gap-2">
                 <div i-tabler:check w-4 h-4 />
-                {{ submitData?.message || 'Success!' }}
+                {{ submitData?.lessonGenerated
+                  ? `Lesson ready! Redirecting to "${submitData?.lesson?.title}"...`
+                  : submitData?.message || 'Success!'
+                }}
               </span>
             </motion.button>
           </motion.div>
