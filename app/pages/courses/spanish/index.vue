@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // Fetch lessons using our database API
-const { data: lessonsResponse, refresh: refreshLessons, error: lessonsError, pending: lessonsPending } = await useFetch<LessonsListResponse>(`/api/lessons/spanish`)
+const { data: lessonsResponse, refresh: refreshLessons, error: lessonsError, pending: lessonsPending } = await useFetch<LessonsListResponse>(`/api/lessons/by-language/spanish`)
 
 const lessons = computed(() => {
   if (lessonsError.value)
