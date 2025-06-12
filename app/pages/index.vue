@@ -42,16 +42,16 @@ const signUpError = ref('')
 async function signIn() {
   if (loading.value)
     return
-  
+
   // Clear previous errors
   signInError.value = ''
   loading.value = true
-  
+
   const { error } = await auth.signIn.email({
     email: email.value,
     password: password.value,
   })
-  
+
   if (error) {
     signInError.value = error.message || 'Sign in failed. Please try again.'
   }
@@ -64,17 +64,17 @@ async function signIn() {
 async function signUp() {
   if (loading.value)
     return
-  
+
   // Clear previous errors
   signUpError.value = ''
   loading.value = true
-  
+
   const { error } = await auth.signUp.email({
     email: email.value,
     password: password.value,
     name: name.value,
   })
-  
+
   if (error) {
     signUpError.value = error.message || 'Sign up failed. Please try again.'
   }
@@ -121,12 +121,12 @@ async function signUp() {
           Password
           <input v-model="password" nq-input-box type="password" placeholder="Password">
         </label>
-        
+
         <!-- Sign In Error Message -->
         <div v-if="signInError" text="f-sm red-600" bg="red-50" p-3 rounded-md border="1 red-200">
           {{ signInError }}
         </div>
-        
+
         <button
           type="submit" nq-pill-blue nq-arrow :disabled="!email || !password || loading"
         >
@@ -156,12 +156,12 @@ async function signUp() {
           Name
           <input v-model="name" nq-input-box type="name" placeholder="Name">
         </label>
-        
+
         <!-- Sign Up Error Message -->
         <div v-if="signUpError" text="f-sm red-600" bg="red-50" p-3 rounded-md border="1 red-200">
           {{ signUpError }}
         </div>
-        
+
         <button type="submit" nq-pill-blue nq-arrow :disabled="loading">
           {{ loading ? 'Signing Up...' : 'Sign Up' }}
         </button>
