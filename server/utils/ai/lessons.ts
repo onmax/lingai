@@ -7,7 +7,7 @@ import process from 'node:process'
 import { openai } from '@ai-sdk/openai'
 import { valibotSchema } from '@ai-sdk/valibot'
 import { generateObject } from 'ai'
-import { desc, eq } from 'drizzle-orm'
+import { and, desc, eq } from 'drizzle-orm'
 import OpenAI from 'openai'
 import { array, string, object as valibotObject } from 'valibot'
 
@@ -172,6 +172,47 @@ REQUIREMENTS:
 }
 
 /**
+ * Retry wrapper for blob storage operations with exponential backoff
+ */
+async function retryBlobOperation<T>(
+  operation: () => Promise<T>,
+  maxRetries: number = 3,
+  baseDelay: number = 1000,
+): Promise<T> {
+  let lastError: Error = new Error('Operation failed after all retries')
+
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+      return await operation()
+    }
+    catch (error) {
+      lastError = error instanceof Error ? error : new Error(String(error))
+
+      // Check if this is a retryable Cloudflare error
+      const isRetryableError = error && typeof error === 'object'
+        && 'message' in error
+        && (
+          (error.message as string).includes('10043') // Service unavailable
+          || (error.message as string).includes('10000') // Generic server error
+          || (error.message as string).includes('timeout')
+          || (error.message as string).includes('network')
+        )
+
+      if (!isRetryableError || attempt === maxRetries) {
+        throw lastError
+      }
+
+      // Exponential backoff with jitter
+      const delay = baseDelay * 2 ** (attempt - 1) + Math.random() * 1000
+      consola.warn(`Blob operation failed (attempt ${attempt}/${maxRetries}), retrying in ${Math.round(delay)}ms: ${lastError.message}`)
+      await new Promise(resolve => setTimeout(resolve, delay))
+    }
+  }
+
+  throw lastError
+}
+
+/**
  * Generate audio for Spanish sentences using OpenAI TTS
  */
 async function generateAudioForSentences(sentences: any[]): Promise<void> {
@@ -210,20 +251,51 @@ async function generateAudioForSentences(sentences: any[]): Promise<void> {
       const audioBuffer = Buffer.from(await mp3.arrayBuffer())
       const audioKey = `audio/sentences/${sentence.id}.mp3`
 
-      // Store the audio in blob storage
+      // Store the audio in blob storage with retry logic
       try {
-        // Convert Buffer to Blob for NuxtHub compatibility
-        const audioBlob = new Blob([audioBuffer], { type: 'audio/mpeg' })
-        await hubBlob().put(audioKey, audioBlob, {
-          httpMetadata: {
-            contentType: 'audio/mpeg',
-          },
-        })
-        consola.success(`✅ Audio stored successfully: ${audioKey}`)
+        await retryBlobOperation(async () => {
+          // Convert Buffer to Blob for NuxtHub compatibility
+          const audioBlob = new Blob([audioBuffer], { type: 'audio/mpeg' })
+          await hubBlob().put(audioKey, audioBlob, {
+            httpMetadata: {
+              contentType: 'audio/mpeg',
+            },
+          })
+          consola.success(`✅ Audio stored successfully: ${audioKey}`)
+        }, 3, 2000) // 3 retries with 2s base delay
       }
       catch (blobError) {
-        consola.error(`❌ Blob storage failed for ${audioKey}:`, blobError)
-        throw blobError
+        const errorMessage = blobError instanceof Error ? blobError.message : String(blobError)
+
+        // Check if this is a known Cloudflare service issue
+        const isCloudflareServiceIssue = errorMessage.includes('10043')
+          || errorMessage.includes('cloudflarestatus.com')
+          || errorMessage.includes('contact customer support')
+
+        if (isCloudflareServiceIssue) {
+          consola.error(`❌ Cloudflare service issue detected for ${audioKey}. Marking sentence for later retry.`)
+
+          // Mark sentence as needing audio retry rather than failing completely
+          try {
+            await db.update(tables.sentences)
+              .set({
+                audioGenerated: false,
+                audioUrl: null,
+                updatedAt: sql`(unixepoch())`,
+              })
+              .where(eq(tables.sentences.id, sentence.id))
+
+            consola.warn(`⚠️ Sentence ${sentence.id} marked for audio retry due to service issue`)
+            continue // Continue with next sentence instead of failing
+          }
+          catch (dbError) {
+            consola.error(`Failed to update sentence ${sentence.id} after service issue:`, dbError)
+          }
+        }
+        else {
+          consola.error(`❌ Blob storage failed for ${audioKey}:`, blobError)
+          throw blobError
+        }
       }
 
       // Update the sentence record with audio URL
@@ -280,4 +352,43 @@ async function generateAudioForSentences(sentences: any[]): Promise<void> {
   }
 
   consola.success(`Completed Spanish audio generation for ${sentences.length} sentences`)
+}
+
+/**
+ * Retry audio generation for sentences that failed due to service issues
+ */
+export async function retryFailedAudioGeneration(lessonId?: string | number): Promise<void> {
+  const db = useDrizzle()
+
+  // Find sentences without audio
+  let failedSentences
+
+  if (lessonId) {
+    const lessonIdNum = typeof lessonId === 'string' ? Number.parseInt(lessonId, 10) : lessonId
+    failedSentences = await db.select()
+      .from(tables.sentences)
+      .where(
+        and(
+          eq(tables.sentences.audioGenerated, false),
+          eq(tables.sentences.lessonId, lessonIdNum),
+        ),
+      )
+      .all()
+  }
+  else {
+    failedSentences = await db.select()
+      .from(tables.sentences)
+      .where(eq(tables.sentences.audioGenerated, false))
+      .all()
+  }
+
+  if (failedSentences.length === 0) {
+    consola.info('No sentences found that need audio generation retry')
+    return
+  }
+
+  consola.info(`Found ${failedSentences.length} sentences that need audio generation retry`)
+
+  // Use the existing audio generation logic
+  await generateAudioForSentences(failedSentences)
 }
