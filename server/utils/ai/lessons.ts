@@ -91,10 +91,15 @@ export async function generateLessons({
 
     const sentences = await Promise.all(sentencePromises)
 
-    // Generate audio for sentences (async - don't wait)
-    generateAudioForSentences(sentences).catch((error) => {
-      consola.error('Failed to generate audio for sentences:', error)
-    })
+    // Generate audio for sentences (sync - wait for completion)
+    await generateAudioForSentences(sentences)
+
+    // Fetch updated sentences with audio URLs after generation
+    const updatedSentences = await db.select()
+      .from(tables.sentences)
+      .where(eq(tables.sentences.lessonId, newLesson.id))
+      .orderBy(tables.sentences.sentenceOrder)
+      .all()
 
     // Parse lesson data for return
     const lessonData: Lesson = {
@@ -104,7 +109,7 @@ export async function generateLessons({
       updatedAt: new Date(newLesson.updatedAt),
     }
 
-    const sentenceData: Sentence[] = sentences.map((sentence: any) => ({
+    const sentenceData: Sentence[] = updatedSentences.map((sentence: any) => ({
       ...sentence,
       audioUrl: sentence.audioUrl || undefined,
       context: sentence.context || undefined,
