@@ -191,11 +191,12 @@ async function generateAudioForSentences(sentences: any[]): Promise<void> {
 
       // Generate audio using OpenAI TTS with Spanish voice
       const mp3 = await openaiClient.audio.speech.create({
-        model: 'tts-1-hd',
+        model: 'gpt-4o-mini-tts',
         voice: 'nova', // Good Spanish voice
         input: sentence.targetText,
         response_format: 'mp3',
         speed: 1.0,
+        instructions: 'Speak in a cheerful and positive tone in spanish',
       })
 
       // Get the audio buffer
