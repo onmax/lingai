@@ -10,7 +10,85 @@ const lessonId = computed(() => Number.parseInt(route.params.id as string, 10))
 // Fetch the lesson with sentences
 const { data: lessonResponse, pending, error } = await useFetch<LessonApiResponse>(`/api/lessons/${lessonId.value}`)
 
+// Fetch all lessons for navigation
+const { data: lessonsResponse, refresh: refreshLessons } = await useFetch<LessonsListResponse>(`/api/lessons/by-language/spanish`, {
+  key: 'lessons-cache',
+})
+
 const lesson = computed(() => lessonResponse.value?.lesson)
+const allLessons = computed(() => lessonsResponse.value?.lessons || [])
+
+// Lesson progress composable
+const {
+  setCurrentLessonId,
+  goToNextLesson,
+  goToPreviousLesson,
+  hasNextLesson,
+  hasPreviousLesson,
+} = useLessonProgress()
+
+// Navigation state
+const isNavigating = ref(false)
+
+// Set current lesson as the active one when the page loads
+watchEffect(() => {
+  if (lesson.value) {
+    setCurrentLessonId(lesson.value.id)
+  }
+})
+
+// Refresh lessons data if we're missing the current lesson in the list
+watchEffect(async () => {
+  if (lesson.value && allLessons.value.length > 0) {
+    const lessonExists = allLessons.value.some(l => l.id === lesson.value.id)
+    if (!lessonExists) {
+      // This lesson doesn't exist in our cached list, refresh it
+      await refreshLessons()
+    }
+  }
+})
+
+// Navigation handlers
+async function handleNextLesson() {
+  if (!lesson.value || isNavigating.value)
+    return
+
+  try {
+    isNavigating.value = true
+    await goToNextLesson(lesson.value.id, allLessons.value)
+  }
+  catch (error) {
+    console.error('Failed to navigate to next lesson:', error)
+  }
+  finally {
+    isNavigating.value = false
+  }
+}
+
+async function handlePreviousLesson() {
+  if (!lesson.value || isNavigating.value)
+    return
+
+  try {
+    isNavigating.value = true
+    await goToPreviousLesson(lesson.value.id, allLessons.value)
+  }
+  catch (error) {
+    console.error('Failed to navigate to previous lesson:', error)
+  }
+  finally {
+    isNavigating.value = false
+  }
+}
+
+// Computed navigation availability
+const canGoNext = computed(() =>
+  lesson.value ? hasNextLesson(lesson.value.id, allLessons.value) : false,
+)
+
+const canGoPrevious = computed(() =>
+  lesson.value ? hasPreviousLesson(lesson.value.id, allLessons.value) : false,
+)
 
 if (!lesson.value && !pending.value) {
   throw createError({
@@ -114,6 +192,52 @@ useHead({
         <p text="f-sm neutral-600">
           No sentences available for this lesson.
         </p>
+      </div>
+
+      <!-- Navigation buttons -->
+      <div flex="~ justify-between items-center" mt-12 pt-8 border="t neutral-200">
+        <!-- Previous lesson button -->
+        <button
+          v-if="canGoPrevious"
+          :disabled="isNavigating"
+          flex="~ items-center gap-2"
+          px-6 py-3
+          bg-neutral-100
+          text-neutral-700
+          rounded-lg
+          hover="bg-neutral-200"
+          disabled:="opacity-50 cursor-not-allowed"
+          transition-colors
+          @click="handlePreviousLesson"
+        >
+          <div i-heroicons-chevron-left w-5 h-5 />
+          <span>Previous Lesson</span>
+        </button>
+        <div v-else />
+
+        <!-- Next lesson button -->
+        <button
+          v-if="canGoNext"
+          :disabled="isNavigating"
+          flex="~ items-center gap-2"
+          px-6 py-3
+          bg-blue-600
+          text-white
+          rounded-lg
+          hover="bg-blue-700"
+          disabled:="opacity-50 cursor-not-allowed"
+          transition-colors
+          @click="handleNextLesson"
+        >
+          <template v-if="isNavigating">
+            <div i-heroicons-arrow-path w-5 h-5 animate-spin />
+            <span>Generating...</span>
+          </template>
+          <template v-else>
+            <span>Next Lesson</span>
+            <div i-heroicons-chevron-right w-5 h-5 />
+          </template>
+        </button>
       </div>
     </div>
   </div>

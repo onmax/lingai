@@ -65,6 +65,18 @@ export function useAuth() {
       const res = await client.signOut()
       session.value = null
       user.value = null
+
+      // Clear lesson progress when signing out
+      if (import.meta.client) {
+        try {
+          const { clearProgress } = useLessonProgress()
+          clearProgress()
+        }
+        catch (error) {
+          console.warn('Failed to clear lesson progress on sign out:', error)
+        }
+      }
+
       if (redirectTo) {
         await navigateTo(redirectTo)
       }
