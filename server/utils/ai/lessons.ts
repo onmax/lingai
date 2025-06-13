@@ -204,6 +204,8 @@ async function generateAudioForSentences(sentences: any[]): Promise<void> {
         instructions: 'Speak in a cheerful and positive tone in spanish',
       })
 
+      consola.info(`✅ OpenAI TTS generation completed for sentence ${sentence.id}`)
+
       // Get the audio buffer
       const audioBuffer = Buffer.from(await mp3.arrayBuffer())
       const audioKey = `audio/sentences/${sentence.id}.mp3`
