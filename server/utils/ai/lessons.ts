@@ -249,7 +249,7 @@ async function generateAudioForSentences(sentences: any[]): Promise<void> {
 
       // Get the audio buffer
       const audioBuffer = Buffer.from(await mp3.arrayBuffer())
-      const audioKey = `audio/sentences/${sentence.id}.mp3`
+      const audioKey = `audio/users/${sentence.userId}/sentences/${sentence.id}.mp3`
 
       // Store the audio in blob storage with retry logic
       try {
