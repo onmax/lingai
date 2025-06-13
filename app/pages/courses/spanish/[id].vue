@@ -40,7 +40,7 @@ watchEffect(() => {
 // Refresh lessons data if we're missing the current lesson in the list
 watchEffect(async () => {
   if (lesson.value && allLessons.value.length > 0) {
-    const lessonExists = allLessons.value.some(l => l.id === lesson.value.id)
+    const lessonExists = allLessons.value.some(l => l.id === lesson.value?.id)
     if (!lessonExists) {
       // This lesson doesn't exist in our cached list, refresh it
       await refreshLessons()
