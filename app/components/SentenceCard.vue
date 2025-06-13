@@ -6,14 +6,20 @@ interface Props {
 const props = defineProps<Props>()
 
 const isPlayingAudio = ref(false)
+const { isAudioLoading, getAudioUrl, hasAudio } = useAudioLoader()
+
+// Reactive audio URL that updates when audio becomes available
+const audioUrl = computed(() => getAudioUrl(props.sentence))
+const audioAvailable = computed(() => hasAudio(props.sentence))
 
 async function playAudio() {
-  if (isPlayingAudio.value || !props.sentence.audioUrl)
+  const currentAudioUrl = audioUrl.value
+  if (isPlayingAudio.value || !currentAudioUrl)
     return
 
   try {
     isPlayingAudio.value = true
-    const audio = new Audio(props.sentence.audioUrl)
+    const audio = new Audio(currentAudioUrl)
 
     audio.onended = () => {
       isPlayingAudio.value = false
@@ -79,9 +85,9 @@ function handleAudioKeyDown(event: KeyboardEvent) {
         </p>
       </div>
 
-      <!-- Audio Button or Audio Placeholder -->
+      <!-- Audio Button -->
       <button
-        v-if="sentence.audioUrl"
+        v-if="audioAvailable"
         type="button"
         rounded-full
         p-3
@@ -101,6 +107,24 @@ function handleAudioKeyDown(event: KeyboardEvent) {
         />
       </button>
 
+      <!-- Audio Loading Indicator -->
+      <div
+        v-else-if="isAudioLoading(sentence.id)"
+        rounded-full
+        p-3
+        bg="blue-50"
+        text-blue-500
+        :aria-label="`Generating audio for: ${sentence.targetText}`"
+        title="Audio is being generated..."
+      >
+        <div
+          i-heroicons-arrow-path
+          w-5
+          h-5
+          animate-spin
+        />
+      </div>
+
       <!-- Audio Not Available Indicator -->
       <div
         v-else-if="sentence.audioGenerated === false"
@@ -108,11 +132,11 @@ function handleAudioKeyDown(event: KeyboardEvent) {
         p-3
         bg="neutral-100"
         text-neutral-400
-        :aria-label="`Audio not available for: ${sentence.targetText}`"
-        title="Audio generation in progress or unavailable"
+        :aria-label="`Audio generation pending for: ${sentence.targetText}`"
+        title="Audio will be generated shortly..."
       >
         <div
-          i-heroicons-speaker-x-mark
+          i-heroicons-clock
           w-5
           h-5
         />

@@ -8,7 +8,7 @@ const route = useRoute()
 const lessonId = computed(() => Number.parseInt(route.params.id as string, 10))
 
 // Fetch the lesson with sentences
-const { data: lessonResponse, pending, error } = await useFetch<LessonApiResponse>(`/api/lessons/${lessonId.value}`)
+const { data: lessonResponse, pending, error, refresh: refreshLesson } = await useFetch<LessonApiResponse>(`/api/lessons/${lessonId.value}`)
 
 // Fetch all lessons for navigation
 const { data: lessonsResponse, refresh: refreshLessons } = await useFetch<LessonsListResponse>(`/api/lessons/by-language/spanish`, {
@@ -27,6 +27,9 @@ const {
   hasPreviousLesson,
 } = useLessonProgress()
 
+// Audio loader composable
+const { startAudioPolling, stopAllPolling } = useAudioLoader()
+
 // Navigation state
 const isNavigating = ref(false)
 
@@ -35,6 +38,18 @@ watchEffect(() => {
   if (lesson.value) {
     setCurrentLessonId(lesson.value.id)
   }
+})
+
+// Start audio polling when lesson with sentences is loaded
+watchEffect(() => {
+  if (lesson.value?.sentences && lesson.value.sentences.length > 0) {
+    startAudioPolling(lesson.value.sentences, refreshLesson)
+  }
+})
+
+// Clean up polling when component unmounts
+onBeforeUnmount(() => {
+  stopAllPolling()
 })
 
 // Refresh lessons data if we're missing the current lesson in the list

@@ -58,8 +58,6 @@ export default defineEventHandler(async (event) => {
     }
 
     // Generate the next lesson using the existing generateLessons utility
-    const { generateLessons } = await import('../../utils/ai/lessons')
-
     const lessonResult = await generateLessons({
       topics,
       userId: user.id,
