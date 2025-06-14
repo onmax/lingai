@@ -86,83 +86,86 @@ async function signUp() {
 </script>
 
 <template>
-  <TabsRoot flex="~ col " mx-auto max-w-320 shadow f-rounded-lg default-value="signin">
-    <TabsList relative shrink-0 flex aria-label="Sign in or sign up">
+  <TabsRoot class="flex flex-col mx-auto max-w-80 shadow rounded-lg" default-value="signin">
+    <TabsList class="relative shrink-0 flex" aria-label="Sign in or sign up">
       <TabsIndicator
-        absolute px-8 left-0 h-8 bottom-0 w="$reka-tabs-indicator-size"
-        translate-x="$reka-tabs-indicator-position" translate-y-1 rounded-full transition="[width,transform]"
-        duration-300
+        class="absolute px-8 left-0 h-8 bottom-0 w-[var(--reka-tabs-indicator-size)] translate-x-[var(--reka-tabs-indicator-position)] translate-y-1 rounded-full transition-all duration-300"
       >
-        <div bg-blue size-full />
+        <div class="bg-blue-500 size-full" />
       </TabsIndicator>
       <TabsTrigger
-        bg-white px-24 h-45 flex="1 ~ items-center justify-center" text="f-sm hocus:blue reka-active:blue"
-        transition-colors leading-none text-blue select-none rounded-tl-md outline-none cursor-default
-        focus-visible:relative focus-visible:shadow="[0_0_0_2px] neutral" value="signin"
+        class="bg-white px-6 h-11 flex-1 flex items-center justify-center text-sm hover:text-blue-500 data-[state=active]:text-blue-500 transition-colors leading-none text-blue-500 select-none rounded-tl-md outline-none cursor-default focus-visible:relative focus-visible:shadow-[0_0_0_2px] focus-visible:shadow-neutral-400"
+        value="signin"
       >
         Sign In
       </TabsTrigger>
       <TabsTrigger
-        bg-white px-6 h-45 flex="1 ~ items-center justify-center" text="f-sm hocus:blue reka-active:blue"
-        transition-colors leading-none text-blue select-none rounded-tr-md outline-none cursor-default
-        focus-visible:relative focus-visible:shadow="[0_0_0_2px] neutral" value="signup"
+        class="bg-white px-6 h-11 flex-1 flex items-center justify-center text-sm hover:text-blue-500 data-[state=active]:text-blue-500 transition-colors leading-none text-blue-500 select-none rounded-tr-md outline-none cursor-default focus-visible:relative focus-visible:shadow-[0_0_0_2px] focus-visible:shadow-neutral-400"
+        value="signup"
       >
         Sign Up
       </TabsTrigger>
     </TabsList>
 
-    <TabsContent grow p-20 bg-white rounded-b-md outline-none focus:shadow="[0_0_0_2px] neutral" value="signin">
-      <form flex="~ col gap-4" @submit.prevent="signIn">
-        <label nq-label>
+    <TabsContent class="grow p-5 bg-white rounded-b-md outline-none focus:shadow-[0_0_0_2px] focus:shadow-neutral-400" value="signin">
+      <form class="flex flex-col gap-4" @submit.prevent="signIn">
+        <label class="flex flex-col gap-2 text-neutral-800 text-sm font-medium">
           Email
-          <input v-model="email" nq-input-box type="email" placeholder="Email">
+          <input v-model="email" class="px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" type="email" placeholder="Email">
         </label>
-        <label nq-label>
+        <label class="flex flex-col gap-2 text-neutral-800 text-sm font-medium">
           Password
-          <input v-model="password" nq-input-box type="password" placeholder="Password">
+          <input v-model="password" class="px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" type="password" placeholder="Password">
         </label>
 
         <!-- Sign In Error Message -->
-        <div v-if="signInError" text="f-sm red-600" bg="red-50" p-3 rounded-md border="1 red-200">
+        <div v-if="signInError" class="text-sm text-red-600 bg-red-50 p-3 rounded-md border border-red-200">
           {{ signInError }}
         </div>
 
         <button
-          type="submit" nq-pill-blue nq-arrow :disabled="!email || !password || loading"
+          type="submit" 
+          class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          :disabled="!email || !password || loading"
         >
           {{ loading ? 'Signing In...' : 'Sign In' }}
         </button>
         <button
-          type="button" nq-pill-blue nq-arrow
+          type="button" 
+          class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
           @click="auth.signIn.social({ provider: 'github', callbackURL: '/courses/spanish' })"
         >
-          <div i-nimiq:logos-github-mono />
+          <div class="i-carbon:logo-github" />
           Sign In with Github
         </button>
       </form>
     </TabsContent>
 
-    <TabsContent grow p-20 bg-white rounded-b-md outline-none focus:shadow="[0_0_0_2px] neutral" value="signup">
+    <TabsContent class="grow p-5 bg-white rounded-b-md outline-none focus:shadow-[0_0_0_2px] focus:shadow-neutral-400" value="signup">
       <form class="flex flex-col gap-4" @submit.prevent="signUp">
-        <label nq-label>
+        <label class="flex flex-col gap-2 text-neutral-800 text-sm font-medium">
           Email
-          <input v-model="email" nq-input-box type="email" placeholder="Email">
+          <input v-model="email" class="px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" type="email" placeholder="Email">
         </label>
-        <label nq-label>
+        <label class="flex flex-col gap-2 text-neutral-800 text-sm font-medium">
           Password
-          <input v-model="password" nq-input-box type="password" placeholder="Password">
+          <input v-model="password" class="px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" type="password" placeholder="Password">
         </label>
-        <label nq-label>
+        <label class="flex flex-col gap-2 text-neutral-800 text-sm font-medium">
           Name
-          <input v-model="name" nq-input-box type="name" placeholder="Name">
+          <input v-model="name" class="px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" type="name" placeholder="Name">
         </label>
 
         <!-- Sign Up Error Message -->
-        <div v-if="signUpError" text="f-sm red-600" bg="red-50" p-3 rounded-md border="1 red-200">
+        <div v-if="signUpError" class="text-sm text-red-600 bg-red-50 p-3 rounded-md border border-red-200">
           {{ signUpError }}
         </div>
 
-        <button type="submit" nq-pill-blue nq-arrow :disabled="loading">
+        <button 
+          type="submit" 
+          class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          :disabled="loading"
+        >
           {{ loading ? 'Signing Up...' : 'Sign Up' }}
         </button>
       </form>

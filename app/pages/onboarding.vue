@@ -68,30 +68,29 @@ async function handleSubmit() {
 </script>
 
 <template>
-  <div bg-neutral-50 h-full px-6 flex="~ items-center justify-center">
-    <div w="full max-w-md" space-y-8>
-      <div text-center>
-        <h1 text="3xl neutral-900" font-bold mb-2>
+  <div class="bg-neutral-50 h-full px-6 flex items-center justify-center">
+    <div class="w-full max-w-md space-y-8">
+      <div class="text-center">
+        <h1 class="text-3xl text-neutral-900 font-bold mb-2">
           Welcome to Lingai!
         </h1>
-        <p text="neutral-600">
+        <p class="text-neutral-600">
           What topics interest you for learning Spanish?
         </p>
       </div>
 
-      <div space-y-6>
+      <div class="space-y-6">
         <!-- Topic input -->
         <div>
-          <div flex="~ gap-2" mb-4>
+          <div class="flex gap-2 mb-4">
             <input
               v-model="newTopicInput"
               placeholder="Enter a topic (e.g., travel, food, business...)"
-              flex-1 px-3 py-2 border="~ neutral-300" rounded-md text="f-sm"
-              focus="outline-none ring-2 ring-blue-500 border-blue-500"
+              class="flex-1 px-3 py-2 border border-neutral-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               @keydown="handleTopicKeydown"
             >
             <button
-              nq-pill-blue
+              class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
               :disabled="!newTopicInput.trim()"
               @click="addTopic"
             >
@@ -100,15 +99,15 @@ async function handleSubmit() {
           </div>
 
           <!-- Selected topics -->
-          <div v-if="selectedTopics.length > 0" flex="~ wrap gap-2">
+          <div v-if="selectedTopics.length > 0" class="flex flex-wrap gap-2">
             <span
               v-for="topic in selectedTopics"
               :key="topic"
-              flex="~ items-center" px-3 py-1 rounded-full text="f-sm blue-700" bg-blue-100
+              class="flex items-center px-3 py-1 rounded-full text-sm text-blue-700 bg-blue-100"
             >
               {{ topic }}
               <button
-                ml-2 text="blue-700 hover:blue-900"
+                class="ml-2 text-blue-700 hover:text-blue-900"
                 @click="removeTopic(topic)"
               >
                 ×
@@ -116,19 +115,19 @@ async function handleSubmit() {
             </span>
           </div>
 
-          <p v-if="selectedTopics.length === 0" text="f-sm neutral-500" mt-2>
+          <p v-if="selectedTopics.length === 0" class="text-sm text-neutral-500 mt-2">
             Add some topics that interest you to get started
           </p>
         </div>
 
         <!-- Submit button -->
         <button
-          nq-pill-blue w-full
+          class="w-full px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           :disabled="selectedTopics.length === 0 || isSubmitting"
           @click="handleSubmit"
         >
-          <span v-if="isSubmitting" flex="~ items-center justify-center gap-2">
-            <div i-tabler:loader-2 w-4 h-4 animate-spin />
+          <span v-if="isSubmitting" class="flex items-center justify-center gap-2">
+            <div class="i-tabler:loader-2 w-4 h-4 animate-spin" />
             Creating your lessons...
           </span>
           <span v-else>

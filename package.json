@@ -48,18 +48,19 @@
   "devDependencies": {
     "@antfu/eslint-config": "catalog:",
     "@cloudflare/workers-types": "catalog:",
+    "@iconify-json/carbon": "^1.2.9",
+    "@iconify-json/tabler": "^1.2.19",
     "@iconify/utils": "catalog:",
     "@nuxt/eslint-config": "catalog:",
     "@unocss/nuxt": "catalog:",
+    "@unocss/preset-wind4": "^66.2.0",
     "drizzle-kit": "catalog:",
     "eslint": "catalog:",
     "eslint-plugin-format": "catalog:",
     "lint-staged": "catalog:",
-    "nimiq-css": "catalog:",
     "nuxt-mcp": "catalog:",
     "typescript": "catalog:",
     "unocss": "catalog:",
-    "unocss-preset-onmax": "catalog:",
     "vue-tsc": "catalog:",
     "wrangler": "catalog:"
   }
