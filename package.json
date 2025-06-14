@@ -61,6 +61,7 @@
     "unocss": "catalog:",
     "unocss-preset-onmax": "catalog:",
     "vue-tsc": "catalog:",
-    "wrangler": "catalog:"
+    "wrangler": "catalog:",
+    "zod": "catalog:"
   }
 }

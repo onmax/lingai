@@ -65,6 +65,7 @@ export default defineEventHandler(async (event) => {
       const lessonResult = await generateLessons({
         topics,
         userId: user.id,
+        lessonNumber: 1,
       })
 
       return {

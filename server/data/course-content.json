@@ -1,0 +1,63 @@
+{
+  "lessons": [
+    {
+      "lesson_number": 1,
+      "title": "Greetings and Introductions",
+      "description": "Learn basic greetings and how to introduce yourself in Spanish",
+      "grammar_points": [
+        "Present tense of 'ser' (to be)",
+        "Basic sentence structure"
+      ],
+      "vocabulary_topics": [
+        "Greetings",
+        "Personal pronouns",
+        "Basic introductions"
+      ],
+      "communication_goals": [
+        "Greet people in different contexts",
+        "Introduce yourself and others",
+        "Ask and answer basic personal questions"
+      ]
+    },
+    {
+      "lesson_number": 2,
+      "title": "Numbers and Time",
+      "description": "Learn to count and tell time in Spanish",
+      "grammar_points": [
+        "Numbers 1-100",
+        "Telling time",
+        "Basic question formation"
+      ],
+      "vocabulary_topics": [
+        "Numbers",
+        "Time expressions",
+        "Daily schedule"
+      ],
+      "communication_goals": [
+        "Count and use numbers in context",
+        "Ask and tell time",
+        "Describe daily routines"
+      ]
+    },
+    {
+      "lesson_number": 3,
+      "title": "Family and Relationships",
+      "description": "Learn to talk about family members and relationships",
+      "grammar_points": [
+        "Possessive adjectives",
+        "Family vocabulary",
+        "Present tense of 'tener' (to have)"
+      ],
+      "vocabulary_topics": [
+        "Family members",
+        "Relationship terms",
+        "Personal characteristics"
+      ],
+      "communication_goals": [
+        "Describe family members",
+        "Talk about relationships",
+        "Express possession"
+      ]
+    }
+  ]
+}
