@@ -125,7 +125,7 @@ useHead({
 </script>
 
 <template>
-  <div max-w-520 mx-auto px-6 py-8 min-h-screen>
+  <div max-w-520 mx-auto px-6 py-8 min-h-screen pb-48>
     <!-- Back button -->
     <div mb-6>
       <NuxtLink
@@ -210,7 +210,14 @@ useHead({
       </div>
 
       <!-- Navigation buttons -->
-      <div flex="~ justify-between items-center" mt-12 pt-8 border="t neutral-200">
+      <div
+        flex="~ justify-between items-center"
+        mt-12
+        pt-8
+        pb-8
+        border="t neutral-200"
+        bg-white
+      >
         <!-- Previous lesson button -->
         <button
           v-if="canGoPrevious"
