@@ -160,7 +160,8 @@ REQUIREMENTS:
 - Appropriate for beginner to intermediate Spanish learners  
 - Practical and realistic for everyday conversations
 - Short and easy to understand (no more than 10-12 words each)
-- Each sentence should be unique and cover different aspects of the topics`,
+- Each sentence should be unique and cover different aspects of the topics
+- The sentences must be a conversation between two people and the order of the sentences must be a conversation`,
     prompt: `Generate 5 simple Spanish sentences about: ${topicsString}. Each sentence should be beginner-friendly and include a natural English translation with usage context.`,
     maxTokens: 2048,
     temperature: 0.3,
