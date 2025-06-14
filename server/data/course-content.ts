@@ -1,6 +1,3 @@
-import { readFileSync } from 'node:fs'
-import { join } from 'node:path'
-import { fileURLToPath } from 'node:url'
 import { z } from 'zod'
 
 export const CourseLessonSchema = z.object({
@@ -23,13 +20,9 @@ export async function fetchCourseContent(): Promise<CourseLesson[]> {
 
     // Check if we're in a server context
     if (import.meta.server) {
-      // Get the current file's directory
-      const __dirname = fileURLToPath(new URL('.', import.meta.url))
-      // Construct path to the JSON file in the public directory
-      const jsonPath = join(__dirname, '../../public/course-content.json')
-      // Read and parse the JSON file
-      const fileContent = readFileSync(jsonPath, 'utf-8')
-      courseContentJson = JSON.parse(fileContent)
+      // Server-side: use runtime config
+      const config = useRuntimeConfig()
+      courseContentJson = config.public.courseContent
     }
     else {
       // Client-side: fetch from public directory

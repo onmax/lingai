@@ -86,10 +86,9 @@ onMounted(() => {
 
         <!-- Subline -->
         <p
-          :class="[
+          class="leading-relaxed mb-12 max-w-2xl mx-auto transition-opacity duration-600 delay-1200" :class="[
             isDark ? 'text-xl text-neutral-300' : 'text-xl text-neutral-700',
-            'leading-relaxed mb-12 max-w-2xl mx-auto transition-opacity duration-600 delay-1200',
-            showContent ? 'opacity-100' : 'opacity-0'
+            showContent ? 'opacity-100' : 'opacity-0',
           ]"
         >
           Master Spanish faster than you thought possible.

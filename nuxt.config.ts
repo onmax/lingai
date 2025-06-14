@@ -1,5 +1,13 @@
+import { readFileSync } from 'node:fs'
+import { join } from 'node:path'
 import process from 'node:process'
+import { fileURLToPath } from 'node:url'
 import { object, string } from 'valibot'
+
+// Read course content
+const __dirname = fileURLToPath(new URL('.', import.meta.url))
+const courseContentPath = join(__dirname, 'public/course-content.json')
+const courseContent = JSON.parse(readFileSync(courseContentPath, 'utf-8'))
 
 export default defineNuxtConfig({
   // https://nuxt.com/modules
@@ -24,6 +32,9 @@ export default defineNuxtConfig({
       clientSecret: process.env.GITHUB_CLIENT_SECRET || '',
       clientId: process.env.GITHUB_CLIENT_ID || '',
     },
+    public: {
+      courseContent,
+    },
   },
   safeRuntimeConfig: {
     $schema: object({
@@ -33,6 +44,9 @@ export default defineNuxtConfig({
       github: object({
         clientSecret: string(),
         clientId: string(),
+      }),
+      public: object({
+        courseContent: object({}),
       }),
     }),
   },
