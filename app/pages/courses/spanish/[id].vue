@@ -228,17 +228,13 @@ useHead({
           <button
             v-if="canGoNext"
             :disabled="isNavigating"
-            class="flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-blue-800 hover:shadow-lg hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 transition-all duration-200 shadow-md"
+            class="flex items-center gap-3 px-8 py-4 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 hover:shadow-lg hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 transition-all duration-200 shadow-md min-w-max"
             @click="handleNextLesson"
           >
-            <template v-if="isNavigating">
-              <div class="i-heroicons-arrow-path w-5 h-5 animate-spin" />
-              <span>Generating...</span>
-            </template>
-            <template v-else>
-              <span>Next Lesson</span>
-              <div class="i-heroicons-chevron-right w-5 h-5" />
-            </template>
+            <div v-if="isNavigating" class="i-heroicons-arrow-path w-5 h-5 animate-spin" />
+            <span v-if="isNavigating" class="text-white font-semibold">Generating...</span>
+            <span v-if="!isNavigating" class="text-white font-semibold">Next Lesson</span>
+            <div v-if="!isNavigating" class="i-heroicons-chevron-right w-5 h-5" />
           </button>
         </div>
       </div>
