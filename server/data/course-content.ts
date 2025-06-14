@@ -1,7 +1,7 @@
+import { z } from 'zod'
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
-import process from 'node:process'
-import { z } from 'zod'
+import { fileURLToPath } from 'node:url'
 
 export const CourseLessonSchema = z.object({
   lesson_number: z.number().min(1).max(100),
@@ -15,28 +15,29 @@ export const CourseLessonSchema = z.object({
 export type CourseLesson = z.infer<typeof CourseLessonSchema>
 
 // Validate the JSON content against our schema
-const CourseContentSchema = z.object({
-  lessons: z.array(CourseLessonSchema),
-})
+const CourseContentSchema = z.array(CourseLessonSchema)
 
-// Read and parse the JSON file
-const courseContentPath = join(process.cwd(), 'server/data/course-content.json')
-const rawContent = readFileSync(courseContentPath, 'utf-8')
-let courseContentJson: unknown
+export async function fetchCourseContent(): Promise<CourseLesson[]> {
+  try {
+    // Get the current file's directory
+    const __dirname = fileURLToPath(new URL('.', import.meta.url))
+    // Construct path to the JSON file in the public directory
+    const jsonPath = join(__dirname, '../../public/course-content.json')
+    
+    // Read and parse the JSON file
+    const fileContent = readFileSync(jsonPath, 'utf-8')
+    const courseContentJson = JSON.parse(fileContent)
 
-try {
-  courseContentJson = JSON.parse(rawContent)
+    // Parse and validate the JSON content
+    const parsedContent = CourseContentSchema.safeParse(courseContentJson)
+
+    if (!parsedContent.success) {
+      throw new Error(`Invalid course content format: ${JSON.stringify(parsedContent.error.format(), null, 2)}`)
+    }
+
+    return parsedContent.data
+  }
+  catch (error) {
+    throw new Error(`Failed to fetch course content: ${error instanceof Error ? error.message : String(error)}`)
+  }
 }
-catch (error) {
-  throw new Error(`Failed to parse course content JSON: ${error instanceof Error ? error.message : String(error)}`)
-}
-
-// Parse and validate the JSON content
-const parsedContent = CourseContentSchema.safeParse(courseContentJson)
-
-if (!parsedContent.success) {
-  throw new Error(`Invalid course content format: ${JSON.stringify(parsedContent.error.format(), null, 2)}`)
-}
-
-// Export the validated lessons
-export const courseContent: CourseLesson[] = parsedContent.data.lessons

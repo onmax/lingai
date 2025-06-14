@@ -10,7 +10,7 @@ import { generateObject } from 'ai'
 import { and, eq } from 'drizzle-orm'
 import OpenAI from 'openai'
 import { array, string, object as valibotObject } from 'valibot'
-import { courseContent, type CourseLesson } from '../../data/course-content'
+import { fetchCourseContent, type CourseLesson } from '../../data/course-content'
 
 export interface GenerateLessonsArgs {
   topics: string[]
@@ -36,6 +36,7 @@ export async function generateLessons({
 }: GenerateLessonsArgs): Promise<GeneratedLessonResult> {
   try {
     // Get the course content for this lesson
+    const courseContent = await fetchCourseContent()
     const courseLesson = courseContent.find(lesson => lesson.lesson_number === lessonNumber)
     if (!courseLesson) {
       throw new Error(`No course content found for lesson ${lessonNumber}`)
