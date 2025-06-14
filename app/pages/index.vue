@@ -124,14 +124,14 @@ async function signUp() {
         </div>
 
         <button
-          type="submit" 
+          type="submit"
           class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           :disabled="!email || !password || loading"
         >
           {{ loading ? 'Signing In...' : 'Sign In' }}
         </button>
         <button
-          type="button" 
+          type="button"
           class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
           @click="auth.signIn.social({ provider: 'github', callbackURL: '/courses/spanish' })"
         >
@@ -161,8 +161,8 @@ async function signUp() {
           {{ signUpError }}
         </div>
 
-        <button 
-          type="submit" 
+        <button
+          type="submit"
           class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           :disabled="loading"
         >

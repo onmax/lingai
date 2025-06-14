@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { motion } from 'motion/vue'
 import FallingStarsBg from '~/components/FallingStarsBg.vue'
 
 // Page meta
@@ -64,72 +63,45 @@ onMounted(() => {
 
     <!-- Main Content -->
     <div class="relative z-10 flex flex-col items-center justify-center min-h-screen px-4">
-      <motion.div
-        class="text-center max-w-4xl mx-auto"
-        :initial="{ opacity: 0, scale: 0.1, filter: 'blur(20px)' }"
-        :animate="showContent ? {
-          opacity: 1,
-          scale: 1,
-          filter: 'blur(0px)',
-        } : {
-          opacity: 0,
-          scale: 0.1,
-          filter: 'blur(20px)',
-        }"
-        :transition="{
-          duration: 1.2,
-          ease: [0.25, 0.46, 0.45, 0.94],
-          times: [0, 0.5, 1],
-          scale: {
-            keyframes: [0.1, 1.1, 1],
-            times: [0, 0.5, 1],
-          },
-        }"
+      <div
+        class="text-center max-w-4xl mx-auto transition-all duration-1200 ease-out"
+        :class="showContent ? 'opacity-100 scale-100 blur-0' : 'opacity-0 scale-10 blur-lg'"
       >
         <!-- Main Headline -->
-        <motion.h1
-          class="text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-blue-600 bg-clip-text text-transparent leading-tight mb-6"
-          :initial="{ opacity: 0 }"
-          :animate="showContent ? { opacity: 1 } : { opacity: 0 }"
-          :transition="{ duration: 0.6, delay: 0.8, ease: 'easeOut' }"
+        <h1
+          class="text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-blue-600 bg-clip-text text-transparent leading-tight mb-6 transition-opacity duration-600 delay-800"
+          :class="showContent ? 'opacity-100' : 'opacity-0'"
         >
           Learn Spanish at
           <br>
-          <motion.span
-            class="text-yellow-400"
-            :initial="{ opacity: 0 }"
-            :animate="showContent ? { opacity: [0, 1] } : { opacity: 0 }"
-            :transition="{ duration: 0.8, delay: 1.0 }"
+          <span
+            class="text-yellow-400 transition-opacity duration-800 delay-1000"
+            :class="showContent ? 'opacity-100' : 'opacity-0'"
           >
-            <motion.span
-              :animate="{ opacity: [1, 0.7, 1] }"
-              :transition="{ duration: 1.5, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }"
-            >
+            <span class="animate-pulse">
               Hyperspeed
-            </motion.span>
-          </motion.span>
-        </motion.h1>
+            </span>
+          </span>
+        </h1>
 
         <!-- Subline -->
-        <motion.p
-          :class="isDark ? 'text-xl text-neutral-300' : 'text-xl text-neutral-700'"
-          class="leading-relaxed mb-12 max-w-2xl mx-auto"
-          :initial="{ opacity: 0 }"
-          :animate="showContent ? { opacity: 1 } : { opacity: 0 }"
-          :transition="{ duration: 0.6, delay: 1.2, ease: 'easeOut' }"
+        <p
+          :class="[
+            isDark ? 'text-xl text-neutral-300' : 'text-xl text-neutral-700',
+            'leading-relaxed mb-12 max-w-2xl mx-auto transition-opacity duration-600 delay-1200',
+            showContent ? 'opacity-100' : 'opacity-0'
+          ]"
         >
           Master Spanish faster than you thought possible.
           <br class="hidden md:block">
           Join the rebellion against slow language learning.
-        </motion.p>
+        </p>
 
         <!-- Email Registration Form -->
-        <motion.div
+        <div
           v-if="!isSubmitted"
-          class="max-w-md mx-auto"
-          :initial="{ opacity: 0 }"
-          :animate="showContent ? { opacity: 1 } : { opacity: 0 }"
-          :transition="{ duration: 0.6, delay: 1.6, ease: 'easeOut' }"
+          class="max-w-md mx-auto transition-opacity duration-600 delay-1600"
+          :class="showContent ? 'opacity-100' : 'opacity-0'"
         >
           <form class="flex flex-col gap-4" @submit.prevent="handleSubmit">
             <div class="relative">
@@ -164,78 +136,82 @@ onMounted(() => {
           <p v-if="errorMessage" class="text-sm text-red-400 text-center mt-4">
             {{ errorMessage }}
           </p>
-        </motion.div>
+        </div>
 
         <!-- Success Message -->
-        <motion.div
+        <div
           v-else
-          class="text-center"
-          :initial="{ opacity: 0, scale: 0.8, y: 30 }"
-          :animate="{ opacity: 1, scale: 1, y: 0 }"
-          :transition="{ duration: 0.5, ease: 'easeOut' }"
+          class="text-center transition-all duration-500 ease-out"
+          :class="isSubmitted ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-80 translate-y-8'"
         >
-          <motion.div
-            class="i-tabler:check w-16 h-16 text-green-400 mx-auto mb-4"
-            :animate="{
-              y: [0, -10, 0],
-              scale: [1, 1.1, 1],
-            }"
-            :transition="{
-              duration: 0.6,
-              repeat: Infinity,
-              ease: 'easeInOut',
-            }"
-          />
+          <div class="i-tabler:check w-16 h-16 text-green-400 mx-auto mb-4 animate-bounce" />
           <h3 :class="isDark ? 'text-xl text-white font-semibold' : 'text-xl text-neutral-800 font-semibold'" class="mb-2">
             Welcome to the Rebellion!
           </h3>
           <p :class="isDark ? 'text-base text-neutral-300' : 'text-base text-neutral-600'">
             You'll be the first to know when we launch into hyperspace.
           </p>
-        </motion.div>
+        </div>
 
         <!-- Additional Text -->
-        <motion.div
-          class="mt-16"
-          :initial="{ opacity: 0 }"
-          :animate="showContent ? { opacity: 1 } : { opacity: 0 }"
-          :transition="{ duration: 0.6, delay: 2.0, ease: 'easeOut' }"
+        <div
+          class="mt-16 transition-opacity duration-600 delay-2000"
+          :class="showContent ? 'opacity-100' : 'opacity-0'"
         >
-          <p :class="isDark ? 'text-sm text-neutral-500' : 'text-sm text-neutral-700'">
-            Powered by AI • Science-proven for 30+ years • Coming soon to a galaxy near you
+          <p :class="isDark ? 'text-sm text-neutral-500' : 'text-sm text-neutral-600'" class="mb-4">
+            Built by rebels, for rebels. No boring textbooks. No endless grammar drills.
           </p>
-        </motion.div>
-      </motion.div>
+          <p :class="isDark ? 'text-xs text-neutral-600' : 'text-xs text-neutral-500'">
+            Join 1,000+ language learners who chose the fast lane.
+          </p>
+        </div>
+      </div>
     </div>
-
-    <!-- Scroll indicator (optional) -->
-    <motion.div
-      class="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-      :initial="{ opacity: 0 }"
-      :animate="showContent ? { opacity: 1 } : { opacity: 0 }"
-      :transition="{ duration: 0.6, ease: 'easeOut', delay: 2.2 }"
-    >
-      <motion.div
-        class="i-tabler:chevron-down w-6 h-6"
-        :class="isDark ? 'text-neutral-500' : 'text-neutral-700'"
-        :animate="{ opacity: [1, 0.5, 1] }"
-        :transition="{ duration: 2, repeat: Infinity, ease: 'easeInOut' }"
-      />
-    </motion.div>
   </div>
 </template>
 
 <style scoped>
-.animate-fade-in {
-  animation: fadeIn 0.5s ease-out forwards;
+.scale-10 {
+  transform: scale(0.1);
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+.blur-lg {
+  filter: blur(20px);
+}
+
+.blur-0 {
+  filter: blur(0px);
+}
+
+.duration-1200 {
+  transition-duration: 1200ms;
+}
+
+.duration-600 {
+  transition-duration: 600ms;
+}
+
+.duration-800 {
+  transition-duration: 800ms;
+}
+
+.delay-800 {
+  transition-delay: 800ms;
+}
+
+.delay-1000 {
+  transition-delay: 1000ms;
+}
+
+.delay-1200 {
+  transition-delay: 1200ms;
+}
+
+.delay-1600 {
+  transition-delay: 1600ms;
+}
+
+.delay-2000 {
+  transition-delay: 2000ms;
 }
 </style>

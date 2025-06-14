@@ -63,7 +63,7 @@ function handleAudioKeyDown(event: KeyboardEvent) {
         <p class="text-base text-neutral-600 leading-relaxed">
           {{ sentence.userText }}
         </p>
-        
+
         <!-- Context (if available) -->
         <p
           v-if="sentence.context"
