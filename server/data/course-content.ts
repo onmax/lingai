@@ -19,14 +19,26 @@ const CourseContentSchema = z.array(CourseLessonSchema)
 
 export async function fetchCourseContent(): Promise<CourseLesson[]> {
   try {
-    // Get the current file's directory
-    const __dirname = fileURLToPath(new URL('.', import.meta.url))
-    // Construct path to the JSON file in the public directory
-    const jsonPath = join(__dirname, '../../public/course-content.json')
+    let courseContentJson: any
 
-    // Read and parse the JSON file
-    const fileContent = readFileSync(jsonPath, 'utf-8')
-    const courseContentJson = JSON.parse(fileContent)
+    // Check if we're in a server context
+    if (import.meta.server) {
+      // Get the current file's directory
+      const __dirname = fileURLToPath(new URL('.', import.meta.url))
+      // Construct path to the JSON file in the public directory
+      const jsonPath = join(__dirname, '../../public/course-content.json')
+      // Read and parse the JSON file
+      const fileContent = readFileSync(jsonPath, 'utf-8')
+      courseContentJson = JSON.parse(fileContent)
+    }
+    else {
+      // Client-side: fetch from public directory
+      const response = await fetch('/course-content.json')
+      if (!response.ok) {
+        throw new Error(`Failed to fetch course content: ${response.statusText}`)
+      }
+      courseContentJson = await response.json()
+    }
 
     // Parse and validate the JSON content
     const parsedContent = CourseContentSchema.safeParse(courseContentJson)
