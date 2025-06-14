@@ -56,6 +56,8 @@ async function signIn() {
     signInError.value = error.message || 'Sign in failed. Please try again.'
   }
   else {
+    // Fetch session to ensure authentication state is updated
+    await auth.fetchSession()
     await navigateAfterLogin()
   }
   loading.value = false
@@ -79,6 +81,8 @@ async function signUp() {
     signUpError.value = error.message || 'Sign up failed. Please try again.'
   }
   else {
+    // Fetch session to ensure authentication state is updated after sign up
+    await auth.fetchSession()
     await navigateAfterLogin()
   }
   loading.value = false
