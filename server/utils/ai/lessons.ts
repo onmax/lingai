@@ -144,39 +144,64 @@ export async function generateLessons({
  */
 async function generateSpanishSentences(topicsString: string, courseLesson: CourseLesson): Promise<ParsedSentence[]> {
   const sentenceSchema = valibotObject({
-    targetText: string('Simple sentence in Spanish'),
-    userText: string('Translation in English'),
-    context: string('Brief usage context for the sentence'),
+    targetText: string('Natural Spanish sentence as it would be spoken by native speakers'),
+    userText: string('Natural English translation that captures the meaning and tone'),
+    context: string('Assimil-style explanatory note with cultural and linguistic insights'),
   })
 
   const sentencesSchema = valibotObject({
-    sentences: array(sentenceSchema, 'Exactly 5 simple Spanish sentences for language learning'),
+    sentences: array(sentenceSchema, 'Exactly 5 conversational Spanish sentences following Assimil methodology'),
   })
 
   // Generate structured object using AI SDK
   const { object } = await generateObject({
     model: openai('gpt-4o-mini'),
     schema: valibotSchema(sentencesSchema),
-    schemaName: 'spanish_sentences',
-    schemaDescription: 'Spanish learning sentences with English translations and context',
-    system: `You are a Spanish language learning content generator. Generate exactly 5 simple Spanish sentences for language learning.
+    schemaName: 'assimil_spanish_sentences',
+    schemaDescription: 'Spanish sentences with its translation and with Assimil-style contextual notes for natural language acquisition',
+    system: `You are an expert Spanish language instructor following the ASSIMIL METHOD for natural language acquisition. Generate exactly 5 Spanish sentences that form a natural conversation.
 
-REQUIREMENTS:
-- Use vocabulary related to the provided topics
-- Focus on the following grammar points: ${courseLesson.grammar_points.join(', ')}
-- Help achieve these communication goals: ${courseLesson.communication_goals.join(', ')}
-- Also make sure to include the vocabulary topics: ${courseLesson.vocabulary_topics.join(', ')}
-- Target difficulty level: ${courseLesson.difficulty_level} (CEFR level)
-- Difficulty score: ${courseLesson.difficulty_score}/10 (1=easiest, 10=most difficult)
-- Appropriate for ${courseLesson.difficulty_level} level Spanish learners  
-- Practical and realistic for everyday conversations
-- Short and easy to understand (no more than 10-12 words each)
-- Each sentence should be unique and cover different aspects of the topics
-- The sentences must be a conversation between two people and the order of the sentences must be a conversation
-- It should be structured in a way that the previous sentence is a continuation of the previous sentence`,
-    prompt: `Generate 5 simple Spanish sentences about: ${topicsString}. Target difficulty: ${courseLesson.difficulty_level} level (score ${courseLesson.difficulty_score}/10). Each sentence should be appropriate for this difficulty level and include a natural English translation with usage context.`,
-    maxTokens: 2048,
-    temperature: 0.3,
+ASSIMIL METHOD PRINCIPLES:
+- Present language as it's naturally spoken by native speakers
+- Focus on intuitive understanding rather than explicit grammar rules
+- Provide rich cultural and linguistic context
+- Use authentic, everyday situations and expressions
+- Progress naturally from comprehension to expression
+
+SENTENCE REQUIREMENTS:
+- Use vocabulary related to: ${topicsString}
+- Grammar focus: ${courseLesson.grammar_points.join(', ')}
+- Communication goals: ${courseLesson.communication_goals.join(', ')}
+- Vocabulary themes: ${courseLesson.vocabulary_topics.join(', ')}
+- Target level: ${courseLesson.difficulty_level} (score ${courseLesson.difficulty_score}/10)
+- Create a natural dialogue between 2 people (alternating speakers)
+- Each sentence flows naturally from the previous one
+- Use authentic expressions and natural speech patterns
+- Length: 8-15 words per sentence (natural conversational length)
+
+CONTEXT NOTES (Assimil-style):
+For each sentence, provide explanatory notes that include:
+- Cultural insights about when/where this expression is used
+- Linguistic patterns or interesting grammar points (explained intuitively)
+- Alternative ways to express the same idea
+- Register notes (formal/informal, regional variations)
+- Practical usage tips for real conversations
+- Word-by-word breakdown only when it adds insight
+- Connections to similar expressions in English when helpful
+
+EXAMPLES OF ASSIMIL-STYLE CONTEXT:
+Bad: "This sentence uses the present tense."
+Good: "This is how Spanish speakers naturally greet a friend they haven't seen in a while. Notice the warmth conveyed by 'qué tal' - it's more personal than just 'hola'. In Latin America, you might hear 'qué hubo' instead."
+
+Bad: "Subjunctive mood is used here."
+Good: "Spanish speakers use this construction when they're not entirely sure about something. It's softer and more polite than stating it as a fact. You'll hear this pattern a lot in everyday conversation when people are being courteous."`,
+    prompt: `Create a natural Spanish conversation about: ${topicsString}
+    
+Target level: ${courseLesson.difficulty_level} (difficulty ${courseLesson.difficulty_score}/10)
+
+Generate 5 sentences that tell a story or present a realistic scenario. Each sentence should feel authentic and include rich Assimil-style context that helps learners understand not just WHAT is being said, but HOW, WHEN, and WHY Spanish speakers use these expressions.`,
+    maxTokens: 3000,
+    temperature: 0.4,
     maxRetries: 2,
   })
 
