@@ -125,38 +125,39 @@ useHead({
 </script>
 
 <template>
-  <div class="max-w-2xl mx-auto px-4 sm:px-6 py-6 sm:py-8 min-h-screen w-full">
+  <div class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-neutral-50">
+    <div class="max-w-7xl mx-auto px-8 py-12">
     <!-- Back button -->
-    <div class="mb-4 sm:mb-6">
+    <div class="mb-8">
       <NuxtLink
         to="/courses/spanish"
-        class="flex items-center gap-2 text-sm sm:text-base text-blue-600 hover:text-blue-800 transition-colors"
+        class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 transition-colors font-medium"
       >
-        <div class="i-heroicons-arrow-left w-4 h-4 sm:w-5 sm:h-5" />
+        <div class="i-heroicons-arrow-left w-5 h-5" />
         <span>Back to Lessons</span>
       </NuxtLink>
     </div>
 
     <!-- Loading state -->
-    <div v-if="pending" class="text-center py-12">
-      <div class="i-heroicons-arrow-path w-8 h-8 text-neutral-300 mx-auto mb-4 animate-spin" />
-      <p class="text-neutral-600">
+    <div v-if="pending" class="text-center py-20">
+      <div class="i-heroicons-arrow-path w-12 h-12 text-neutral-300 mx-auto mb-6 animate-spin" />
+      <p class="text-lg text-neutral-600">
         Loading lesson...
       </p>
     </div>
 
     <!-- Error state -->
-    <div v-else-if="error" class="text-center py-12">
-      <div class="i-heroicons-exclamation-triangle w-8 h-8 text-red-400 mx-auto mb-4" />
-      <h2 class="text-lg text-neutral-900 font-medium mb-2">
+    <div v-else-if="error" class="text-center py-20">
+      <div class="i-heroicons-exclamation-triangle w-12 h-12 text-red-400 mx-auto mb-6" />
+      <h2 class="text-xl text-neutral-900 font-medium mb-4">
         Error loading lesson
       </h2>
-      <p class="text-sm text-neutral-600 mb-6">
-        {{ error?.message || 'Something went wrong' }}
+      <p class="text-neutral-600 mb-8 max-w-md mx-auto">
+        {{ error?.message || 'Something went wrong while loading this lesson' }}
       </p>
       <NuxtLink
         to="/courses/spanish"
-        class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+        class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
       >
         Back to Lessons
       </NuxtLink>
@@ -165,26 +166,35 @@ useHead({
     <!-- Lesson content -->
     <div v-else-if="lesson">
       <!-- Header -->
-      <header class="mb-6 sm:mb-8">
-        <div class="flex items-center gap-3 mb-3 sm:mb-4">
-          <span
-            class="bg-blue-100 text-blue-800 px-2 py-1 sm:px-3 rounded-full text-xs sm:text-sm font-medium"
-          >
-            Lesson {{ lesson.lessonNumber }}
-          </span>
-        </div>
-        <h1 class="text-2xl sm:text-3xl text-neutral-900 font-bold mb-2 break-words">
-          {{ lesson.title }}
-        </h1>
-        <div class="flex flex-wrap items-center gap-2 sm:gap-4 text-xs sm:text-sm text-neutral-500">
-          <span>{{ lesson.totalSentences }} sentences</span>
-          <span>{{ lesson.difficulty }}</span>
-          <span v-if="lesson.topics && lesson.topics.length > 0" class="break-words">{{ lesson.topics.join(', ') }}</span>
+      <header class="mb-12">
+        <div class="flex items-center justify-between mb-6">
+          <div>
+            <div class="flex items-center gap-4 mb-4">
+              <span
+                class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium"
+              >
+                Lesson {{ lesson.lessonNumber }}
+              </span>
+              <div class="flex items-center gap-6 text-sm text-neutral-500">
+                <div class="flex items-center gap-2">
+                  <div class="i-heroicons-document-text w-4 h-4" />
+                  <span>{{ lesson.totalSentences }} sentences</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="i-heroicons-academic-cap w-4 h-4" />
+                  <span class="capitalize">{{ lesson.difficulty }}</span>
+                </div>
+              </div>
+            </div>
+            <h1 class="text-4xl text-neutral-900 font-bold">
+              {{ lesson.title }}
+            </h1>
+          </div>
         </div>
       </header>
 
       <!-- Sentences -->
-      <div v-if="lesson.sentences && lesson.sentences.length > 0" class="space-y-4 sm:space-y-6">
+      <div v-if="lesson.sentences && lesson.sentences.length > 0" class="space-y-6 mb-16">
         <SentenceCard
           v-for="sentence in lesson.sentences"
           :key="sentence.id"
@@ -193,37 +203,23 @@ useHead({
       </div>
 
       <!-- No sentences -->
-      <div v-else class="text-center py-12">
-        <div class="i-heroicons-document-text w-8 h-8 text-neutral-300 mx-auto mb-4" />
-        <p class="text-sm text-neutral-600">
+      <div v-else class="text-center py-20">
+        <div class="i-heroicons-document-text w-12 h-12 text-neutral-300 mx-auto mb-6" />
+        <p class="text-lg text-neutral-600">
           No sentences available for this lesson.
         </p>
       </div>
 
       <!-- Navigation buttons -->
-      <div
-        flex="~ justify-between items-center"
-        mt-12
-        pt-8
-        pb-8
-        border="t neutral-200"
-        bg-white
-      >
+      <div class="flex justify-between items-center pt-12 border-t border-neutral-200">
         <!-- Previous lesson button -->
         <button
           v-if="canGoPrevious"
           :disabled="isNavigating"
-          flex="~ items-center gap-2"
-          px-6 py-3
-          bg-neutral-100
-          text-neutral-700
-          rounded-lg
-          hover="bg-neutral-200"
-          disabled:="opacity-50 cursor-not-allowed"
-          transition-colors
+          class="flex items-center gap-3 px-6 py-3 bg-white border border-neutral-200 text-neutral-700 rounded-lg hover:bg-neutral-50 hover:border-neutral-300 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 shadow-sm"
           @click="handlePreviousLesson"
         >
-          <div i-heroicons-chevron-left w-5 h-5 />
+          <div class="i-heroicons-chevron-left w-5 h-5" />
           <span>Previous Lesson</span>
         </button>
         <div v-else />
@@ -232,26 +228,20 @@ useHead({
         <button
           v-if="canGoNext"
           :disabled="isNavigating"
-          flex="~ items-center gap-2"
-          px-6 py-3
-          bg-blue-600
-          text-white
-          rounded-lg
-          hover="bg-blue-700"
-          disabled:="opacity-50 cursor-not-allowed"
-          transition-colors
+          class="flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-blue-800 hover:shadow-lg hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 transition-all duration-200 shadow-md"
           @click="handleNextLesson"
         >
           <template v-if="isNavigating">
-            <div i-heroicons-arrow-path w-5 h-5 animate-spin />
+            <div class="i-heroicons-arrow-path w-5 h-5 animate-spin" />
             <span>Generating...</span>
           </template>
           <template v-else>
             <span>Next Lesson</span>
-            <div i-heroicons-chevron-right w-5 h-5 />
+            <div class="i-heroicons-chevron-right w-5 h-5" />
           </template>
         </button>
       </div>
+    </div>
     </div>
   </div>
 </template>
