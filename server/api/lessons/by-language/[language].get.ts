@@ -29,6 +29,7 @@ export default defineEventHandler(async (event) => {
       .map(lesson => ({
         ...lesson,
         topics: JSON.parse(lesson.topics || '[]'),
+        comicImageUrl: lesson.comicImageUrl || undefined,
         createdAt: new Date(lesson.createdAt),
         updatedAt: new Date(lesson.updatedAt),
       }))

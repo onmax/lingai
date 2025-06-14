@@ -10,6 +10,8 @@ export interface Lesson {
   topics: string[] // JSON parsed array
   lessonNumber: number
   totalSentences: number
+  comicImageUrl?: string
+  comicImageGenerated: boolean
   createdAt: Date
   updatedAt: Date
 }

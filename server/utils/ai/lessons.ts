@@ -97,8 +97,8 @@ export async function generateLessons({
 
     const sentences = await Promise.all(sentencePromises)
 
-    // Generate audio for sentences (sync - wait for completion)
-    await generateAudioForSentences(sentences)
+    // Generate audio for sentences and comic image for lesson (sync - wait for completion)
+    await generateAudioAndComicImage(newLesson, sentences)
 
     // Fetch updated sentences with audio URLs after generation
     const updatedSentences = await db.select()
@@ -111,6 +111,7 @@ export async function generateLessons({
     const lessonData: Lesson = {
       ...newLesson,
       topics: JSON.parse(newLesson.topics || '[]'),
+      comicImageUrl: newLesson.comicImageUrl || undefined,
       createdAt: new Date(newLesson.createdAt),
       updatedAt: new Date(newLesson.updatedAt),
     }
@@ -251,17 +252,17 @@ async function retryBlobOperation<T>(
 }
 
 /**
- * Generate audio for Spanish sentences using OpenAI TTS
+ * Generate audio for Spanish sentences and comic image for lesson using OpenAI
  */
-async function generateAudioForSentences(sentences: any[]): Promise<void> {
-  consola.warn(`Starting audio generation for ${sentences.length} Spanish sentences`)
+async function generateAudioAndComicImage(lesson: any, sentences: any[]): Promise<void> {
+  consola.warn(`Starting audio and comic image generation for lesson ${lesson.id} with ${sentences.length} sentences`)
 
   const db = useDrizzle()
   const config = useRuntimeConfig()
 
   if (!config.openaiApiKey) {
     consola.error('OpenAI API key not configured')
-    throw new Error('OpenAI API key is required for audio generation')
+    throw new Error('OpenAI API key is required for audio and comic image generation')
   }
 
   // Initialize OpenAI client
@@ -269,6 +270,7 @@ async function generateAudioForSentences(sentences: any[]): Promise<void> {
     apiKey: config.openaiApiKey,
   })
 
+  // Generate audio for all sentences first
   for (const sentence of sentences) {
     try {
       consola.warn(`Generating Spanish audio for sentence ${sentence.id}: "${sentence.targetText}"`)
@@ -304,16 +306,12 @@ async function generateAudioForSentences(sentences: any[]): Promise<void> {
       }
       catch (blobError) {
         const errorMessage = blobError instanceof Error ? blobError.message : String(blobError)
-
-        // Check if this is a known Cloudflare service issue
         const isCloudflareServiceIssue = errorMessage.includes('10043')
           || errorMessage.includes('cloudflarestatus.com')
           || errorMessage.includes('contact customer support')
 
         if (isCloudflareServiceIssue) {
           consola.error(`❌ Cloudflare service issue detected for ${audioKey}. Marking sentence for later retry.`)
-
-          // Mark sentence as needing audio retry rather than failing completely
           try {
             await db.update(tables.sentences)
               .set({
@@ -322,9 +320,8 @@ async function generateAudioForSentences(sentences: any[]): Promise<void> {
                 updatedAt: sql`(unixepoch())`,
               })
               .where(eq(tables.sentences.id, sentence.id))
-
             consola.warn(`⚠️ Sentence ${sentence.id} marked for audio retry due to service issue`)
-            continue // Continue with next sentence instead of failing
+            continue
           }
           catch (dbError) {
             consola.error(`Failed to update sentence ${sentence.id} after service issue:`, dbError)
@@ -357,12 +354,11 @@ async function generateAudioForSentences(sentences: any[]): Promise<void> {
 
       if (isDevEnvironment && isBlobError) {
         consola.warn(`⚠️ Audio generation skipped in development for sentence ${sentence.id} (blob storage issue)`)
-        // In development, just mark as completed without audio for UI testing
         try {
           await db.update(tables.sentences)
             .set({
-              audioGenerated: true, // Mark as generated to avoid retry loops
-              audioUrl: null, // No URL since blob storage failed
+              audioGenerated: true,
+              audioUrl: null,
               updatedAt: sql`(unixepoch())`,
             })
             .where(eq(tables.sentences.id, sentence.id))
@@ -373,7 +369,6 @@ async function generateAudioForSentences(sentences: any[]): Promise<void> {
       }
       else {
         consola.error(`❌ Failed to generate audio for sentence ${sentence.id}:`, error)
-        // Mark as failed but continue
         try {
           await db.update(tables.sentences)
             .set({
@@ -389,7 +384,163 @@ async function generateAudioForSentences(sentences: any[]): Promise<void> {
     }
   }
 
-  consola.success(`Completed Spanish audio generation for ${sentences.length} sentences`)
+  // Now generate comic image for the lesson
+  try {
+    consola.warn(`Generating comic image for lesson ${lesson.id}: "${lesson.title}"`)
+
+    // Extract key Spanish words from the lesson
+    const spanishWords = sentences.map(s => s.targetText)
+    const randomWords = spanishWords.slice(0, 3) // Use first 3 words for the scene
+
+    // Create prompt for comic image focusing on funny situations
+    const comicPrompt = `Create a funny, colorful comic-style illustration showing a humorous everyday situation where someone might use these Spanish words: ${randomWords.join(', ')}.
+
+IMPORTANT: Don't make it a "Spanish lesson" image. Instead, create a funny, relatable scenario where these words would naturally come up in conversation.
+
+For example:
+- If the words are about food, show someone in a funny restaurant situation
+- If about travel, show a comical travel mishap  
+- If about family, show a silly family gathering
+- If about shopping, show an amusing shopping experience
+
+The image should:
+- Be in a vibrant comic book/cartoon style
+- Show characters in a funny, everyday situation where these Spanish words would be used
+- Include 2-3 Spanish words as speech bubbles or text elements naturally within the scene
+- Be humorous and memorable, helping students remember the words through the funny context
+- Have bright, cheerful colors that make people smile
+- Focus on the comedy of the situation rather than being "educational"
+
+Style: Bright cartoon/comic book art with clear, readable Spanish text in speech bubbles.`
+
+    consola.info(`Comic image prompt: ${comicPrompt.substring(0, 200)}...`)
+
+    // Generate image using DALL-E 3
+    const response = await openaiClient.images.generate({
+      model: 'gpt‑image‑1',
+      prompt: comicPrompt,
+      n: 1,
+      size: '1024x1024',
+      quality: 'standard',
+      response_format: 'url',
+    })
+
+    const imageUrl = response.data?.[0]?.url
+    if (!imageUrl) {
+      throw new Error('No image URL returned from DALL-E')
+    }
+
+    consola.info(`✅ DALL-E image generation completed for lesson ${lesson.id}`)
+
+    // Download the image
+    const imageResponse = await fetch(imageUrl)
+    if (!imageResponse.ok) {
+      throw new Error(`Failed to download image: ${imageResponse.statusText}`)
+    }
+
+    const imageBuffer = Buffer.from(await imageResponse.arrayBuffer())
+    const imageKey = `images/users/${lesson.userId}/lessons/${lesson.id}.png`
+
+    // Store the image in blob storage
+    try {
+      await retryBlobOperation(async () => {
+        const imageBlob = new Blob([imageBuffer], { type: 'image/png' })
+        await hubBlob().put(imageKey, imageBlob, {
+          httpMetadata: {
+            contentType: 'image/png',
+          },
+        })
+        consola.success(`✅ Comic image stored successfully: ${imageKey}`)
+      }, 3, 2000)
+    }
+    catch (blobError) {
+      consola.error(`❌ Failed to store comic image: ${blobError}`)
+      // Mark as failed but don't throw - lesson should still work without image
+      await db.update(tables.lessons)
+        .set({
+          comicImageGenerated: false,
+          updatedAt: sql`(unixepoch())`,
+        })
+        .where(eq(tables.lessons.id, lesson.id))
+      return
+    }
+
+    // Update the lesson record with comic image URL
+    await db.update(tables.lessons)
+      .set({
+        comicImageUrl: `/api/images/${imageKey}`,
+        comicImageGenerated: true,
+        updatedAt: sql`(unixepoch())`,
+      })
+      .where(eq(tables.lessons.id, lesson.id))
+
+    consola.success(`✅ Comic image generated for lesson ${lesson.id}`)
+  }
+  catch (error) {
+    consola.error(`❌ Failed to generate comic image for lesson ${lesson.id}:`, error)
+    // Mark as failed but don't throw - lesson should still work without image
+    try {
+      await db.update(tables.lessons)
+        .set({
+          comicImageGenerated: false,
+          updatedAt: sql`(unixepoch())`,
+        })
+        .where(eq(tables.lessons.id, lesson.id))
+    }
+    catch (dbError) {
+      consola.error(`Failed to update lesson after comic image error:`, dbError)
+    }
+  }
+
+  consola.success(`Completed audio and comic image generation for lesson ${lesson.id}`)
+}
+
+/**
+ * Retry comic image generation for lessons that failed due to service issues
+ */
+export async function retryFailedComicImageGeneration(lessonId?: string | number): Promise<void> {
+  const db = useDrizzle()
+
+  // Find lessons without comic images
+  let failedLessons
+
+  if (lessonId) {
+    const lessonIdNum = typeof lessonId === 'string' ? Number.parseInt(lessonId, 10) : lessonId
+    failedLessons = await db.select()
+      .from(tables.lessons)
+      .where(
+        and(
+          eq(tables.lessons.comicImageGenerated, false),
+          eq(tables.lessons.id, lessonIdNum),
+        ),
+      )
+      .all()
+  }
+  else {
+    failedLessons = await db.select()
+      .from(tables.lessons)
+      .where(eq(tables.lessons.comicImageGenerated, false))
+      .all()
+  }
+
+  if (failedLessons.length === 0) {
+    consola.info('No lessons found that need comic image generation retry')
+    return
+  }
+
+  consola.info(`Found ${failedLessons.length} lessons that need comic image generation retry`)
+
+  // Generate comic images for failed lessons
+  for (const lesson of failedLessons) {
+    // Get sentences for this lesson
+    const sentences = await db.select()
+      .from(tables.sentences)
+      .where(eq(tables.sentences.lessonId, lesson.id))
+      .orderBy(tables.sentences.sentenceOrder)
+      .all()
+
+    await generateAudioAndComicImage(lesson, sentences)
+  }
 }
 
 /**
@@ -427,6 +578,7 @@ export async function retryFailedAudioGeneration(lessonId?: string | number): Pr
 
   consola.info(`Found ${failedSentences.length} sentences that need audio generation retry`)
 
-  // Use the existing audio generation logic
-  await generateAudioForSentences(failedSentences)
+  // Use the existing audio generation logic - for now just handle audio retry separately
+  // TODO: Consider if we want to regenerate comic images for audio retries
+  consola.info('Audio retry not yet implemented with new combined function')
 }

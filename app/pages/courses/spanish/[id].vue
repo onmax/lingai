@@ -202,6 +202,20 @@ useHead({
           />
         </div>
 
+        <!-- Comic Image - displayed at the end of the lesson -->
+        <div v-if="lesson.comicImageUrl" class="mb-16">
+          <div class="text-center">
+            <div class="bg-white rounded-2xl shadow-lg p-8 max-w-2xl mx-auto">
+              <img
+                :src="lesson.comicImageUrl"
+                :alt="`Comic summary for ${lesson.title}`"
+                class="w-full h-auto rounded-xl shadow-md"
+                loading="lazy"
+              >
+            </div>
+          </div>
+        </div>
+
         <!-- No sentences -->
         <div v-else class="text-center py-20">
           <div class="i-heroicons-document-text w-12 h-12 text-neutral-300 mx-auto mb-6" />

@@ -29,6 +29,8 @@ export const lessons = sqliteTable('lessons', {
   topics: text('topics'), // JSON array of topics as string
   lessonNumber: integer('lesson_number').notNull(),
   totalSentences: integer('total_sentences').notNull().default(0),
+  comicImageUrl: text('comic_image_url'), // URL to comic image in blob storage
+  comicImageGenerated: integer('comic_image_generated', { mode: 'boolean' }).notNull().default(false),
   createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`(unixepoch())`),
   updatedAt: integer('updated_at', { mode: 'timestamp' }).notNull().default(sql`(unixepoch())`),
 })

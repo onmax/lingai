@@ -3,8 +3,10 @@
 </script>
 
 <template>
-  <div class="w-full">
+  <div class="w-full min-h-screen flex flex-col">
     <AppHeader />
-    <NuxtPage />
+    <div class="flex-1">
+      <NuxtPage />
+    </div>
   </div>
 </template>

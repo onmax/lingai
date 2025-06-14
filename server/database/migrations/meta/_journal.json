@@ -57,6 +57,13 @@
       "when": 1749745603801,
       "tag": "0007_previous_bastion",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "6",
+      "when": 1749916075632,
+      "tag": "0008_panoramic_joystick",
+      "breakpoints": true
     }
   ]
 }
