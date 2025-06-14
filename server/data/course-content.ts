@@ -7,6 +7,8 @@ export const CourseLessonSchema = z.object({
   grammar_points: z.array(z.string()),
   vocabulary_topics: z.array(z.string()),
   communication_goals: z.array(z.string()),
+  difficulty_level: z.enum(['A1', 'A2', 'B1']),
+  difficulty_score: z.number().min(1).max(10),
 })
 
 export type CourseLesson = z.infer<typeof CourseLessonSchema>

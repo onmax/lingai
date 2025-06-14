@@ -166,13 +166,15 @@ REQUIREMENTS:
 - Focus on the following grammar points: ${courseLesson.grammar_points.join(', ')}
 - Help achieve these communication goals: ${courseLesson.communication_goals.join(', ')}
 - Also make sure to include the vocabulary topics: ${courseLesson.vocabulary_topics.join(', ')}
-- Appropriate for beginner to intermediate Spanish learners  
+- Target difficulty level: ${courseLesson.difficulty_level} (CEFR level)
+- Difficulty score: ${courseLesson.difficulty_score}/10 (1=easiest, 10=most difficult)
+- Appropriate for ${courseLesson.difficulty_level} level Spanish learners  
 - Practical and realistic for everyday conversations
 - Short and easy to understand (no more than 10-12 words each)
 - Each sentence should be unique and cover different aspects of the topics
 - The sentences must be a conversation between two people and the order of the sentences must be a conversation
 - It should be structured in a way that the previous sentence is a continuation of the previous sentence`,
-    prompt: `Generate 5 simple Spanish sentences about: ${topicsString}. Each sentence should be beginner-friendly and include a natural English translation with usage context.`,
+    prompt: `Generate 5 simple Spanish sentences about: ${topicsString}. Target difficulty: ${courseLesson.difficulty_level} level (score ${courseLesson.difficulty_score}/10). Each sentence should be appropriate for this difficulty level and include a natural English translation with usage context.`,
     maxTokens: 2048,
     temperature: 0.3,
     maxRetries: 2,

@@ -8,14 +8,16 @@
       "Singular and plural nouns"
     ],
     "vocabulary_topics": [
-      "Hobbies",
-      "Opinions"
+      "Travel",
+      "Numbers"
     ],
     "communication_goals": [
-      "Discuss news and events",
-      "Talk about hobbies",
-      "Describe problems"
-    ]
+      "Talk about your family",
+      "Ask and answer personal questions",
+      "Complain politely"
+    ],
+    "difficulty_level": "A1",
+    "difficulty_score": 1
   },
   {
     "lesson_number": 2,
@@ -25,14 +27,16 @@
       "Simple present (affirmative)"
     ],
     "vocabulary_topics": [
-      "Numbers",
-      "Time"
+      "Colors",
+      "Airport"
     ],
     "communication_goals": [
-      "Talk about past experiences",
       "Tell a story",
-      "Describe problems"
-    ]
+      "Use polite requests",
+      "Introduce yourself"
+    ],
+    "difficulty_level": "A1",
+    "difficulty_score": 1
   },
   {
     "lesson_number": 3,
@@ -42,14 +46,16 @@
       "Simple present (negative and questions)"
     ],
     "vocabulary_topics": [
-      "Celebrations",
-      "City and directions"
+      "Hobbies",
+      "Nature"
     ],
     "communication_goals": [
-      "Handle a phone conversation",
-      "Talk about likes and dislikes",
-      "Make comparisons"
-    ]
+      "Discuss news and events",
+      "Give advice",
+      "Talk about hypothetical situations"
+    ],
+    "difficulty_level": "A1",
+    "difficulty_score": 1
   },
   {
     "lesson_number": 4,
@@ -59,14 +65,16 @@
       "Possessive adjectives"
     ],
     "vocabulary_topics": [
-      "Banking",
-      "News"
+      "Workplace",
+      "Airport"
     ],
     "communication_goals": [
-      "Express preferences",
-      "Talk about your family",
-      "Tell a story"
-    ]
+      "Give advice",
+      "Express opinions",
+      "Express preferences"
+    ],
+    "difficulty_level": "A1",
+    "difficulty_score": 1
   },
   {
     "lesson_number": 5,
@@ -76,14 +84,16 @@
       "There is / There are"
     ],
     "vocabulary_topics": [
-      "Social media",
-      "Restaurants"
+      "Shopping",
+      "Opinions"
     ],
     "communication_goals": [
-      "Use polite requests",
-      "Discuss news and events",
-      "Give advice"
-    ]
+      "Talk about likes and dislikes",
+      "Make comparisons",
+      "Describe problems"
+    ],
+    "difficulty_level": "A1",
+    "difficulty_score": 1
   },
   {
     "lesson_number": 6,
@@ -93,14 +103,16 @@
       "Prepositions of place"
     ],
     "vocabulary_topics": [
-      "Accommodation",
-      "Nature"
+      "Jobs",
+      "Workplace"
     ],
     "communication_goals": [
-      "Describe your daily routine",
-      "Talk about health issues",
-      "Tell a story"
-    ]
+      "Describe people and places",
+      "Make future plans",
+      "Talk about hypothetical situations"
+    ],
+    "difficulty_level": "A1",
+    "difficulty_score": 1
   },
   {
     "lesson_number": 7,
@@ -110,14 +122,16 @@
       "Imperatives"
     ],
     "vocabulary_topics": [
-      "School",
-      "Shopping"
+      "News",
+      "Education"
     ],
     "communication_goals": [
-      "Express obligation",
+      "Discuss news and events",
       "Express preferences",
-      "Make comparisons"
-    ]
+      "Introduce yourself"
+    ],
+    "difficulty_level": "A1",
+    "difficulty_score": 1
   },
   {
     "lesson_number": 8,
@@ -127,14 +141,16 @@
       "Modal verb 'can' (ability)"
     ],
     "vocabulary_topics": [
-      "Opinions",
-      "Numbers"
+      "School",
+      "Hobbies"
     ],
     "communication_goals": [
-      "Talk about health issues",
-      "Describe people and places",
-      "Discuss news and events"
-    ]
+      "Discuss news and events",
+      "Use polite requests",
+      "Describe your daily routine"
+    ],
+    "difficulty_level": "A1",
+    "difficulty_score": 1
   },
   {
     "lesson_number": 9,
@@ -145,13 +161,15 @@
     ],
     "vocabulary_topics": [
       "Transport",
-      "Daily routines"
+      "Sports"
     ],
     "communication_goals": [
-      "Talk about hobbies",
-      "Talk about hypothetical situations",
-      "Describe people and places"
-    ]
+      "Make suggestions",
+      "Introduce yourself",
+      "Ask for and give directions"
+    ],
+    "difficulty_level": "A1",
+    "difficulty_score": 1
   },
   {
     "lesson_number": 10,
@@ -161,14 +179,16 @@
       "Question words (what, where, when, etc.)"
     ],
     "vocabulary_topics": [
-      "Home",
-      "Greetings"
+      "Family",
+      "Countries"
     ],
     "communication_goals": [
-      "Talk about your family",
-      "Express preferences",
-      "Make comparisons"
-    ]
+      "Make comparisons",
+      "Complain politely",
+      "Order food and drinks"
+    ],
+    "difficulty_level": "A1",
+    "difficulty_score": 1
   },
   {
     "lesson_number": 11,
@@ -178,14 +198,16 @@
       "Countable and uncountable nouns"
     ],
     "vocabulary_topics": [
-      "Travel",
-      "Banking"
+      "Accommodation",
+      "Emergencies"
     ],
     "communication_goals": [
-      "Handle a phone conversation",
-      "Introduce yourself",
-      "Talk about health issues"
-    ]
+      "Discuss news and events",
+      "Use polite requests",
+      "Ask for and give directions"
+    ],
+    "difficulty_level": "A1",
+    "difficulty_score": 1
   },
   {
     "lesson_number": 12,
@@ -195,14 +217,16 @@
       "Some / Any"
     ],
     "vocabulary_topics": [
-      "Nature",
-      "Technology"
+      "Banking",
+      "Opinions"
     ],
     "communication_goals": [
-      "Talk about your family",
-      "Express obligation",
-      "Make future plans"
-    ]
+      "Describe people and places",
+      "Talk about health issues",
+      "Ask and answer personal questions"
+    ],
+    "difficulty_level": "A1",
+    "difficulty_score": 1
   },
   {
     "lesson_number": 13,
@@ -212,14 +236,16 @@
       "Much / Many"
     ],
     "vocabulary_topics": [
-      "Restaurants",
-      "Greetings"
+      "Nature",
+      "Family"
     ],
     "communication_goals": [
-      "Ask and answer personal questions",
-      "Tell a story",
-      "Talk about your family"
-    ]
+      "Introduce yourself",
+      "Describe your daily routine",
+      "Complain politely"
+    ],
+    "difficulty_level": "A1",
+    "difficulty_score": 1
   },
   {
     "lesson_number": 14,
@@ -229,14 +255,16 @@
       "Comparatives"
     ],
     "vocabulary_topics": [
-      "Body and health",
-      "Daily routines"
+      "Travel",
+      "Opinions"
     ],
     "communication_goals": [
-      "Talk about likes and dislikes",
-      "Use polite requests",
-      "Order food and drinks"
-    ]
+      "Talk about hobbies",
+      "Tell a story",
+      "Talk about hypothetical situations"
+    ],
+    "difficulty_level": "A1",
+    "difficulty_score": 1
   },
   {
     "lesson_number": 15,
@@ -246,14 +274,16 @@
       "Superlatives"
     ],
     "vocabulary_topics": [
-      "Environment",
-      "Banking"
+      "Shopping",
+      "Celebrations"
     ],
     "communication_goals": [
+      "Handle a phone conversation",
       "Express preferences",
-      "Make future plans",
-      "Order food and drinks"
-    ]
+      "Express obligation"
+    ],
+    "difficulty_level": "A1",
+    "difficulty_score": 2
   },
   {
     "lesson_number": 16,
@@ -263,14 +293,16 @@
       "Past simple (regular verbs)"
     ],
     "vocabulary_topics": [
-      "Clothes",
-      "Environment"
+      "Hobbies",
+      "Celebrations"
     ],
     "communication_goals": [
-      "Describe problems",
-      "Make suggestions",
-      "Ask and answer personal questions"
-    ]
+      "Talk about past experiences",
+      "Express obligation",
+      "Ask for and give directions"
+    ],
+    "difficulty_level": "A1",
+    "difficulty_score": 2
   },
   {
     "lesson_number": 17,
@@ -281,13 +313,15 @@
     ],
     "vocabulary_topics": [
       "Emotions",
-      "Transport"
+      "Days and months"
     ],
     "communication_goals": [
       "Make future plans",
-      "Express preferences",
-      "Handle a phone conversation"
-    ]
+      "Talk about your family",
+      "Express preferences"
+    ],
+    "difficulty_level": "A1",
+    "difficulty_score": 2
   },
   {
     "lesson_number": 18,
@@ -297,14 +331,16 @@
       "Past simple (questions and negatives)"
     ],
     "vocabulary_topics": [
-      "News",
-      "Shopping"
+      "Shopping",
+      "Daily routines"
     ],
     "communication_goals": [
+      "Make future plans",
       "Express opinions",
-      "Express preferences",
-      "Give advice"
-    ]
+      "Make comparisons"
+    ],
+    "difficulty_level": "A1",
+    "difficulty_score": 2
   },
   {
     "lesson_number": 19,
@@ -314,14 +350,16 @@
       "Adverbs of frequency"
     ],
     "vocabulary_topics": [
-      "Days and months",
-      "Celebrations"
+      "Education",
+      "Technology"
     ],
     "communication_goals": [
-      "Make suggestions",
-      "Express preferences",
-      "Describe your daily routine"
-    ]
+      "Ask for and give directions",
+      "Talk about likes and dislikes",
+      "Talk about hypothetical situations"
+    ],
+    "difficulty_level": "A1",
+    "difficulty_score": 2
   },
   {
     "lesson_number": 20,
@@ -331,14 +369,16 @@
       "Like + gerund"
     ],
     "vocabulary_topics": [
-      "Time",
-      "Environment"
+      "School",
+      "Emotions"
     ],
     "communication_goals": [
       "Complain politely",
-      "Discuss news and events",
-      "Make future plans"
-    ]
+      "Talk about your family",
+      "Talk about hypothetical situations"
+    ],
+    "difficulty_level": "A1",
+    "difficulty_score": 2
   },
   {
     "lesson_number": 21,
@@ -348,14 +388,16 @@
       "Future with 'going to'"
     ],
     "vocabulary_topics": [
-      "Environment",
-      "School"
+      "Shopping",
+      "Emotions"
     ],
     "communication_goals": [
-      "Describe your daily routine",
-      "Talk about your family",
-      "Express opinions"
-    ]
+      "Complain politely",
+      "Express opinions",
+      "Tell a story"
+    ],
+    "difficulty_level": "A1",
+    "difficulty_score": 2
   },
   {
     "lesson_number": 22,
@@ -365,14 +407,16 @@
       "Future with 'will'"
     ],
     "vocabulary_topics": [
-      "Airport",
-      "Home"
+      "Transport",
+      "Emergencies"
     ],
     "communication_goals": [
-      "Make comparisons",
-      "Handle a phone conversation",
-      "Give advice"
-    ]
+      "Introduce yourself",
+      "Discuss news and events",
+      "Express opinions"
+    ],
+    "difficulty_level": "A1",
+    "difficulty_score": 2
   },
   {
     "lesson_number": 23,
@@ -382,14 +426,16 @@
       "Object pronouns"
     ],
     "vocabulary_topics": [
-      "Transport",
-      "Opinions"
+      "Banking",
+      "Family"
     ],
     "communication_goals": [
-      "Give advice",
+      "Talk about health issues",
       "Ask for and give directions",
-      "Talk about health issues"
-    ]
+      "Make comparisons"
+    ],
+    "difficulty_level": "A1",
+    "difficulty_score": 2
   },
   {
     "lesson_number": 24,
@@ -399,14 +445,16 @@
       "Should / shouldn't"
     ],
     "vocabulary_topics": [
-      "Education",
-      "Shopping"
+      "News",
+      "Travel"
     ],
     "communication_goals": [
-      "Discuss news and events",
-      "Talk about past experiences",
-      "Talk about hypothetical situations"
-    ]
+      "Talk about hypothetical situations",
+      "Make future plans",
+      "Handle a phone conversation"
+    ],
+    "difficulty_level": "A1",
+    "difficulty_score": 2
   },
   {
     "lesson_number": 25,
@@ -416,14 +464,16 @@
       "Present perfect (introduction)"
     ],
     "vocabulary_topics": [
-      "Home",
+      "Emotions",
       "Jobs"
     ],
     "communication_goals": [
-      "Make future plans",
-      "Talk about hobbies",
-      "Describe your daily routine"
-    ]
+      "Describe your daily routine",
+      "Describe people and places",
+      "Talk about past experiences"
+    ],
+    "difficulty_level": "A1",
+    "difficulty_score": 2
   },
   {
     "lesson_number": 26,
@@ -433,14 +483,16 @@
       "Present perfect vs past simple"
     ],
     "vocabulary_topics": [
-      "Colors",
-      "Time"
+      "Travel",
+      "Environment"
     ],
     "communication_goals": [
-      "Give advice",
-      "Talk about hobbies",
-      "Discuss news and events"
-    ]
+      "Talk about health issues",
+      "Complain politely",
+      "Ask for and give directions"
+    ],
+    "difficulty_level": "A1",
+    "difficulty_score": 3
   },
   {
     "lesson_number": 27,
@@ -450,14 +502,16 @@
       "Too / Enough"
     ],
     "vocabulary_topics": [
-      "Emergencies",
-      "Body and health"
+      "Home",
+      "Shopping"
     ],
     "communication_goals": [
-      "Order food and drinks",
-      "Handle a phone conversation",
-      "Give advice"
-    ]
+      "Use polite requests",
+      "Make suggestions",
+      "Talk about your family"
+    ],
+    "difficulty_level": "A1",
+    "difficulty_score": 3
   },
   {
     "lesson_number": 28,
@@ -467,14 +521,16 @@
       "So / Such"
     ],
     "vocabulary_topics": [
-      "News",
-      "Travel"
+      "Emotions",
+      "Countries"
     ],
     "communication_goals": [
-      "Introduce yourself",
-      "Order food and drinks",
-      "Ask and answer personal questions"
-    ]
+      "Tell a story",
+      "Express preferences",
+      "Handle a phone conversation"
+    ],
+    "difficulty_level": "A1",
+    "difficulty_score": 3
   },
   {
     "lesson_number": 29,
@@ -484,14 +540,16 @@
       "First conditional"
     ],
     "vocabulary_topics": [
-      "Clothes",
-      "Colors"
+      "Jobs",
+      "Accommodation"
     ],
     "communication_goals": [
-      "Make comparisons",
-      "Express opinions",
-      "Order food and drinks"
-    ]
+      "Use polite requests",
+      "Tell a story",
+      "Talk about past experiences"
+    ],
+    "difficulty_level": "A1",
+    "difficulty_score": 3
   },
   {
     "lesson_number": 30,
@@ -501,14 +559,16 @@
       "Second conditional"
     ],
     "vocabulary_topics": [
-      "Numbers",
-      "Restaurants"
+      "Holidays",
+      "News"
     ],
     "communication_goals": [
-      "Describe problems",
-      "Introduce yourself",
-      "Make future plans"
-    ]
+      "Express obligation",
+      "Ask for and give directions",
+      "Talk about likes and dislikes"
+    ],
+    "difficulty_level": "A1",
+    "difficulty_score": 3
   },
   {
     "lesson_number": 31,
@@ -518,14 +578,16 @@
       "Modal verbs (must, have to, need to)"
     ],
     "vocabulary_topics": [
-      "Daily routines",
-      "Restaurants"
+      "Hobbies",
+      "Culture"
     ],
     "communication_goals": [
-      "Express preferences",
       "Give advice",
-      "Talk about likes and dislikes"
-    ]
+      "Talk about hypothetical situations",
+      "Make suggestions"
+    ],
+    "difficulty_level": "A2",
+    "difficulty_score": 3
   },
   {
     "lesson_number": 32,
@@ -535,14 +597,16 @@
       "Reflexive pronouns"
     ],
     "vocabulary_topics": [
-      "Clothes",
-      "Time"
+      "Celebrations",
+      "Weather"
     ],
     "communication_goals": [
-      "Complain politely",
-      "Describe your daily routine",
-      "Ask and answer personal questions"
-    ]
+      "Describe problems",
+      "Talk about likes and dislikes",
+      "Talk about past experiences"
+    ],
+    "difficulty_level": "A2",
+    "difficulty_score": 3
   },
   {
     "lesson_number": 33,
@@ -552,14 +616,16 @@
       "Gerunds and infinitives"
     ],
     "vocabulary_topics": [
-      "Sports",
-      "Airport"
+      "Numbers",
+      "Home"
     ],
     "communication_goals": [
-      "Handle a phone conversation",
-      "Complain politely",
-      "Talk about health issues"
-    ]
+      "Introduce yourself",
+      "Ask and answer personal questions",
+      "Describe problems"
+    ],
+    "difficulty_level": "A2",
+    "difficulty_score": 3
   },
   {
     "lesson_number": 34,
@@ -569,14 +635,16 @@
       "Relative clauses (who, which, that)"
     ],
     "vocabulary_topics": [
-      "Culture",
-      "Emotions"
+      "Banking",
+      "Education"
     ],
     "communication_goals": [
-      "Ask and answer personal questions",
-      "Complain politely",
-      "Handle a phone conversation"
-    ]
+      "Talk about hobbies",
+      "Describe problems",
+      "Talk about likes and dislikes"
+    ],
+    "difficulty_level": "A2",
+    "difficulty_score": 3
   },
   {
     "lesson_number": 35,
@@ -586,14 +654,16 @@
       "Used to"
     ],
     "vocabulary_topics": [
-      "Greetings",
-      "Food and drink"
+      "Home",
+      "Entertainment"
     ],
     "communication_goals": [
-      "Ask for and give directions",
-      "Talk about hobbies",
-      "Ask and answer personal questions"
-    ]
+      "Make comparisons",
+      "Introduce yourself",
+      "Talk about health issues"
+    ],
+    "difficulty_level": "A2",
+    "difficulty_score": 4
   },
   {
     "lesson_number": 36,
@@ -603,14 +673,16 @@
       "Past continuous"
     ],
     "vocabulary_topics": [
-      "Entertainment",
+      "Airport",
       "Social media"
     ],
     "communication_goals": [
-      "Ask for and give directions",
-      "Talk about your family",
-      "Express obligation"
-    ]
+      "Express opinions",
+      "Complain politely",
+      "Make comparisons"
+    ],
+    "difficulty_level": "A2",
+    "difficulty_score": 4
   },
   {
     "lesson_number": 37,
@@ -620,14 +692,16 @@
       "Passive voice (present and past)"
     ],
     "vocabulary_topics": [
-      "Environment",
-      "Shopping"
+      "Home",
+      "Numbers"
     ],
     "communication_goals": [
-      "Express opinions",
-      "Express preferences",
-      "Make suggestions"
-    ]
+      "Talk about hobbies",
+      "Describe problems",
+      "Talk about your family"
+    ],
+    "difficulty_level": "A2",
+    "difficulty_score": 4
   },
   {
     "lesson_number": 38,
@@ -637,14 +711,16 @@
       "Reported speech (statements)"
     ],
     "vocabulary_topics": [
-      "Countries",
-      "Shopping"
+      "Shopping",
+      "School"
     ],
     "communication_goals": [
-      "Give advice",
-      "Talk about past experiences",
-      "Introduce yourself"
-    ]
+      "Order food and drinks",
+      "Tell a story",
+      "Describe your daily routine"
+    ],
+    "difficulty_level": "A2",
+    "difficulty_score": 4
   },
   {
     "lesson_number": 39,
@@ -654,14 +730,16 @@
       "Question tags"
     ],
     "vocabulary_topics": [
-      "Travel",
-      "Workplace"
+      "Jobs",
+      "Hobbies"
     ],
     "communication_goals": [
-      "Express preferences",
-      "Talk about past experiences",
-      "Talk about hypothetical situations"
-    ]
+      "Make suggestions",
+      "Give advice",
+      "Talk about likes and dislikes"
+    ],
+    "difficulty_level": "A2",
+    "difficulty_score": 4
   },
   {
     "lesson_number": 40,
@@ -671,14 +749,16 @@
       "Indirect questions"
     ],
     "vocabulary_topics": [
-      "Countries",
-      "Airport"
+      "Jobs",
+      "Shopping"
     ],
     "communication_goals": [
-      "Introduce yourself",
-      "Ask for and give directions",
-      "Give advice"
-    ]
+      "Talk about hypothetical situations",
+      "Talk about hobbies",
+      "Express preferences"
+    ],
+    "difficulty_level": "A2",
+    "difficulty_score": 4
   },
   {
     "lesson_number": 41,
@@ -688,14 +768,16 @@
       "Connecting words (and, but, because, etc.)"
     ],
     "vocabulary_topics": [
-      "Accommodation",
-      "Emotions"
+      "Relationships",
+      "Greetings"
     ],
     "communication_goals": [
-      "Talk about likes and dislikes",
+      "Complain politely",
       "Express opinions",
-      "Ask and answer personal questions"
-    ]
+      "Make future plans"
+    ],
+    "difficulty_level": "A2",
+    "difficulty_score": 4
   },
   {
     "lesson_number": 42,
@@ -705,14 +787,16 @@
       "Making comparisons (as...as)"
     ],
     "vocabulary_topics": [
-      "Time",
-      "Relationships"
+      "Clothes",
+      "News"
     ],
     "communication_goals": [
-      "Talk about health issues",
-      "Describe problems",
-      "Describe your daily routine"
-    ]
+      "Discuss news and events",
+      "Express preferences",
+      "Make suggestions"
+    ],
+    "difficulty_level": "A2",
+    "difficulty_score": 4
   },
   {
     "lesson_number": 43,
@@ -722,14 +806,16 @@
       "Quantifiers (a few, a little, etc.)"
     ],
     "vocabulary_topics": [
-      "Opinions",
-      "Culture"
+      "Home",
+      "Numbers"
     ],
     "communication_goals": [
-      "Talk about your family",
-      "Tell a story",
-      "Describe people and places"
-    ]
+      "Express opinions",
+      "Order food and drinks",
+      "Talk about hobbies"
+    ],
+    "difficulty_level": "A2",
+    "difficulty_score": 4
   },
   {
     "lesson_number": 44,
@@ -739,14 +825,16 @@
       "Present perfect continuous"
     ],
     "vocabulary_topics": [
-      "Time",
-      "Jobs"
+      "Emergencies",
+      "Food and drink"
     ],
     "communication_goals": [
-      "Talk about your family",
-      "Express preferences",
-      "Handle a phone conversation"
-    ]
+      "Ask and answer personal questions",
+      "Make suggestions",
+      "Introduce yourself"
+    ],
+    "difficulty_level": "A2",
+    "difficulty_score": 4
   },
   {
     "lesson_number": 45,
@@ -757,13 +845,15 @@
     ],
     "vocabulary_topics": [
       "Numbers",
-      "Greetings"
+      "Emergencies"
     ],
     "communication_goals": [
-      "Introduce yourself",
-      "Discuss news and events",
-      "Complain politely"
-    ]
+      "Talk about past experiences",
+      "Give advice",
+      "Discuss news and events"
+    ],
+    "difficulty_level": "A2",
+    "difficulty_score": 4
   },
   {
     "lesson_number": 46,
@@ -773,14 +863,16 @@
       "Past perfect"
     ],
     "vocabulary_topics": [
-      "Education",
-      "Clothes"
+      "Restaurants",
+      "Food and drink"
     ],
     "communication_goals": [
-      "Complain politely",
-      "Express obligation",
-      "Express preferences"
-    ]
+      "Talk about health issues",
+      "Introduce yourself",
+      "Complain politely"
+    ],
+    "difficulty_level": "A2",
+    "difficulty_score": 5
   },
   {
     "lesson_number": 47,
@@ -790,14 +882,16 @@
       "Second conditional review"
     ],
     "vocabulary_topics": [
-      "School",
+      "Restaurants",
       "Days and months"
     ],
     "communication_goals": [
-      "Give advice",
-      "Describe problems",
-      "Introduce yourself"
-    ]
+      "Ask for and give directions",
+      "Describe people and places",
+      "Complain politely"
+    ],
+    "difficulty_level": "A2",
+    "difficulty_score": 5
   },
   {
     "lesson_number": 48,
@@ -807,14 +901,16 @@
       "Wish / If only"
     ],
     "vocabulary_topics": [
-      "Greetings",
-      "Environment"
+      "Environment",
+      "Banking"
     ],
     "communication_goals": [
-      "Express preferences",
-      "Talk about hypothetical situations",
-      "Order food and drinks"
-    ]
+      "Make comparisons",
+      "Ask and answer personal questions",
+      "Use polite requests"
+    ],
+    "difficulty_level": "A2",
+    "difficulty_score": 5
   },
   {
     "lesson_number": 49,
@@ -824,14 +920,16 @@
       "Narrative tenses"
     ],
     "vocabulary_topics": [
-      "Days and months",
-      "Culture"
+      "Relationships",
+      "Clothes"
     ],
     "communication_goals": [
-      "Express preferences",
-      "Talk about health issues",
-      "Ask for and give directions"
-    ]
+      "Describe your daily routine",
+      "Express opinions",
+      "Talk about past experiences"
+    ],
+    "difficulty_level": "A2",
+    "difficulty_score": 5
   },
   {
     "lesson_number": 50,
@@ -841,14 +939,16 @@
       "Phrasal verbs (introduction)"
     ],
     "vocabulary_topics": [
-      "Jobs",
-      "Environment"
+      "Accommodation",
+      "Days and months"
     ],
     "communication_goals": [
-      "Make future plans",
-      "Express opinions",
-      "Talk about likes and dislikes"
-    ]
+      "Introduce yourself",
+      "Talk about hypothetical situations",
+      "Ask for and give directions"
+    ],
+    "difficulty_level": "A2",
+    "difficulty_score": 5
   },
   {
     "lesson_number": 51,
@@ -858,14 +958,16 @@
       "Collocations"
     ],
     "vocabulary_topics": [
-      "Hobbies",
-      "Social media"
+      "Relationships",
+      "Transport"
     ],
     "communication_goals": [
-      "Make future plans",
+      "Talk about health issues",
       "Order food and drinks",
-      "Give advice"
-    ]
+      "Express preferences"
+    ],
+    "difficulty_level": "A2",
+    "difficulty_score": 5
   },
   {
     "lesson_number": 52,
@@ -876,13 +978,15 @@
     ],
     "vocabulary_topics": [
       "Food and drink",
-      "Numbers"
+      "News"
     ],
     "communication_goals": [
-      "Talk about hobbies",
-      "Talk about health issues",
-      "Talk about hypothetical situations"
-    ]
+      "Describe problems",
+      "Handle a phone conversation",
+      "Talk about health issues"
+    ],
+    "difficulty_level": "A2",
+    "difficulty_score": 5
   },
   {
     "lesson_number": 53,
@@ -892,14 +996,16 @@
       "Reported speech (questions and commands)"
     ],
     "vocabulary_topics": [
-      "Home",
-      "Jobs"
+      "Jobs",
+      "Airport"
     ],
     "communication_goals": [
-      "Express opinions",
-      "Talk about hobbies",
-      "Talk about past experiences"
-    ]
+      "Give advice",
+      "Talk about likes and dislikes",
+      "Complain politely"
+    ],
+    "difficulty_level": "A2",
+    "difficulty_score": 5
   },
   {
     "lesson_number": 54,
@@ -909,14 +1015,16 @@
       "Passive voice (future and modal)"
     ],
     "vocabulary_topics": [
-      "Food and drink",
-      "Emotions"
+      "Culture",
+      "Nature"
     ],
     "communication_goals": [
-      "Describe your daily routine",
-      "Describe problems",
-      "Express opinions"
-    ]
+      "Ask for and give directions",
+      "Talk about hypothetical situations",
+      "Discuss news and events"
+    ],
+    "difficulty_level": "A2",
+    "difficulty_score": 5
   },
   {
     "lesson_number": 55,
@@ -926,14 +1034,16 @@
       "Mixed conditionals"
     ],
     "vocabulary_topics": [
-      "Technology",
-      "Entertainment"
+      "Greetings",
+      "Accommodation"
     ],
     "communication_goals": [
-      "Talk about hypothetical situations",
-      "Express obligation",
-      "Talk about health issues"
-    ]
+      "Ask and answer personal questions",
+      "Talk about likes and dislikes",
+      "Express preferences"
+    ],
+    "difficulty_level": "A2",
+    "difficulty_score": 6
   },
   {
     "lesson_number": 56,
@@ -944,14 +1054,16 @@
       "Verb 'to be' (present simple)"
     ],
     "vocabulary_topics": [
-      "Jobs",
-      "Numbers"
+      "School",
+      "Shopping"
     ],
     "communication_goals": [
-      "Make future plans",
-      "Talk about health issues",
-      "Make suggestions"
-    ]
+      "Make comparisons",
+      "Ask and answer personal questions",
+      "Describe problems"
+    ],
+    "difficulty_level": "A2",
+    "difficulty_score": 6
   },
   {
     "lesson_number": 57,
@@ -959,14 +1071,16 @@
     "description": "This lesson will teach key language needed for everyday communication at level 57.",
     "grammar_points": [],
     "vocabulary_topics": [
-      "Food and drink",
-      "Days and months"
+      "Nature",
+      "Emergencies"
     ],
     "communication_goals": [
-      "Describe your daily routine",
+      "Talk about past experiences",
       "Talk about hypothetical situations",
-      "Describe problems"
-    ]
+      "Make future plans"
+    ],
+    "difficulty_level": "A2",
+    "difficulty_score": 6
   },
   {
     "lesson_number": 58,
@@ -974,14 +1088,16 @@
     "description": "This lesson will teach key language needed for everyday communication at level 58.",
     "grammar_points": [],
     "vocabulary_topics": [
-      "Jobs",
-      "Airport"
+      "City and directions",
+      "Greetings"
     ],
     "communication_goals": [
-      "Discuss news and events",
-      "Make future plans",
-      "Handle a phone conversation"
-    ]
+      "Talk about health issues",
+      "Describe people and places",
+      "Talk about your family"
+    ],
+    "difficulty_level": "A2",
+    "difficulty_score": 6
   },
   {
     "lesson_number": 59,
@@ -989,14 +1105,16 @@
     "description": "This lesson will teach key language needed for everyday communication at level 59.",
     "grammar_points": [],
     "vocabulary_topics": [
-      "Culture",
-      "Workplace"
+      "Celebrations",
+      "Body and health"
     ],
     "communication_goals": [
-      "Ask and answer personal questions",
-      "Ask for and give directions",
-      "Make comparisons"
-    ]
+      "Give advice",
+      "Describe your daily routine",
+      "Talk about likes and dislikes"
+    ],
+    "difficulty_level": "A2",
+    "difficulty_score": 6
   },
   {
     "lesson_number": 60,
@@ -1004,14 +1122,16 @@
     "description": "This lesson will teach key language needed for everyday communication at level 60.",
     "grammar_points": [],
     "vocabulary_topics": [
-      "Social media",
-      "Restaurants"
+      "Colors",
+      "Travel"
     ],
     "communication_goals": [
-      "Handle a phone conversation",
-      "Describe people and places",
-      "Express obligation"
-    ]
+      "Talk about hypothetical situations",
+      "Express opinions",
+      "Make comparisons"
+    ],
+    "difficulty_level": "A2",
+    "difficulty_score": 6
   },
   {
     "lesson_number": 61,
@@ -1019,14 +1139,16 @@
     "description": "This lesson will teach key language needed for everyday communication at level 61.",
     "grammar_points": [],
     "vocabulary_topics": [
-      "Entertainment",
-      "Banking"
+      "Body and health",
+      "Accommodation"
     ],
     "communication_goals": [
-      "Talk about past experiences",
-      "Introduce yourself",
-      "Talk about hypothetical situations"
-    ]
+      "Handle a phone conversation",
+      "Talk about likes and dislikes",
+      "Talk about your family"
+    ],
+    "difficulty_level": "A2",
+    "difficulty_score": 6
   },
   {
     "lesson_number": 62,
@@ -1035,13 +1157,15 @@
     "grammar_points": [],
     "vocabulary_topics": [
       "Emotions",
-      "Food and drink"
+      "Home"
     ],
     "communication_goals": [
-      "Make comparisons",
       "Discuss news and events",
-      "Express opinions"
-    ]
+      "Ask and answer personal questions",
+      "Talk about your family"
+    ],
+    "difficulty_level": "A2",
+    "difficulty_score": 6
   },
   {
     "lesson_number": 63,
@@ -1049,14 +1173,16 @@
     "description": "This lesson will teach key language needed for everyday communication at level 63.",
     "grammar_points": [],
     "vocabulary_topics": [
-      "Celebrations",
-      "Daily routines"
+      "Food and drink",
+      "Culture"
     ],
     "communication_goals": [
-      "Express preferences",
-      "Use polite requests",
-      "Talk about likes and dislikes"
-    ]
+      "Talk about hobbies",
+      "Make future plans",
+      "Make suggestions"
+    ],
+    "difficulty_level": "A2",
+    "difficulty_score": 6
   },
   {
     "lesson_number": 64,
@@ -1064,14 +1190,16 @@
     "description": "This lesson will teach key language needed for everyday communication at level 64.",
     "grammar_points": [],
     "vocabulary_topics": [
-      "Days and months",
-      "Travel"
+      "Transport",
+      "Body and health"
     ],
     "communication_goals": [
-      "Talk about likes and dislikes",
-      "Express preferences",
-      "Talk about past experiences"
-    ]
+      "Talk about past experiences",
+      "Order food and drinks",
+      "Use polite requests"
+    ],
+    "difficulty_level": "A2",
+    "difficulty_score": 6
   },
   {
     "lesson_number": 65,
@@ -1079,14 +1207,16 @@
     "description": "This lesson will teach key language needed for everyday communication at level 65.",
     "grammar_points": [],
     "vocabulary_topics": [
-      "Holidays",
-      "Shopping"
+      "Daily routines",
+      "Airport"
     ],
     "communication_goals": [
       "Ask and answer personal questions",
-      "Describe problems",
-      "Order food and drinks"
-    ]
+      "Talk about health issues",
+      "Describe problems"
+    ],
+    "difficulty_level": "A2",
+    "difficulty_score": 6
   },
   {
     "lesson_number": 66,
@@ -1094,14 +1224,16 @@
     "description": "This lesson will teach key language needed for everyday communication at level 66.",
     "grammar_points": [],
     "vocabulary_topics": [
-      "Banking",
-      "City and directions"
+      "Entertainment",
+      "Greetings"
     ],
     "communication_goals": [
-      "Make future plans",
-      "Use polite requests",
+      "Discuss news and events",
+      "Describe problems",
       "Talk about your family"
-    ]
+    ],
+    "difficulty_level": "A2",
+    "difficulty_score": 7
   },
   {
     "lesson_number": 67,
@@ -1109,14 +1241,16 @@
     "description": "This lesson will teach key language needed for everyday communication at level 67.",
     "grammar_points": [],
     "vocabulary_topics": [
-      "Environment",
-      "Celebrations"
+      "School",
+      "Time"
     ],
     "communication_goals": [
-      "Express preferences",
-      "Order food and drinks",
-      "Talk about past experiences"
-    ]
+      "Describe problems",
+      "Talk about likes and dislikes",
+      "Talk about health issues"
+    ],
+    "difficulty_level": "A2",
+    "difficulty_score": 7
   },
   {
     "lesson_number": 68,
@@ -1124,14 +1258,16 @@
     "description": "This lesson will teach key language needed for everyday communication at level 68.",
     "grammar_points": [],
     "vocabulary_topics": [
-      "Days and months",
-      "Celebrations"
+      "Opinions",
+      "Airport"
     ],
     "communication_goals": [
-      "Give advice",
-      "Tell a story",
-      "Handle a phone conversation"
-    ]
+      "Describe your daily routine",
+      "Use polite requests",
+      "Make future plans"
+    ],
+    "difficulty_level": "A2",
+    "difficulty_score": 7
   },
   {
     "lesson_number": 69,
@@ -1139,14 +1275,16 @@
     "description": "This lesson will teach key language needed for everyday communication at level 69.",
     "grammar_points": [],
     "vocabulary_topics": [
-      "Sports",
-      "Jobs"
+      "Banking",
+      "Airport"
     ],
     "communication_goals": [
-      "Make comparisons",
-      "Discuss news and events",
-      "Talk about hobbies"
-    ]
+      "Express preferences",
+      "Express opinions",
+      "Give advice"
+    ],
+    "difficulty_level": "A2",
+    "difficulty_score": 7
   },
   {
     "lesson_number": 70,
@@ -1154,14 +1292,16 @@
     "description": "This lesson will teach key language needed for everyday communication at level 70.",
     "grammar_points": [],
     "vocabulary_topics": [
-      "Sports",
-      "Clothes"
+      "Restaurants",
+      "Environment"
     ],
     "communication_goals": [
-      "Use polite requests",
-      "Describe your daily routine",
-      "Express obligation"
-    ]
+      "Express obligation",
+      "Order food and drinks",
+      "Give advice"
+    ],
+    "difficulty_level": "A2",
+    "difficulty_score": 7
   },
   {
     "lesson_number": 71,
@@ -1169,14 +1309,16 @@
     "description": "This lesson will teach key language needed for everyday communication at level 71.",
     "grammar_points": [],
     "vocabulary_topics": [
-      "Clothes",
-      "Education"
+      "Emotions",
+      "Sports"
     ],
     "communication_goals": [
-      "Tell a story",
-      "Talk about past experiences",
-      "Talk about likes and dislikes"
-    ]
+      "Make suggestions",
+      "Complain politely",
+      "Express obligation"
+    ],
+    "difficulty_level": "B1",
+    "difficulty_score": 7
   },
   {
     "lesson_number": 72,
@@ -1184,14 +1326,16 @@
     "description": "This lesson will teach key language needed for everyday communication at level 72.",
     "grammar_points": [],
     "vocabulary_topics": [
-      "Home",
-      "Celebrations"
+      "Numbers",
+      "Hobbies"
     ],
     "communication_goals": [
-      "Describe people and places",
-      "Describe your daily routine",
-      "Complain politely"
-    ]
+      "Talk about your family",
+      "Talk about hobbies",
+      "Give advice"
+    ],
+    "difficulty_level": "B1",
+    "difficulty_score": 7
   },
   {
     "lesson_number": 73,
@@ -1199,14 +1343,16 @@
     "description": "This lesson will teach key language needed for everyday communication at level 73.",
     "grammar_points": [],
     "vocabulary_topics": [
-      "Nature",
-      "Jobs"
+      "Celebrations",
+      "School"
     ],
     "communication_goals": [
-      "Talk about likes and dislikes",
-      "Describe people and places",
-      "Describe your daily routine"
-    ]
+      "Order food and drinks",
+      "Describe problems",
+      "Talk about hypothetical situations"
+    ],
+    "difficulty_level": "B1",
+    "difficulty_score": 7
   },
   {
     "lesson_number": 74,
@@ -1214,14 +1360,16 @@
     "description": "This lesson will teach key language needed for everyday communication at level 74.",
     "grammar_points": [],
     "vocabulary_topics": [
-      "Daily routines",
-      "Environment"
+      "Nature",
+      "City and directions"
     ],
     "communication_goals": [
-      "Express preferences",
-      "Ask for and give directions",
-      "Express opinions"
-    ]
+      "Make suggestions",
+      "Order food and drinks",
+      "Describe people and places"
+    ],
+    "difficulty_level": "B1",
+    "difficulty_score": 7
   },
   {
     "lesson_number": 75,
@@ -1229,14 +1377,16 @@
     "description": "This lesson will teach key language needed for everyday communication at level 75.",
     "grammar_points": [],
     "vocabulary_topics": [
-      "Airport",
-      "Relationships"
+      "Education",
+      "Time"
     ],
     "communication_goals": [
-      "Discuss news and events",
       "Use polite requests",
-      "Talk about likes and dislikes"
-    ]
+      "Introduce yourself",
+      "Describe people and places"
+    ],
+    "difficulty_level": "B1",
+    "difficulty_score": 8
   },
   {
     "lesson_number": 76,
@@ -1244,14 +1394,16 @@
     "description": "This lesson will teach key language needed for everyday communication at level 76.",
     "grammar_points": [],
     "vocabulary_topics": [
-      "Days and months",
-      "Food and drink"
+      "Banking",
+      "Airport"
     ],
     "communication_goals": [
-      "Talk about your family",
-      "Discuss news and events",
-      "Express preferences"
-    ]
+      "Make comparisons",
+      "Express preferences",
+      "Handle a phone conversation"
+    ],
+    "difficulty_level": "B1",
+    "difficulty_score": 8
   },
   {
     "lesson_number": 77,
@@ -1259,14 +1411,16 @@
     "description": "This lesson will teach key language needed for everyday communication at level 77.",
     "grammar_points": [],
     "vocabulary_topics": [
-      "Education",
-      "Colors"
+      "Entertainment",
+      "Technology"
     ],
     "communication_goals": [
-      "Talk about past experiences",
-      "Talk about hypothetical situations",
-      "Ask for and give directions"
-    ]
+      "Discuss news and events",
+      "Talk about likes and dislikes",
+      "Complain politely"
+    ],
+    "difficulty_level": "B1",
+    "difficulty_score": 8
   },
   {
     "lesson_number": 78,
@@ -1274,14 +1428,16 @@
     "description": "This lesson will teach key language needed for everyday communication at level 78.",
     "grammar_points": [],
     "vocabulary_topics": [
-      "Jobs",
-      "Body and health"
+      "Colors",
+      "Countries"
     ],
     "communication_goals": [
-      "Make future plans",
-      "Talk about hobbies",
-      "Express preferences"
-    ]
+      "Express opinions",
+      "Describe people and places",
+      "Describe problems"
+    ],
+    "difficulty_level": "B1",
+    "difficulty_score": 8
   },
   {
     "lesson_number": 79,
@@ -1289,14 +1445,16 @@
     "description": "This lesson will teach key language needed for everyday communication at level 79.",
     "grammar_points": [],
     "vocabulary_topics": [
-      "Time",
-      "Transport"
+      "Body and health",
+      "Accommodation"
     ],
     "communication_goals": [
-      "Make future plans",
-      "Describe problems",
-      "Ask for and give directions"
-    ]
+      "Ask for and give directions",
+      "Give advice",
+      "Discuss news and events"
+    ],
+    "difficulty_level": "B1",
+    "difficulty_score": 8
   },
   {
     "lesson_number": 80,
@@ -1304,14 +1462,16 @@
     "description": "This lesson will teach key language needed for everyday communication at level 80.",
     "grammar_points": [],
     "vocabulary_topics": [
-      "Banking",
-      "Relationships"
+      "Travel",
+      "Numbers"
     ],
     "communication_goals": [
-      "Handle a phone conversation",
-      "Talk about your family",
-      "Order food and drinks"
-    ]
+      "Complain politely",
+      "Ask and answer personal questions",
+      "Give advice"
+    ],
+    "difficulty_level": "B1",
+    "difficulty_score": 8
   },
   {
     "lesson_number": 81,
@@ -1319,14 +1479,16 @@
     "description": "This lesson will teach key language needed for everyday communication at level 81.",
     "grammar_points": [],
     "vocabulary_topics": [
-      "Nature",
-      "Holidays"
+      "Restaurants",
+      "Banking"
     ],
     "communication_goals": [
-      "Talk about past experiences",
-      "Handle a phone conversation",
-      "Give advice"
-    ]
+      "Introduce yourself",
+      "Express opinions",
+      "Describe your daily routine"
+    ],
+    "difficulty_level": "B1",
+    "difficulty_score": 8
   },
   {
     "lesson_number": 82,
@@ -1334,14 +1496,16 @@
     "description": "This lesson will teach key language needed for everyday communication at level 82.",
     "grammar_points": [],
     "vocabulary_topics": [
-      "Education",
-      "Clothes"
+      "Clothes",
+      "Transport"
     ],
     "communication_goals": [
-      "Discuss news and events",
-      "Ask and answer personal questions",
-      "Make future plans"
-    ]
+      "Make comparisons",
+      "Talk about likes and dislikes",
+      "Complain politely"
+    ],
+    "difficulty_level": "B1",
+    "difficulty_score": 8
   },
   {
     "lesson_number": 83,
@@ -1349,14 +1513,16 @@
     "description": "This lesson will teach key language needed for everyday communication at level 83.",
     "grammar_points": [],
     "vocabulary_topics": [
-      "Jobs",
-      "Hobbies"
+      "Numbers",
+      "Accommodation"
     ],
     "communication_goals": [
+      "Ask for and give directions",
       "Describe problems",
-      "Describe your daily routine",
       "Talk about your family"
-    ]
+    ],
+    "difficulty_level": "B1",
+    "difficulty_score": 8
   },
   {
     "lesson_number": 84,
@@ -1364,14 +1530,16 @@
     "description": "This lesson will teach key language needed for everyday communication at level 84.",
     "grammar_points": [],
     "vocabulary_topics": [
-      "Social media",
-      "Accommodation"
+      "Celebrations",
+      "News"
     ],
     "communication_goals": [
-      "Introduce yourself",
-      "Express opinions",
-      "Discuss news and events"
-    ]
+      "Describe your daily routine",
+      "Talk about hypothetical situations",
+      "Make comparisons"
+    ],
+    "difficulty_level": "B1",
+    "difficulty_score": 8
   },
   {
     "lesson_number": 85,
@@ -1379,14 +1547,16 @@
     "description": "This lesson will teach key language needed for everyday communication at level 85.",
     "grammar_points": [],
     "vocabulary_topics": [
-      "Colors",
-      "Days and months"
+      "Education",
+      "Airport"
     ],
     "communication_goals": [
-      "Express preferences",
-      "Talk about likes and dislikes",
-      "Describe problems"
-    ]
+      "Ask and answer personal questions",
+      "Tell a story",
+      "Talk about hypothetical situations"
+    ],
+    "difficulty_level": "B1",
+    "difficulty_score": 8
   },
   {
     "lesson_number": 86,
@@ -1394,14 +1564,16 @@
     "description": "This lesson will teach key language needed for everyday communication at level 86.",
     "grammar_points": [],
     "vocabulary_topics": [
-      "Time",
-      "Relationships"
+      "Colors",
+      "News"
     ],
     "communication_goals": [
-      "Describe problems",
-      "Handle a phone conversation",
-      "Use polite requests"
-    ]
+      "Talk about health issues",
+      "Describe people and places",
+      "Introduce yourself"
+    ],
+    "difficulty_level": "B1",
+    "difficulty_score": 9
   },
   {
     "lesson_number": 87,
@@ -1409,14 +1581,16 @@
     "description": "This lesson will teach key language needed for everyday communication at level 87.",
     "grammar_points": [],
     "vocabulary_topics": [
-      "Emotions",
-      "Holidays"
+      "Emergencies",
+      "City and directions"
     ],
     "communication_goals": [
-      "Talk about health issues",
-      "Talk about past experiences",
-      "Make comparisons"
-    ]
+      "Talk about hypothetical situations",
+      "Describe your daily routine",
+      "Make suggestions"
+    ],
+    "difficulty_level": "B1",
+    "difficulty_score": 9
   },
   {
     "lesson_number": 88,
@@ -1424,14 +1598,16 @@
     "description": "This lesson will teach key language needed for everyday communication at level 88.",
     "grammar_points": [],
     "vocabulary_topics": [
-      "Emergencies",
-      "Emotions"
+      "Greetings",
+      "Celebrations"
     ],
     "communication_goals": [
-      "Use polite requests",
-      "Discuss news and events",
-      "Handle a phone conversation"
-    ]
+      "Talk about hypothetical situations",
+      "Express opinions",
+      "Talk about likes and dislikes"
+    ],
+    "difficulty_level": "B1",
+    "difficulty_score": 9
   },
   {
     "lesson_number": 89,
@@ -1439,14 +1615,16 @@
     "description": "This lesson will teach key language needed for everyday communication at level 89.",
     "grammar_points": [],
     "vocabulary_topics": [
-      "Education",
-      "Daily routines"
+      "Jobs",
+      "Entertainment"
     ],
     "communication_goals": [
-      "Complain politely",
-      "Ask and answer personal questions",
-      "Talk about likes and dislikes"
-    ]
+      "Talk about health issues",
+      "Introduce yourself",
+      "Express obligation"
+    ],
+    "difficulty_level": "B1",
+    "difficulty_score": 9
   },
   {
     "lesson_number": 90,
@@ -1454,14 +1632,16 @@
     "description": "This lesson will teach key language needed for everyday communication at level 90.",
     "grammar_points": [],
     "vocabulary_topics": [
-      "Emotions",
-      "Weather"
+      "City and directions",
+      "Workplace"
     ],
     "communication_goals": [
-      "Ask and answer personal questions",
-      "Introduce yourself",
-      "Discuss news and events"
-    ]
+      "Ask for and give directions",
+      "Describe your daily routine",
+      "Ask and answer personal questions"
+    ],
+    "difficulty_level": "B1",
+    "difficulty_score": 9
   },
   {
     "lesson_number": 91,
@@ -1469,14 +1649,16 @@
     "description": "This lesson will teach key language needed for everyday communication at level 91.",
     "grammar_points": [],
     "vocabulary_topics": [
-      "City and directions",
-      "Colors"
+      "Transport",
+      "Accommodation"
     ],
     "communication_goals": [
-      "Describe people and places",
-      "Express preferences",
+      "Complain politely",
+      "Make comparisons",
       "Ask for and give directions"
-    ]
+    ],
+    "difficulty_level": "B1",
+    "difficulty_score": 9
   },
   {
     "lesson_number": 92,
@@ -1484,14 +1666,16 @@
     "description": "This lesson will teach key language needed for everyday communication at level 92.",
     "grammar_points": [],
     "vocabulary_topics": [
-      "Food and drink",
-      "Airport"
+      "Travel",
+      "Days and months"
     ],
     "communication_goals": [
-      "Introduce yourself",
       "Talk about health issues",
-      "Talk about hypothetical situations"
-    ]
+      "Describe people and places",
+      "Give advice"
+    ],
+    "difficulty_level": "B1",
+    "difficulty_score": 9
   },
   {
     "lesson_number": 93,
@@ -1499,14 +1683,16 @@
     "description": "This lesson will teach key language needed for everyday communication at level 93.",
     "grammar_points": [],
     "vocabulary_topics": [
-      "Travel",
-      "Body and health"
+      "Shopping",
+      "Restaurants"
     ],
     "communication_goals": [
-      "Talk about hobbies",
-      "Ask for and give directions",
-      "Make suggestions"
-    ]
+      "Express preferences",
+      "Talk about your family",
+      "Talk about health issues"
+    ],
+    "difficulty_level": "B1",
+    "difficulty_score": 9
   },
   {
     "lesson_number": 94,
@@ -1518,10 +1704,12 @@
       "Countries"
     ],
     "communication_goals": [
-      "Describe your daily routine",
-      "Give advice",
-      "Express preferences"
-    ]
+      "Use polite requests",
+      "Talk about your family",
+      "Make future plans"
+    ],
+    "difficulty_level": "B1",
+    "difficulty_score": 9
   },
   {
     "lesson_number": 95,
@@ -1529,14 +1717,16 @@
     "description": "This lesson will teach key language needed for everyday communication at level 95.",
     "grammar_points": [],
     "vocabulary_topics": [
-      "Sports",
-      "Weather"
+      "Emotions",
+      "Environment"
     ],
     "communication_goals": [
-      "Express preferences",
-      "Handle a phone conversation",
-      "Discuss news and events"
-    ]
+      "Complain politely",
+      "Ask and answer personal questions",
+      "Tell a story"
+    ],
+    "difficulty_level": "B1",
+    "difficulty_score": 10
   },
   {
     "lesson_number": 96,
@@ -1544,14 +1734,16 @@
     "description": "This lesson will teach key language needed for everyday communication at level 96.",
     "grammar_points": [],
     "vocabulary_topics": [
-      "Transport",
-      "Accommodation"
+      "Social media",
+      "Food and drink"
     ],
     "communication_goals": [
-      "Introduce yourself",
-      "Tell a story",
-      "Discuss news and events"
-    ]
+      "Order food and drinks",
+      "Talk about hypothetical situations",
+      "Talk about health issues"
+    ],
+    "difficulty_level": "B1",
+    "difficulty_score": 10
   },
   {
     "lesson_number": 97,
@@ -1559,14 +1751,16 @@
     "description": "This lesson will teach key language needed for everyday communication at level 97.",
     "grammar_points": [],
     "vocabulary_topics": [
-      "Home",
-      "Accommodation"
+      "Transport",
+      "News"
     ],
     "communication_goals": [
-      "Make suggestions",
-      "Describe people and places",
-      "Talk about your family"
-    ]
+      "Ask and answer personal questions",
+      "Handle a phone conversation",
+      "Give advice"
+    ],
+    "difficulty_level": "B1",
+    "difficulty_score": 10
   },
   {
     "lesson_number": 98,
@@ -1574,14 +1768,16 @@
     "description": "This lesson will teach key language needed for everyday communication at level 98.",
     "grammar_points": [],
     "vocabulary_topics": [
-      "Opinions",
-      "Hobbies"
+      "Daily routines",
+      "Clothes"
     ],
     "communication_goals": [
-      "Express opinions",
-      "Describe people and places",
-      "Express obligation"
-    ]
+      "Introduce yourself",
+      "Use polite requests",
+      "Complain politely"
+    ],
+    "difficulty_level": "B1",
+    "difficulty_score": 10
   },
   {
     "lesson_number": 99,
@@ -1589,14 +1785,16 @@
     "description": "This lesson will teach key language needed for everyday communication at level 99.",
     "grammar_points": [],
     "vocabulary_topics": [
-      "Emotions",
-      "Entertainment"
+      "Banking",
+      "Time"
     ],
     "communication_goals": [
-      "Talk about hobbies",
-      "Express obligation",
-      "Describe your daily routine"
-    ]
+      "Make future plans",
+      "Use polite requests",
+      "Handle a phone conversation"
+    ],
+    "difficulty_level": "B1",
+    "difficulty_score": 10
   },
   {
     "lesson_number": 100,
@@ -1604,13 +1802,15 @@
     "description": "This lesson will teach key language needed for everyday communication at level 100.",
     "grammar_points": [],
     "vocabulary_topics": [
-      "Technology",
-      "Relationships"
+      "Transport",
+      "Shopping"
     ],
     "communication_goals": [
-      "Describe problems",
-      "Tell a story",
-      "Talk about hobbies"
-    ]
+      "Talk about hypothetical situations",
+      "Talk about your family",
+      "Describe people and places"
+    ],
+    "difficulty_level": "B1",
+    "difficulty_score": 10
   }
 ]
