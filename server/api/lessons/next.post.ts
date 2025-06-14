@@ -42,6 +42,9 @@ export default defineEventHandler(async (event) => {
       })
     }
 
+    // Calculate next lesson number
+    const nextLessonNumber = (currentLesson.lessonNumber || 0) + 1
+
     // Get user's topics for content generation
     const userTopics = await db.select()
       .from(tables.userTopics)
@@ -61,6 +64,7 @@ export default defineEventHandler(async (event) => {
     const lessonResult = await generateLessons({
       topics,
       userId: user.id,
+      lessonNumber: nextLessonNumber,
     })
 
     return {
