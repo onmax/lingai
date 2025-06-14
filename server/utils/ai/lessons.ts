@@ -61,8 +61,8 @@ export async function generateLessons({
     // Save lesson to database
     const db = useDrizzle()
 
-    // Create lesson
-    const lessonTitle = courseLesson.title
+    // Generate a fun, engaging title for this lesson
+    const lessonTitle = await generateLessonTitle(courseLesson, parsedSentences)
 
     const [newLesson] = await db.insert(tables.lessons).values({
       userId,
@@ -137,6 +137,74 @@ export async function generateLessons({
       statusCode: 500,
       statusMessage: `Failed to generate lessons: ${error instanceof Error ? error.message : String(error)}`,
     })
+  }
+}
+
+/**
+ * Generate a funny, engaging lesson title based on the lesson content and conversation level
+ */
+async function generateLessonTitle(courseLesson: CourseLesson, sentences: ParsedSentence[]): Promise<string> {
+  try {
+    const titleSchema = valibotObject({
+      title: string('A funny, engaging one-sentence title that summarizes what the lesson is about'),
+    })
+
+    // Extract the conversation content for context
+    const conversationContent = sentences.map(s => s.targetText).join(' ')
+    const conversationTranslation = sentences.map(s => s.userText).join(' ')
+
+    const { object } = await generateObject({
+      model: openai('gpt-4o-mini'),
+      schema: valibotSchema(titleSchema),
+      schemaName: 'lesson_title',
+      schemaDescription: 'A funny, engaging lesson title that matches the conversation level',
+      system: `You are a creative copywriter specializing in language learning content. Create a funny, engaging title for a Spanish lesson that:
+
+1. Is ONE SENTENCE that summarizes what the lesson is about
+2. Matches the conversation level (${courseLesson.difficulty_level} - ${courseLesson.difficulty_score}/10)
+3. Is relatable and slightly humorous 
+4. Captures the essence of what students will learn to communicate about
+5. Sounds natural and engaging, not overly academic
+
+LEVEL GUIDELINES:
+- A1 (scores 1-2): Simple, everyday situations with basic language
+- A1 (scores 3-5): More complex everyday situations but still fundamental
+- A2 (scores 3-6): Broader topics with more nuanced communication
+- B1 (scores 7-10): Complex conversations and sophisticated topics
+
+EXAMPLES OF GOOD TITLES:
+- "When your GPS fails you and you actually need to ask for directions like a normal person"
+- "How to complain about your hotel room without sounding like a total tourist"
+- "Navigating family dinner conversations when everyone has opinions about your life choices"
+- "The art of ordering food when you can't pronounce half the menu"
+- "When small talk at work gets unexpectedly deep and philosophical"
+
+Make it conversational, relatable, and something that would make someone smile while learning.`,
+      prompt: `Create a title for this Spanish lesson:
+
+Level: ${courseLesson.difficulty_level} (difficulty ${courseLesson.difficulty_score}/10)
+Grammar focus: ${courseLesson.grammar_points.join(', ')}
+Topics: ${courseLesson.vocabulary_topics.join(', ')}
+Communication goals: ${courseLesson.communication_goals.join(', ')}
+
+The conversation in this lesson covers:
+Spanish: ${conversationContent}
+English: ${conversationTranslation}
+
+Generate a funny, engaging one-sentence title that captures what this lesson is really about.`,
+      maxTokens: 200,
+      temperature: 0.7,
+      maxRetries: 2,
+    })
+
+    consola.success(`Generated lesson title: "${object.title}"`)
+    return object.title
+  }
+  catch (error) {
+    consola.error('Error generating lesson title:', error)
+    // Fallback to a generic title if generation fails
+    const topicSummary = courseLesson.vocabulary_topics.slice(0, 2).join(' and ')
+    return `Lesson ${courseLesson.lesson_number}: Learning to talk about ${topicSummary}`
   }
 }
 
@@ -393,7 +461,7 @@ async function generateAudioAndComicImage(lesson: any, sentences: any[]): Promis
     const randomWords = spanishWords.slice(0, 3) // Use first 3 words for the scene
 
     // Create prompt for comic image focusing on funny situations
-    const comicPrompt = `Create a funny, colorful comic-style illustration showing a humorous everyday situation where someone might use these Spanish words: ${randomWords.join(', ')}.
+    const comicPrompt = `Create a funny black and white line art illustration showing a humorous everyday situation where someone might use these Spanish words: ${randomWords.join(', ')}.
 
 IMPORTANT: Don't make it a "Spanish lesson" image. Instead, create a funny, relatable scenario where these words would naturally come up in conversation.
 
@@ -404,14 +472,15 @@ For example:
 - If about shopping, show an amusing shopping experience
 
 The image should:
-- Be in a vibrant comic book/cartoon style
+- Be in a clean black and white line art style with NO COLORS
+- Use only black lines on white background, like a comic book coloring page
 - Show characters in a funny, everyday situation where these Spanish words would be used
 - Include 2-3 Spanish words as speech bubbles or text elements naturally within the scene
 - Be humorous and memorable, helping students remember the words through the funny context
-- Have bright, cheerful colors that make people smile
+- Have clear, bold line work that's easy to see and understand
 - Focus on the comedy of the situation rather than being "educational"
 
-Style: Bright cartoon/comic book art with clear, readable Spanish text in speech bubbles.`
+Style: Black and white line art comic illustration with clean, bold outlines and clear, readable Spanish text in speech bubbles. NO COLORS - only black lines on white background.`
 
     consola.info(`Comic image prompt: ${comicPrompt.substring(0, 200)}...`)
 
