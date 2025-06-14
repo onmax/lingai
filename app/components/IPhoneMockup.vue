@@ -9,8 +9,8 @@ const props = withDefaults(defineProps<IPhoneMockupProps>(), {
   height: 812,
 })
 
-// Generate unique ID for clip paths to avoid conflicts
-const uniqueId = Math.random().toString(36).substring(2, 9)
+// Generate unique ID for clip paths to avoid conflicts (SSR-safe)
+const uniqueId = useId()
 
 // Calculated dimensions
 const cornerRadius = computed(() => props.width * 0.15)

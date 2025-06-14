@@ -62,6 +62,7 @@
     "typescript": "catalog:",
     "unocss": "catalog:",
     "vue-tsc": "catalog:",
-    "wrangler": "catalog:"
+    "wrangler": "catalog:",
+    "zod": "catalog:"
   }
 }

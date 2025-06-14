@@ -4,13 +4,25 @@ definePageMeta({
 })
 
 // Fetch Spanish lessons
-const { data: lessonsResponse, error: lessonsError, pending: lessonsPending, refresh } = await useFetch<LessonsListResponse>(`/api/lessons/by-language/spanish`)
+const { data: lessonsResponse, error: lessonsError, pending: lessonsPending, refresh } = await useFetch<LessonsListResponse>(`/api/lessons/by-language/spanish`, {
+  key: 'lessons-cache',
+})
 
 const lessons = computed(() => {
   if (lessonsError.value) {
     consola.error('lessonsError:', lessonsError.value)
   }
   return lessonsResponse.value?.lessons || []
+})
+
+// Use lesson progress composable
+const { getCurrentLessonId } = useLessonProgress()
+
+// Get the current lesson for display purposes
+const currentLessonId = ref<number | null>(null)
+
+onMounted(() => {
+  currentLessonId.value = getCurrentLessonId()
 })
 
 // Page meta
@@ -31,6 +43,23 @@ useHead({
       <p class="text-neutral-600">
         Practice Spanish with interactive lessons
       </p>
+
+      <!-- Continue Learning Button -->
+      <div v-if="currentLessonId && lessons.some(l => l.id === currentLessonId)" mb-6>
+        <button
+          flex="~ items-center gap-2"
+          px-6 py-3
+          bg-blue-600
+          text-white
+          rounded-lg
+          hover="bg-blue-700"
+          transition-colors
+          @click="navigateTo(`/courses/spanish/${currentLessonId}`)"
+        >
+          <div i-heroicons-play w-5 h-5 />
+          <span>Continue Learning</span>
+        </button>
+      </div>
     </header>
 
     <!-- Lessons List -->

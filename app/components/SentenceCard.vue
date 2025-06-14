@@ -6,14 +6,20 @@ interface Props {
 const props = defineProps<Props>()
 
 const isPlayingAudio = ref(false)
+const { isAudioLoading, getAudioUrl, hasAudio } = useAudioLoader()
+
+// Reactive audio URL that updates when audio becomes available
+const audioUrl = computed(() => getAudioUrl(props.sentence))
+const audioAvailable = computed(() => hasAudio(props.sentence))
 
 async function playAudio() {
-  if (isPlayingAudio.value || !props.sentence.audioUrl)
+  const currentAudioUrl = audioUrl.value
+  if (isPlayingAudio.value || !currentAudioUrl)
     return
 
   try {
     isPlayingAudio.value = true
-    const audio = new Audio(props.sentence.audioUrl)
+    const audio = new Audio(currentAudioUrl)
 
     audio.onended = () => {
       isPlayingAudio.value = false
@@ -69,9 +75,9 @@ function handleAudioKeyDown(event: KeyboardEvent) {
         </p>
       </div>
 
-      <!-- Audio Button or Audio Placeholder -->
+      <!-- Audio Button -->
       <button
-        v-if="sentence.audioUrl"
+        v-if="audioAvailable"
         type="button"
         class="shrink-0 rounded-full p-2 sm:p-3 bg-blue-50 hover:bg-blue-100 text-blue-600 transition-all duration-200"
         :disabled="isPlayingAudio"
@@ -85,6 +91,24 @@ function handleAudioKeyDown(event: KeyboardEvent) {
           class="w-4 h-4 sm:w-5 sm:h-5"
         />
       </button>
+
+      <!-- Audio Loading Indicator -->
+      <div
+        v-else-if="isAudioLoading(sentence.id)"
+        rounded-full
+        p-3
+        bg="blue-50"
+        text-blue-500
+        :aria-label="`Generating audio for: ${sentence.targetText}`"
+        title="Audio is being generated..."
+      >
+        <div
+          i-heroicons-arrow-path
+          w-5
+          h-5
+          animate-spin
+        />
+      </div>
 
       <!-- Audio Not Available Indicator -->
       <div

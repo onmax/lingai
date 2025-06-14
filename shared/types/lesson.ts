@@ -52,3 +52,9 @@ export interface SentencesApiResponse {
   total: number
   lesson: Lesson
 }
+
+export interface NextLessonResponse {
+  success: boolean
+  lesson: Lesson
+  sentences: Sentence[]
+}

@@ -62,11 +62,10 @@ export default defineEventHandler(async (event) => {
 
     // Automatically generate the first Spanish lesson with audio
     try {
-      const { generateLessons } = await import('../../utils/ai/lessons')
-
       const lessonResult = await generateLessons({
         topics,
         userId: user.id,
+        lessonNumber: 1,
       })
 
       return {
