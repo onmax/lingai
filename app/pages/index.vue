@@ -93,18 +93,18 @@ async function signUp() {
   <TabsRoot class="flex flex-col mx-auto max-w-80 shadow rounded-lg" default-value="signin">
     <TabsList class="relative shrink-0 flex" aria-label="Sign in or sign up">
       <TabsIndicator
-        class="absolute px-8 left-0 h-8 bottom-0 w-[var(--reka-tabs-indicator-size)] translate-x-[var(--reka-tabs-indicator-position)] translate-y-1 rounded-full transition-all duration-300"
+        class="absolute px-8 left-0 h-8 top-1/2 -translate-y-1/2 w-[var(--reka-tabs-indicator-size)] translate-x-[var(--reka-tabs-indicator-position)] rounded-full transition-all duration-300"
       >
         <div class="bg-blue-500 size-full" />
       </TabsIndicator>
       <TabsTrigger
-        class="bg-white px-6 h-11 flex-1 flex items-center justify-center text-sm hover:text-blue-500 data-[state=active]:text-blue-500 transition-colors leading-none text-blue-500 select-none rounded-tl-md outline-none cursor-default focus-visible:relative focus-visible:shadow-[0_0_0_2px] focus-visible:shadow-neutral-400"
+        class="relative z-10 bg-white data-[state=active]:bg-transparent px-6 h-11 flex-1 flex items-center justify-center text-sm hover:text-blue-500 data-[state=active]:text-white data-[state=active]:hover:text-white transition-colors leading-none text-blue-500 select-none rounded-tl-md outline-none cursor-default focus-visible:relative focus-visible:shadow-[0_0_0_2px] focus-visible:shadow-neutral-400"
         value="signin"
       >
         Sign In
       </TabsTrigger>
       <TabsTrigger
-        class="bg-white px-6 h-11 flex-1 flex items-center justify-center text-sm hover:text-blue-500 data-[state=active]:text-blue-500 transition-colors leading-none text-blue-500 select-none rounded-tr-md outline-none cursor-default focus-visible:relative focus-visible:shadow-[0_0_0_2px] focus-visible:shadow-neutral-400"
+        class="relative z-10 bg-white data-[state=active]:bg-transparent px-6 h-11 flex-1 flex items-center justify-center text-sm hover:text-blue-500 data-[state=active]:text-white data-[state=active]:hover:text-white transition-colors leading-none text-blue-500 select-none rounded-tr-md outline-none cursor-default focus-visible:relative focus-visible:shadow-[0_0_0_2px] focus-visible:shadow-neutral-400"
         value="signup"
       >
         Sign Up
