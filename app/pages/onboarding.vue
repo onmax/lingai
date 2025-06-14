@@ -1,6 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   middleware: 'auth',
+  layout: 'clean',
 })
 
 // Check if user is already onboarded
@@ -68,38 +69,30 @@ async function handleSubmit() {
 </script>
 
 <template>
-  <div class="h-full" bg="neutral-50" p="x-6" flex="~ col items-center justify-center">
-    <div class="w-full max-w-md" space="y-8">
-      <div text="center">
-        <h1 text="3xl neutral-900" font="bold" m="b-2">
+  <div class="h-full bg-neutral-50 px-6 flex flex-col items-center justify-center">
+    <div class="w-full max-w-md space-y-8">
+      <div class="text-center">
+        <h1 class="text-3xl text-neutral-900 font-bold mb-2">
           Welcome to Lingai!
         </h1>
-        <p text="neutral-600">
+        <p class="text-neutral-600">
           What topics interest you for learning Spanish?
         </p>
       </div>
 
-      <div space="y-6">
+      <div class="space-y-6">
         <!-- Topic input -->
         <div>
-          <div flex="~ gap-2" m="b-4">
+          <div class="flex gap-2 mb-4">
             <input
               v-model="newTopicInput"
               placeholder="Enter a topic (e.g., travel, food, business...)"
-              flex="1"
-              p="x-3 y-2"
-              border="~ neutral-300 rounded-md"
-              text="sm"
-              focus="outline-none ring-2 ring-blue-500 border-blue-500"
+              class="flex-1 px-3 py-2 border border-neutral-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               @keydown="handleTopicKeydown"
             >
             <button
-              p="x-4 y-2"
-              bg="blue-600 hocus:blue-700"
-              text="white"
-              border="rounded-md"
+              class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition-colors"
               :class="{ 'opacity-50 cursor-not-allowed': !newTopicInput.trim() }"
-              transition="colors"
               :disabled="!newTopicInput.trim()"
               @click="addTopic"
             >
@@ -108,20 +101,15 @@ async function handleSubmit() {
           </div>
 
           <!-- Selected topics -->
-          <div v-if="selectedTopics.length > 0" flex="~ wrap gap-2">
+          <div v-if="selectedTopics.length > 0" class="flex flex-wrap gap-2">
             <span
               v-for="topic in selectedTopics"
               :key="topic"
-              flex="~ items-center"
-              p="x-3 y-1"
-              border="rounded-full"
-              text="sm blue-700"
-              bg="blue-100"
+              class="flex items-center px-3 py-1 rounded-full text-sm text-blue-700 bg-blue-100"
             >
               {{ topic }}
               <button
-                m="l-2"
-                text="blue-700 hocus:blue-900"
+                class="ml-2 text-blue-700 hover:text-blue-900"
                 @click="removeTopic(topic)"
               >
                 ×
@@ -129,25 +117,20 @@ async function handleSubmit() {
             </span>
           </div>
 
-          <p v-if="selectedTopics.length === 0" text="sm neutral-500" m="t-2">
+          <p v-if="selectedTopics.length === 0" class="text-sm text-neutral-500 mt-2">
             Add some topics that interest you to get started
           </p>
         </div>
 
         <!-- Submit button -->
         <button
-          w="full"
-          p="x-4 y-2"
-          bg="blue-600 hocus:blue-700"
-          text="white"
-          border="rounded-md"
+          class="w-full px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition-colors"
           :class="{ 'opacity-50 cursor-not-allowed': selectedTopics.length === 0 || isSubmitting }"
-          transition="colors"
           :disabled="selectedTopics.length === 0 || isSubmitting"
           @click="handleSubmit"
         >
-          <span v-if="isSubmitting" flex="~ items-center justify-center gap-2">
-            <div class="i-tabler:loader-2" w="4" h="4" animate="spin" />
+          <span v-if="isSubmitting" class="flex items-center justify-center gap-2">
+            <div class="i-tabler:loader-2 w-4 h-4 animate-spin" />
             Creating your lessons...
           </span>
           <span v-else>
