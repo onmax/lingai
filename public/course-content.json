@@ -1,1616 +1,1616 @@
 [
-    {
-      "lesson_number": 1,
-      "title": "Lesson 1",
-      "description": "This lesson will teach key language needed for everyday communication at level 1.",
-      "grammar_points": [
-        "Articles (a/an/the)",
-        "Singular and plural nouns"
-      ],
-      "vocabulary_topics": [
-        "Hobbies",
-        "Opinions"
-      ],
-      "communication_goals": [
-        "Discuss news and events",
-        "Talk about hobbies",
-        "Describe problems"
-      ]
-    },
-    {
-      "lesson_number": 2,
-      "title": "Lesson 2",
-      "description": "This lesson will teach key language needed for everyday communication at level 2.",
-      "grammar_points": [
-        "Simple present (affirmative)"
-      ],
-      "vocabulary_topics": [
-        "Numbers",
-        "Time"
-      ],
-      "communication_goals": [
-        "Talk about past experiences",
-        "Tell a story",
-        "Describe problems"
-      ]
-    },
-    {
-      "lesson_number": 3,
-      "title": "Lesson 3",
-      "description": "This lesson will teach key language needed for everyday communication at level 3.",
-      "grammar_points": [
-        "Simple present (negative and questions)"
-      ],
-      "vocabulary_topics": [
-        "Celebrations",
-        "City and directions"
-      ],
-      "communication_goals": [
-        "Handle a phone conversation",
-        "Talk about likes and dislikes",
-        "Make comparisons"
-      ]
-    },
-    {
-      "lesson_number": 4,
-      "title": "Lesson 4",
-      "description": "This lesson will teach key language needed for everyday communication at level 4.",
-      "grammar_points": [
-        "Possessive adjectives"
-      ],
-      "vocabulary_topics": [
-        "Banking",
-        "News"
-      ],
-      "communication_goals": [
-        "Express preferences",
-        "Talk about your family",
-        "Tell a story"
-      ]
-    },
-    {
-      "lesson_number": 5,
-      "title": "Lesson 5",
-      "description": "This lesson will teach key language needed for everyday communication at level 5.",
-      "grammar_points": [
-        "There is / There are"
-      ],
-      "vocabulary_topics": [
-        "Social media",
-        "Restaurants"
-      ],
-      "communication_goals": [
-        "Use polite requests",
-        "Discuss news and events",
-        "Give advice"
-      ]
-    },
-    {
-      "lesson_number": 6,
-      "title": "Lesson 6",
-      "description": "This lesson will teach key language needed for everyday communication at level 6.",
-      "grammar_points": [
-        "Prepositions of place"
-      ],
-      "vocabulary_topics": [
-        "Accommodation",
-        "Nature"
-      ],
-      "communication_goals": [
-        "Describe your daily routine",
-        "Talk about health issues",
-        "Tell a story"
-      ]
-    },
-    {
-      "lesson_number": 7,
-      "title": "Lesson 7",
-      "description": "This lesson will teach key language needed for everyday communication at level 7.",
-      "grammar_points": [
-        "Imperatives"
-      ],
-      "vocabulary_topics": [
-        "School",
-        "Shopping"
-      ],
-      "communication_goals": [
-        "Express obligation",
-        "Express preferences",
-        "Make comparisons"
-      ]
-    },
-    {
-      "lesson_number": 8,
-      "title": "Lesson 8",
-      "description": "This lesson will teach key language needed for everyday communication at level 8.",
-      "grammar_points": [
-        "Modal verb 'can' (ability)"
-      ],
-      "vocabulary_topics": [
-        "Opinions",
-        "Numbers"
-      ],
-      "communication_goals": [
-        "Talk about health issues",
-        "Describe people and places",
-        "Discuss news and events"
-      ]
-    },
-    {
-      "lesson_number": 9,
-      "title": "Lesson 9",
-      "description": "This lesson will teach key language needed for everyday communication at level 9.",
-      "grammar_points": [
-        "Present continuous"
-      ],
-      "vocabulary_topics": [
-        "Transport",
-        "Daily routines"
-      ],
-      "communication_goals": [
-        "Talk about hobbies",
-        "Talk about hypothetical situations",
-        "Describe people and places"
-      ]
-    },
-    {
-      "lesson_number": 10,
-      "title": "Lesson 10",
-      "description": "This lesson will teach key language needed for everyday communication at level 10.",
-      "grammar_points": [
-        "Question words (what, where, when, etc.)"
-      ],
-      "vocabulary_topics": [
-        "Home",
-        "Greetings"
-      ],
-      "communication_goals": [
-        "Talk about your family",
-        "Express preferences",
-        "Make comparisons"
-      ]
-    },
-    {
-      "lesson_number": 11,
-      "title": "Lesson 11",
-      "description": "This lesson will teach key language needed for everyday communication at level 11.",
-      "grammar_points": [
-        "Countable and uncountable nouns"
-      ],
-      "vocabulary_topics": [
-        "Travel",
-        "Banking"
-      ],
-      "communication_goals": [
-        "Handle a phone conversation",
-        "Introduce yourself",
-        "Talk about health issues"
-      ]
-    },
-    {
-      "lesson_number": 12,
-      "title": "Lesson 12",
-      "description": "This lesson will teach key language needed for everyday communication at level 12.",
-      "grammar_points": [
-        "Some / Any"
-      ],
-      "vocabulary_topics": [
-        "Nature",
-        "Technology"
-      ],
-      "communication_goals": [
-        "Talk about your family",
-        "Express obligation",
-        "Make future plans"
-      ]
-    },
-    {
-      "lesson_number": 13,
-      "title": "Lesson 13",
-      "description": "This lesson will teach key language needed for everyday communication at level 13.",
-      "grammar_points": [
-        "Much / Many"
-      ],
-      "vocabulary_topics": [
-        "Restaurants",
-        "Greetings"
-      ],
-      "communication_goals": [
-        "Ask and answer personal questions",
-        "Tell a story",
-        "Talk about your family"
-      ]
-    },
-    {
-      "lesson_number": 14,
-      "title": "Lesson 14",
-      "description": "This lesson will teach key language needed for everyday communication at level 14.",
-      "grammar_points": [
-        "Comparatives"
-      ],
-      "vocabulary_topics": [
-        "Body and health",
-        "Daily routines"
-      ],
-      "communication_goals": [
-        "Talk about likes and dislikes",
-        "Use polite requests",
-        "Order food and drinks"
-      ]
-    },
-    {
-      "lesson_number": 15,
-      "title": "Lesson 15",
-      "description": "This lesson will teach key language needed for everyday communication at level 15.",
-      "grammar_points": [
-        "Superlatives"
-      ],
-      "vocabulary_topics": [
-        "Environment",
-        "Banking"
-      ],
-      "communication_goals": [
-        "Express preferences",
-        "Make future plans",
-        "Order food and drinks"
-      ]
-    },
-    {
-      "lesson_number": 16,
-      "title": "Lesson 16",
-      "description": "This lesson will teach key language needed for everyday communication at level 16.",
-      "grammar_points": [
-        "Past simple (regular verbs)"
-      ],
-      "vocabulary_topics": [
-        "Clothes",
-        "Environment"
-      ],
-      "communication_goals": [
-        "Describe problems",
-        "Make suggestions",
-        "Ask and answer personal questions"
-      ]
-    },
-    {
-      "lesson_number": 17,
-      "title": "Lesson 17",
-      "description": "This lesson will teach key language needed for everyday communication at level 17.",
-      "grammar_points": [
-        "Past simple (irregular verbs)"
-      ],
-      "vocabulary_topics": [
-        "Emotions",
-        "Transport"
-      ],
-      "communication_goals": [
-        "Make future plans",
-        "Express preferences",
-        "Handle a phone conversation"
-      ]
-    },
-    {
-      "lesson_number": 18,
-      "title": "Lesson 18",
-      "description": "This lesson will teach key language needed for everyday communication at level 18.",
-      "grammar_points": [
-        "Past simple (questions and negatives)"
-      ],
-      "vocabulary_topics": [
-        "News",
-        "Shopping"
-      ],
-      "communication_goals": [
-        "Express opinions",
-        "Express preferences",
-        "Give advice"
-      ]
-    },
-    {
-      "lesson_number": 19,
-      "title": "Lesson 19",
-      "description": "This lesson will teach key language needed for everyday communication at level 19.",
-      "grammar_points": [
-        "Adverbs of frequency"
-      ],
-      "vocabulary_topics": [
-        "Days and months",
-        "Celebrations"
-      ],
-      "communication_goals": [
-        "Make suggestions",
-        "Express preferences",
-        "Describe your daily routine"
-      ]
-    },
-    {
-      "lesson_number": 20,
-      "title": "Lesson 20",
-      "description": "This lesson will teach key language needed for everyday communication at level 20.",
-      "grammar_points": [
-        "Like + gerund"
-      ],
-      "vocabulary_topics": [
-        "Time",
-        "Environment"
-      ],
-      "communication_goals": [
-        "Complain politely",
-        "Discuss news and events",
-        "Make future plans"
-      ]
-    },
-    {
-      "lesson_number": 21,
-      "title": "Lesson 21",
-      "description": "This lesson will teach key language needed for everyday communication at level 21.",
-      "grammar_points": [
-        "Future with 'going to'"
-      ],
-      "vocabulary_topics": [
-        "Environment",
-        "School"
-      ],
-      "communication_goals": [
-        "Describe your daily routine",
-        "Talk about your family",
-        "Express opinions"
-      ]
-    },
-    {
-      "lesson_number": 22,
-      "title": "Lesson 22",
-      "description": "This lesson will teach key language needed for everyday communication at level 22.",
-      "grammar_points": [
-        "Future with 'will'"
-      ],
-      "vocabulary_topics": [
-        "Airport",
-        "Home"
-      ],
-      "communication_goals": [
-        "Make comparisons",
-        "Handle a phone conversation",
-        "Give advice"
-      ]
-    },
-    {
-      "lesson_number": 23,
-      "title": "Lesson 23",
-      "description": "This lesson will teach key language needed for everyday communication at level 23.",
-      "grammar_points": [
-        "Object pronouns"
-      ],
-      "vocabulary_topics": [
-        "Transport",
-        "Opinions"
-      ],
-      "communication_goals": [
-        "Give advice",
-        "Ask for and give directions",
-        "Talk about health issues"
-      ]
-    },
-    {
-      "lesson_number": 24,
-      "title": "Lesson 24",
-      "description": "This lesson will teach key language needed for everyday communication at level 24.",
-      "grammar_points": [
-        "Should / shouldn't"
-      ],
-      "vocabulary_topics": [
-        "Education",
-        "Shopping"
-      ],
-      "communication_goals": [
-        "Discuss news and events",
-        "Talk about past experiences",
-        "Talk about hypothetical situations"
-      ]
-    },
-    {
-      "lesson_number": 25,
-      "title": "Lesson 25",
-      "description": "This lesson will teach key language needed for everyday communication at level 25.",
-      "grammar_points": [
-        "Present perfect (introduction)"
-      ],
-      "vocabulary_topics": [
-        "Home",
-        "Jobs"
-      ],
-      "communication_goals": [
-        "Make future plans",
-        "Talk about hobbies",
-        "Describe your daily routine"
-      ]
-    },
-    {
-      "lesson_number": 26,
-      "title": "Lesson 26",
-      "description": "This lesson will teach key language needed for everyday communication at level 26.",
-      "grammar_points": [
-        "Present perfect vs past simple"
-      ],
-      "vocabulary_topics": [
-        "Colors",
-        "Time"
-      ],
-      "communication_goals": [
-        "Give advice",
-        "Talk about hobbies",
-        "Discuss news and events"
-      ]
-    },
-    {
-      "lesson_number": 27,
-      "title": "Lesson 27",
-      "description": "This lesson will teach key language needed for everyday communication at level 27.",
-      "grammar_points": [
-        "Too / Enough"
-      ],
-      "vocabulary_topics": [
-        "Emergencies",
-        "Body and health"
-      ],
-      "communication_goals": [
-        "Order food and drinks",
-        "Handle a phone conversation",
-        "Give advice"
-      ]
-    },
-    {
-      "lesson_number": 28,
-      "title": "Lesson 28",
-      "description": "This lesson will teach key language needed for everyday communication at level 28.",
-      "grammar_points": [
-        "So / Such"
-      ],
-      "vocabulary_topics": [
-        "News",
-        "Travel"
-      ],
-      "communication_goals": [
-        "Introduce yourself",
-        "Order food and drinks",
-        "Ask and answer personal questions"
-      ]
-    },
-    {
-      "lesson_number": 29,
-      "title": "Lesson 29",
-      "description": "This lesson will teach key language needed for everyday communication at level 29.",
-      "grammar_points": [
-        "First conditional"
-      ],
-      "vocabulary_topics": [
-        "Clothes",
-        "Colors"
-      ],
-      "communication_goals": [
-        "Make comparisons",
-        "Express opinions",
-        "Order food and drinks"
-      ]
-    },
-    {
-      "lesson_number": 30,
-      "title": "Lesson 30",
-      "description": "This lesson will teach key language needed for everyday communication at level 30.",
-      "grammar_points": [
-        "Second conditional"
-      ],
-      "vocabulary_topics": [
-        "Numbers",
-        "Restaurants"
-      ],
-      "communication_goals": [
-        "Describe problems",
-        "Introduce yourself",
-        "Make future plans"
-      ]
-    },
-    {
-      "lesson_number": 31,
-      "title": "Lesson 31",
-      "description": "This lesson will teach key language needed for everyday communication at level 31.",
-      "grammar_points": [
-        "Modal verbs (must, have to, need to)"
-      ],
-      "vocabulary_topics": [
-        "Daily routines",
-        "Restaurants"
-      ],
-      "communication_goals": [
-        "Express preferences",
-        "Give advice",
-        "Talk about likes and dislikes"
-      ]
-    },
-    {
-      "lesson_number": 32,
-      "title": "Lesson 32",
-      "description": "This lesson will teach key language needed for everyday communication at level 32.",
-      "grammar_points": [
-        "Reflexive pronouns"
-      ],
-      "vocabulary_topics": [
-        "Clothes",
-        "Time"
-      ],
-      "communication_goals": [
-        "Complain politely",
-        "Describe your daily routine",
-        "Ask and answer personal questions"
-      ]
-    },
-    {
-      "lesson_number": 33,
-      "title": "Lesson 33",
-      "description": "This lesson will teach key language needed for everyday communication at level 33.",
-      "grammar_points": [
-        "Gerunds and infinitives"
-      ],
-      "vocabulary_topics": [
-        "Sports",
-        "Airport"
-      ],
-      "communication_goals": [
-        "Handle a phone conversation",
-        "Complain politely",
-        "Talk about health issues"
-      ]
-    },
-    {
-      "lesson_number": 34,
-      "title": "Lesson 34",
-      "description": "This lesson will teach key language needed for everyday communication at level 34.",
-      "grammar_points": [
-        "Relative clauses (who, which, that)"
-      ],
-      "vocabulary_topics": [
-        "Culture",
-        "Emotions"
-      ],
-      "communication_goals": [
-        "Ask and answer personal questions",
-        "Complain politely",
-        "Handle a phone conversation"
-      ]
-    },
-    {
-      "lesson_number": 35,
-      "title": "Lesson 35",
-      "description": "This lesson will teach key language needed for everyday communication at level 35.",
-      "grammar_points": [
-        "Used to"
-      ],
-      "vocabulary_topics": [
-        "Greetings",
-        "Food and drink"
-      ],
-      "communication_goals": [
-        "Ask for and give directions",
-        "Talk about hobbies",
-        "Ask and answer personal questions"
-      ]
-    },
-    {
-      "lesson_number": 36,
-      "title": "Lesson 36",
-      "description": "This lesson will teach key language needed for everyday communication at level 36.",
-      "grammar_points": [
-        "Past continuous"
-      ],
-      "vocabulary_topics": [
-        "Entertainment",
-        "Social media"
-      ],
-      "communication_goals": [
-        "Ask for and give directions",
-        "Talk about your family",
-        "Express obligation"
-      ]
-    },
-    {
-      "lesson_number": 37,
-      "title": "Lesson 37",
-      "description": "This lesson will teach key language needed for everyday communication at level 37.",
-      "grammar_points": [
-        "Passive voice (present and past)"
-      ],
-      "vocabulary_topics": [
-        "Environment",
-        "Shopping"
-      ],
-      "communication_goals": [
-        "Express opinions",
-        "Express preferences",
-        "Make suggestions"
-      ]
-    },
-    {
-      "lesson_number": 38,
-      "title": "Lesson 38",
-      "description": "This lesson will teach key language needed for everyday communication at level 38.",
-      "grammar_points": [
-        "Reported speech (statements)"
-      ],
-      "vocabulary_topics": [
-        "Countries",
-        "Shopping"
-      ],
-      "communication_goals": [
-        "Give advice",
-        "Talk about past experiences",
-        "Introduce yourself"
-      ]
-    },
-    {
-      "lesson_number": 39,
-      "title": "Lesson 39",
-      "description": "This lesson will teach key language needed for everyday communication at level 39.",
-      "grammar_points": [
-        "Question tags"
-      ],
-      "vocabulary_topics": [
-        "Travel",
-        "Workplace"
-      ],
-      "communication_goals": [
-        "Express preferences",
-        "Talk about past experiences",
-        "Talk about hypothetical situations"
-      ]
-    },
-    {
-      "lesson_number": 40,
-      "title": "Lesson 40",
-      "description": "This lesson will teach key language needed for everyday communication at level 40.",
-      "grammar_points": [
-        "Indirect questions"
-      ],
-      "vocabulary_topics": [
-        "Countries",
-        "Airport"
-      ],
-      "communication_goals": [
-        "Introduce yourself",
-        "Ask for and give directions",
-        "Give advice"
-      ]
-    },
-    {
-      "lesson_number": 41,
-      "title": "Lesson 41",
-      "description": "This lesson will teach key language needed for everyday communication at level 41.",
-      "grammar_points": [
-        "Connecting words (and, but, because, etc.)"
-      ],
-      "vocabulary_topics": [
-        "Accommodation",
-        "Emotions"
-      ],
-      "communication_goals": [
-        "Talk about likes and dislikes",
-        "Express opinions",
-        "Ask and answer personal questions"
-      ]
-    },
-    {
-      "lesson_number": 42,
-      "title": "Lesson 42",
-      "description": "This lesson will teach key language needed for everyday communication at level 42.",
-      "grammar_points": [
-        "Making comparisons (as...as)"
-      ],
-      "vocabulary_topics": [
-        "Time",
-        "Relationships"
-      ],
-      "communication_goals": [
-        "Talk about health issues",
-        "Describe problems",
-        "Describe your daily routine"
-      ]
-    },
-    {
-      "lesson_number": 43,
-      "title": "Lesson 43",
-      "description": "This lesson will teach key language needed for everyday communication at level 43.",
-      "grammar_points": [
-        "Quantifiers (a few, a little, etc.)"
-      ],
-      "vocabulary_topics": [
-        "Opinions",
-        "Culture"
-      ],
-      "communication_goals": [
-        "Talk about your family",
-        "Tell a story",
-        "Describe people and places"
-      ]
-    },
-    {
-      "lesson_number": 44,
-      "title": "Lesson 44",
-      "description": "This lesson will teach key language needed for everyday communication at level 44.",
-      "grammar_points": [
-        "Present perfect continuous"
-      ],
-      "vocabulary_topics": [
-        "Time",
-        "Jobs"
-      ],
-      "communication_goals": [
-        "Talk about your family",
-        "Express preferences",
-        "Handle a phone conversation"
-      ]
-    },
-    {
-      "lesson_number": 45,
-      "title": "Lesson 45",
-      "description": "This lesson will teach key language needed for everyday communication at level 45.",
-      "grammar_points": [
-        "Future continuous"
-      ],
-      "vocabulary_topics": [
-        "Numbers",
-        "Greetings"
-      ],
-      "communication_goals": [
-        "Introduce yourself",
-        "Discuss news and events",
-        "Complain politely"
-      ]
-    },
-    {
-      "lesson_number": 46,
-      "title": "Lesson 46",
-      "description": "This lesson will teach key language needed for everyday communication at level 46.",
-      "grammar_points": [
-        "Past perfect"
-      ],
-      "vocabulary_topics": [
-        "Education",
-        "Clothes"
-      ],
-      "communication_goals": [
-        "Complain politely",
-        "Express obligation",
-        "Express preferences"
-      ]
-    },
-    {
-      "lesson_number": 47,
-      "title": "Lesson 47",
-      "description": "This lesson will teach key language needed for everyday communication at level 47.",
-      "grammar_points": [
-        "Second conditional review"
-      ],
-      "vocabulary_topics": [
-        "School",
-        "Days and months"
-      ],
-      "communication_goals": [
-        "Give advice",
-        "Describe problems",
-        "Introduce yourself"
-      ]
-    },
-    {
-      "lesson_number": 48,
-      "title": "Lesson 48",
-      "description": "This lesson will teach key language needed for everyday communication at level 48.",
-      "grammar_points": [
-        "Wish / If only"
-      ],
-      "vocabulary_topics": [
-        "Greetings",
-        "Environment"
-      ],
-      "communication_goals": [
-        "Express preferences",
-        "Talk about hypothetical situations",
-        "Order food and drinks"
-      ]
-    },
-    {
-      "lesson_number": 49,
-      "title": "Lesson 49",
-      "description": "This lesson will teach key language needed for everyday communication at level 49.",
-      "grammar_points": [
-        "Narrative tenses"
-      ],
-      "vocabulary_topics": [
-        "Days and months",
-        "Culture"
-      ],
-      "communication_goals": [
-        "Express preferences",
-        "Talk about health issues",
-        "Ask for and give directions"
-      ]
-    },
-    {
-      "lesson_number": 50,
-      "title": "Lesson 50",
-      "description": "This lesson will teach key language needed for everyday communication at level 50.",
-      "grammar_points": [
-        "Phrasal verbs (introduction)"
-      ],
-      "vocabulary_topics": [
-        "Jobs",
-        "Environment"
-      ],
-      "communication_goals": [
-        "Make future plans",
-        "Express opinions",
-        "Talk about likes and dislikes"
-      ]
-    },
-    {
-      "lesson_number": 51,
-      "title": "Lesson 51",
-      "description": "This lesson will teach key language needed for everyday communication at level 51.",
-      "grammar_points": [
-        "Collocations"
-      ],
-      "vocabulary_topics": [
-        "Hobbies",
-        "Social media"
-      ],
-      "communication_goals": [
-        "Make future plans",
-        "Order food and drinks",
-        "Give advice"
-      ]
-    },
-    {
-      "lesson_number": 52,
-      "title": "Lesson 52",
-      "description": "This lesson will teach key language needed for everyday communication at level 52.",
-      "grammar_points": [
-        "Modals of deduction (must, might, can't)"
-      ],
-      "vocabulary_topics": [
-        "Food and drink",
-        "Numbers"
-      ],
-      "communication_goals": [
-        "Talk about hobbies",
-        "Talk about health issues",
-        "Talk about hypothetical situations"
-      ]
-    },
-    {
-      "lesson_number": 53,
-      "title": "Lesson 53",
-      "description": "This lesson will teach key language needed for everyday communication at level 53.",
-      "grammar_points": [
-        "Reported speech (questions and commands)"
-      ],
-      "vocabulary_topics": [
-        "Home",
-        "Jobs"
-      ],
-      "communication_goals": [
-        "Express opinions",
-        "Talk about hobbies",
-        "Talk about past experiences"
-      ]
-    },
-    {
-      "lesson_number": 54,
-      "title": "Lesson 54",
-      "description": "This lesson will teach key language needed for everyday communication at level 54.",
-      "grammar_points": [
-        "Passive voice (future and modal)"
-      ],
-      "vocabulary_topics": [
-        "Food and drink",
-        "Emotions"
-      ],
-      "communication_goals": [
-        "Describe your daily routine",
-        "Describe problems",
-        "Express opinions"
-      ]
-    },
-    {
-      "lesson_number": 55,
-      "title": "Lesson 55",
-      "description": "This lesson will teach key language needed for everyday communication at level 55.",
-      "grammar_points": [
-        "Mixed conditionals"
-      ],
-      "vocabulary_topics": [
-        "Technology",
-        "Entertainment"
-      ],
-      "communication_goals": [
-        "Talk about hypothetical situations",
-        "Express obligation",
-        "Talk about health issues"
-      ]
-    },
-    {
-      "lesson_number": 56,
-      "title": "Lesson 56",
-      "description": "This lesson will teach key language needed for everyday communication at level 56.",
-      "grammar_points": [
-        "Subject pronouns",
-        "Verb 'to be' (present simple)"
-      ],
-      "vocabulary_topics": [
-        "Jobs",
-        "Numbers"
-      ],
-      "communication_goals": [
-        "Make future plans",
-        "Talk about health issues",
-        "Make suggestions"
-      ]
-    },
-    {
-      "lesson_number": 57,
-      "title": "Lesson 57",
-      "description": "This lesson will teach key language needed for everyday communication at level 57.",
-      "grammar_points": [],
-      "vocabulary_topics": [
-        "Food and drink",
-        "Days and months"
-      ],
-      "communication_goals": [
-        "Describe your daily routine",
-        "Talk about hypothetical situations",
-        "Describe problems"
-      ]
-    },
-    {
-      "lesson_number": 58,
-      "title": "Lesson 58",
-      "description": "This lesson will teach key language needed for everyday communication at level 58.",
-      "grammar_points": [],
-      "vocabulary_topics": [
-        "Jobs",
-        "Airport"
-      ],
-      "communication_goals": [
-        "Discuss news and events",
-        "Make future plans",
-        "Handle a phone conversation"
-      ]
-    },
-    {
-      "lesson_number": 59,
-      "title": "Lesson 59",
-      "description": "This lesson will teach key language needed for everyday communication at level 59.",
-      "grammar_points": [],
-      "vocabulary_topics": [
-        "Culture",
-        "Workplace"
-      ],
-      "communication_goals": [
-        "Ask and answer personal questions",
-        "Ask for and give directions",
-        "Make comparisons"
-      ]
-    },
-    {
-      "lesson_number": 60,
-      "title": "Lesson 60",
-      "description": "This lesson will teach key language needed for everyday communication at level 60.",
-      "grammar_points": [],
-      "vocabulary_topics": [
-        "Social media",
-        "Restaurants"
-      ],
-      "communication_goals": [
-        "Handle a phone conversation",
-        "Describe people and places",
-        "Express obligation"
-      ]
-    },
-    {
-      "lesson_number": 61,
-      "title": "Lesson 61",
-      "description": "This lesson will teach key language needed for everyday communication at level 61.",
-      "grammar_points": [],
-      "vocabulary_topics": [
-        "Entertainment",
-        "Banking"
-      ],
-      "communication_goals": [
-        "Talk about past experiences",
-        "Introduce yourself",
-        "Talk about hypothetical situations"
-      ]
-    },
-    {
-      "lesson_number": 62,
-      "title": "Lesson 62",
-      "description": "This lesson will teach key language needed for everyday communication at level 62.",
-      "grammar_points": [],
-      "vocabulary_topics": [
-        "Emotions",
-        "Food and drink"
-      ],
-      "communication_goals": [
-        "Make comparisons",
-        "Discuss news and events",
-        "Express opinions"
-      ]
-    },
-    {
-      "lesson_number": 63,
-      "title": "Lesson 63",
-      "description": "This lesson will teach key language needed for everyday communication at level 63.",
-      "grammar_points": [],
-      "vocabulary_topics": [
-        "Celebrations",
-        "Daily routines"
-      ],
-      "communication_goals": [
-        "Express preferences",
-        "Use polite requests",
-        "Talk about likes and dislikes"
-      ]
-    },
-    {
-      "lesson_number": 64,
-      "title": "Lesson 64",
-      "description": "This lesson will teach key language needed for everyday communication at level 64.",
-      "grammar_points": [],
-      "vocabulary_topics": [
-        "Days and months",
-        "Travel"
-      ],
-      "communication_goals": [
-        "Talk about likes and dislikes",
-        "Express preferences",
-        "Talk about past experiences"
-      ]
-    },
-    {
-      "lesson_number": 65,
-      "title": "Lesson 65",
-      "description": "This lesson will teach key language needed for everyday communication at level 65.",
-      "grammar_points": [],
-      "vocabulary_topics": [
-        "Holidays",
-        "Shopping"
-      ],
-      "communication_goals": [
-        "Ask and answer personal questions",
-        "Describe problems",
-        "Order food and drinks"
-      ]
-    },
-    {
-      "lesson_number": 66,
-      "title": "Lesson 66",
-      "description": "This lesson will teach key language needed for everyday communication at level 66.",
-      "grammar_points": [],
-      "vocabulary_topics": [
-        "Banking",
-        "City and directions"
-      ],
-      "communication_goals": [
-        "Make future plans",
-        "Use polite requests",
-        "Talk about your family"
-      ]
-    },
-    {
-      "lesson_number": 67,
-      "title": "Lesson 67",
-      "description": "This lesson will teach key language needed for everyday communication at level 67.",
-      "grammar_points": [],
-      "vocabulary_topics": [
-        "Environment",
-        "Celebrations"
-      ],
-      "communication_goals": [
-        "Express preferences",
-        "Order food and drinks",
-        "Talk about past experiences"
-      ]
-    },
-    {
-      "lesson_number": 68,
-      "title": "Lesson 68",
-      "description": "This lesson will teach key language needed for everyday communication at level 68.",
-      "grammar_points": [],
-      "vocabulary_topics": [
-        "Days and months",
-        "Celebrations"
-      ],
-      "communication_goals": [
-        "Give advice",
-        "Tell a story",
-        "Handle a phone conversation"
-      ]
-    },
-    {
-      "lesson_number": 69,
-      "title": "Lesson 69",
-      "description": "This lesson will teach key language needed for everyday communication at level 69.",
-      "grammar_points": [],
-      "vocabulary_topics": [
-        "Sports",
-        "Jobs"
-      ],
-      "communication_goals": [
-        "Make comparisons",
-        "Discuss news and events",
-        "Talk about hobbies"
-      ]
-    },
-    {
-      "lesson_number": 70,
-      "title": "Lesson 70",
-      "description": "This lesson will teach key language needed for everyday communication at level 70.",
-      "grammar_points": [],
-      "vocabulary_topics": [
-        "Sports",
-        "Clothes"
-      ],
-      "communication_goals": [
-        "Use polite requests",
-        "Describe your daily routine",
-        "Express obligation"
-      ]
-    },
-    {
-      "lesson_number": 71,
-      "title": "Lesson 71",
-      "description": "This lesson will teach key language needed for everyday communication at level 71.",
-      "grammar_points": [],
-      "vocabulary_topics": [
-        "Clothes",
-        "Education"
-      ],
-      "communication_goals": [
-        "Tell a story",
-        "Talk about past experiences",
-        "Talk about likes and dislikes"
-      ]
-    },
-    {
-      "lesson_number": 72,
-      "title": "Lesson 72",
-      "description": "This lesson will teach key language needed for everyday communication at level 72.",
-      "grammar_points": [],
-      "vocabulary_topics": [
-        "Home",
-        "Celebrations"
-      ],
-      "communication_goals": [
-        "Describe people and places",
-        "Describe your daily routine",
-        "Complain politely"
-      ]
-    },
-    {
-      "lesson_number": 73,
-      "title": "Lesson 73",
-      "description": "This lesson will teach key language needed for everyday communication at level 73.",
-      "grammar_points": [],
-      "vocabulary_topics": [
-        "Nature",
-        "Jobs"
-      ],
-      "communication_goals": [
-        "Talk about likes and dislikes",
-        "Describe people and places",
-        "Describe your daily routine"
-      ]
-    },
-    {
-      "lesson_number": 74,
-      "title": "Lesson 74",
-      "description": "This lesson will teach key language needed for everyday communication at level 74.",
-      "grammar_points": [],
-      "vocabulary_topics": [
-        "Daily routines",
-        "Environment"
-      ],
-      "communication_goals": [
-        "Express preferences",
-        "Ask for and give directions",
-        "Express opinions"
-      ]
-    },
-    {
-      "lesson_number": 75,
-      "title": "Lesson 75",
-      "description": "This lesson will teach key language needed for everyday communication at level 75.",
-      "grammar_points": [],
-      "vocabulary_topics": [
-        "Airport",
-        "Relationships"
-      ],
-      "communication_goals": [
-        "Discuss news and events",
-        "Use polite requests",
-        "Talk about likes and dislikes"
-      ]
-    },
-    {
-      "lesson_number": 76,
-      "title": "Lesson 76",
-      "description": "This lesson will teach key language needed for everyday communication at level 76.",
-      "grammar_points": [],
-      "vocabulary_topics": [
-        "Days and months",
-        "Food and drink"
-      ],
-      "communication_goals": [
-        "Talk about your family",
-        "Discuss news and events",
-        "Express preferences"
-      ]
-    },
-    {
-      "lesson_number": 77,
-      "title": "Lesson 77",
-      "description": "This lesson will teach key language needed for everyday communication at level 77.",
-      "grammar_points": [],
-      "vocabulary_topics": [
-        "Education",
-        "Colors"
-      ],
-      "communication_goals": [
-        "Talk about past experiences",
-        "Talk about hypothetical situations",
-        "Ask for and give directions"
-      ]
-    },
-    {
-      "lesson_number": 78,
-      "title": "Lesson 78",
-      "description": "This lesson will teach key language needed for everyday communication at level 78.",
-      "grammar_points": [],
-      "vocabulary_topics": [
-        "Jobs",
-        "Body and health"
-      ],
-      "communication_goals": [
-        "Make future plans",
-        "Talk about hobbies",
-        "Express preferences"
-      ]
-    },
-    {
-      "lesson_number": 79,
-      "title": "Lesson 79",
-      "description": "This lesson will teach key language needed for everyday communication at level 79.",
-      "grammar_points": [],
-      "vocabulary_topics": [
-        "Time",
-        "Transport"
-      ],
-      "communication_goals": [
-        "Make future plans",
-        "Describe problems",
-        "Ask for and give directions"
-      ]
-    },
-    {
-      "lesson_number": 80,
-      "title": "Lesson 80",
-      "description": "This lesson will teach key language needed for everyday communication at level 80.",
-      "grammar_points": [],
-      "vocabulary_topics": [
-        "Banking",
-        "Relationships"
-      ],
-      "communication_goals": [
-        "Handle a phone conversation",
-        "Talk about your family",
-        "Order food and drinks"
-      ]
-    },
-    {
-      "lesson_number": 81,
-      "title": "Lesson 81",
-      "description": "This lesson will teach key language needed for everyday communication at level 81.",
-      "grammar_points": [],
-      "vocabulary_topics": [
-        "Nature",
-        "Holidays"
-      ],
-      "communication_goals": [
-        "Talk about past experiences",
-        "Handle a phone conversation",
-        "Give advice"
-      ]
-    },
-    {
-      "lesson_number": 82,
-      "title": "Lesson 82",
-      "description": "This lesson will teach key language needed for everyday communication at level 82.",
-      "grammar_points": [],
-      "vocabulary_topics": [
-        "Education",
-        "Clothes"
-      ],
-      "communication_goals": [
-        "Discuss news and events",
-        "Ask and answer personal questions",
-        "Make future plans"
-      ]
-    },
-    {
-      "lesson_number": 83,
-      "title": "Lesson 83",
-      "description": "This lesson will teach key language needed for everyday communication at level 83.",
-      "grammar_points": [],
-      "vocabulary_topics": [
-        "Jobs",
-        "Hobbies"
-      ],
-      "communication_goals": [
-        "Describe problems",
-        "Describe your daily routine",
-        "Talk about your family"
-      ]
-    },
-    {
-      "lesson_number": 84,
-      "title": "Lesson 84",
-      "description": "This lesson will teach key language needed for everyday communication at level 84.",
-      "grammar_points": [],
-      "vocabulary_topics": [
-        "Social media",
-        "Accommodation"
-      ],
-      "communication_goals": [
-        "Introduce yourself",
-        "Express opinions",
-        "Discuss news and events"
-      ]
-    },
-    {
-      "lesson_number": 85,
-      "title": "Lesson 85",
-      "description": "This lesson will teach key language needed for everyday communication at level 85.",
-      "grammar_points": [],
-      "vocabulary_topics": [
-        "Colors",
-        "Days and months"
-      ],
-      "communication_goals": [
-        "Express preferences",
-        "Talk about likes and dislikes",
-        "Describe problems"
-      ]
-    },
-    {
-      "lesson_number": 86,
-      "title": "Lesson 86",
-      "description": "This lesson will teach key language needed for everyday communication at level 86.",
-      "grammar_points": [],
-      "vocabulary_topics": [
-        "Time",
-        "Relationships"
-      ],
-      "communication_goals": [
-        "Describe problems",
-        "Handle a phone conversation",
-        "Use polite requests"
-      ]
-    },
-    {
-      "lesson_number": 87,
-      "title": "Lesson 87",
-      "description": "This lesson will teach key language needed for everyday communication at level 87.",
-      "grammar_points": [],
-      "vocabulary_topics": [
-        "Emotions",
-        "Holidays"
-      ],
-      "communication_goals": [
-        "Talk about health issues",
-        "Talk about past experiences",
-        "Make comparisons"
-      ]
-    },
-    {
-      "lesson_number": 88,
-      "title": "Lesson 88",
-      "description": "This lesson will teach key language needed for everyday communication at level 88.",
-      "grammar_points": [],
-      "vocabulary_topics": [
-        "Emergencies",
-        "Emotions"
-      ],
-      "communication_goals": [
-        "Use polite requests",
-        "Discuss news and events",
-        "Handle a phone conversation"
-      ]
-    },
-    {
-      "lesson_number": 89,
-      "title": "Lesson 89",
-      "description": "This lesson will teach key language needed for everyday communication at level 89.",
-      "grammar_points": [],
-      "vocabulary_topics": [
-        "Education",
-        "Daily routines"
-      ],
-      "communication_goals": [
-        "Complain politely",
-        "Ask and answer personal questions",
-        "Talk about likes and dislikes"
-      ]
-    },
-    {
-      "lesson_number": 90,
-      "title": "Lesson 90",
-      "description": "This lesson will teach key language needed for everyday communication at level 90.",
-      "grammar_points": [],
-      "vocabulary_topics": [
-        "Emotions",
-        "Weather"
-      ],
-      "communication_goals": [
-        "Ask and answer personal questions",
-        "Introduce yourself",
-        "Discuss news and events"
-      ]
-    },
-    {
-      "lesson_number": 91,
-      "title": "Lesson 91",
-      "description": "This lesson will teach key language needed for everyday communication at level 91.",
-      "grammar_points": [],
-      "vocabulary_topics": [
-        "City and directions",
-        "Colors"
-      ],
-      "communication_goals": [
-        "Describe people and places",
-        "Express preferences",
-        "Ask for and give directions"
-      ]
-    },
-    {
-      "lesson_number": 92,
-      "title": "Lesson 92",
-      "description": "This lesson will teach key language needed for everyday communication at level 92.",
-      "grammar_points": [],
-      "vocabulary_topics": [
-        "Food and drink",
-        "Airport"
-      ],
-      "communication_goals": [
-        "Introduce yourself",
-        "Talk about health issues",
-        "Talk about hypothetical situations"
-      ]
-    },
-    {
-      "lesson_number": 93,
-      "title": "Lesson 93",
-      "description": "This lesson will teach key language needed for everyday communication at level 93.",
-      "grammar_points": [],
-      "vocabulary_topics": [
-        "Travel",
-        "Body and health"
-      ],
-      "communication_goals": [
-        "Talk about hobbies",
-        "Ask for and give directions",
-        "Make suggestions"
-      ]
-    },
-    {
-      "lesson_number": 94,
-      "title": "Lesson 94",
-      "description": "This lesson will teach key language needed for everyday communication at level 94.",
-      "grammar_points": [],
-      "vocabulary_topics": [
-        "Clothes",
-        "Countries"
-      ],
-      "communication_goals": [
-        "Describe your daily routine",
-        "Give advice",
-        "Express preferences"
-      ]
-    },
-    {
-      "lesson_number": 95,
-      "title": "Lesson 95",
-      "description": "This lesson will teach key language needed for everyday communication at level 95.",
-      "grammar_points": [],
-      "vocabulary_topics": [
-        "Sports",
-        "Weather"
-      ],
-      "communication_goals": [
-        "Express preferences",
-        "Handle a phone conversation",
-        "Discuss news and events"
-      ]
-    },
-    {
-      "lesson_number": 96,
-      "title": "Lesson 96",
-      "description": "This lesson will teach key language needed for everyday communication at level 96.",
-      "grammar_points": [],
-      "vocabulary_topics": [
-        "Transport",
-        "Accommodation"
-      ],
-      "communication_goals": [
-        "Introduce yourself",
-        "Tell a story",
-        "Discuss news and events"
-      ]
-    },
-    {
-      "lesson_number": 97,
-      "title": "Lesson 97",
-      "description": "This lesson will teach key language needed for everyday communication at level 97.",
-      "grammar_points": [],
-      "vocabulary_topics": [
-        "Home",
-        "Accommodation"
-      ],
-      "communication_goals": [
-        "Make suggestions",
-        "Describe people and places",
-        "Talk about your family"
-      ]
-    },
-    {
-      "lesson_number": 98,
-      "title": "Lesson 98",
-      "description": "This lesson will teach key language needed for everyday communication at level 98.",
-      "grammar_points": [],
-      "vocabulary_topics": [
-        "Opinions",
-        "Hobbies"
-      ],
-      "communication_goals": [
-        "Express opinions",
-        "Describe people and places",
-        "Express obligation"
-      ]
-    },
-    {
-      "lesson_number": 99,
-      "title": "Lesson 99",
-      "description": "This lesson will teach key language needed for everyday communication at level 99.",
-      "grammar_points": [],
-      "vocabulary_topics": [
-        "Emotions",
-        "Entertainment"
-      ],
-      "communication_goals": [
-        "Talk about hobbies",
-        "Express obligation",
-        "Describe your daily routine"
-      ]
-    },
-    {
-      "lesson_number": 100,
-      "title": "Lesson 100",
-      "description": "This lesson will teach key language needed for everyday communication at level 100.",
-      "grammar_points": [],
-      "vocabulary_topics": [
-        "Technology",
-        "Relationships"
-      ],
-      "communication_goals": [
-        "Describe problems",
-        "Tell a story",
-        "Talk about hobbies"
-      ]
-    }
-  ]
+  {
+    "lesson_number": 1,
+    "title": "Lesson 1",
+    "description": "This lesson will teach key language needed for everyday communication at level 1.",
+    "grammar_points": [
+      "Articles (a/an/the)",
+      "Singular and plural nouns"
+    ],
+    "vocabulary_topics": [
+      "Hobbies",
+      "Opinions"
+    ],
+    "communication_goals": [
+      "Discuss news and events",
+      "Talk about hobbies",
+      "Describe problems"
+    ]
+  },
+  {
+    "lesson_number": 2,
+    "title": "Lesson 2",
+    "description": "This lesson will teach key language needed for everyday communication at level 2.",
+    "grammar_points": [
+      "Simple present (affirmative)"
+    ],
+    "vocabulary_topics": [
+      "Numbers",
+      "Time"
+    ],
+    "communication_goals": [
+      "Talk about past experiences",
+      "Tell a story",
+      "Describe problems"
+    ]
+  },
+  {
+    "lesson_number": 3,
+    "title": "Lesson 3",
+    "description": "This lesson will teach key language needed for everyday communication at level 3.",
+    "grammar_points": [
+      "Simple present (negative and questions)"
+    ],
+    "vocabulary_topics": [
+      "Celebrations",
+      "City and directions"
+    ],
+    "communication_goals": [
+      "Handle a phone conversation",
+      "Talk about likes and dislikes",
+      "Make comparisons"
+    ]
+  },
+  {
+    "lesson_number": 4,
+    "title": "Lesson 4",
+    "description": "This lesson will teach key language needed for everyday communication at level 4.",
+    "grammar_points": [
+      "Possessive adjectives"
+    ],
+    "vocabulary_topics": [
+      "Banking",
+      "News"
+    ],
+    "communication_goals": [
+      "Express preferences",
+      "Talk about your family",
+      "Tell a story"
+    ]
+  },
+  {
+    "lesson_number": 5,
+    "title": "Lesson 5",
+    "description": "This lesson will teach key language needed for everyday communication at level 5.",
+    "grammar_points": [
+      "There is / There are"
+    ],
+    "vocabulary_topics": [
+      "Social media",
+      "Restaurants"
+    ],
+    "communication_goals": [
+      "Use polite requests",
+      "Discuss news and events",
+      "Give advice"
+    ]
+  },
+  {
+    "lesson_number": 6,
+    "title": "Lesson 6",
+    "description": "This lesson will teach key language needed for everyday communication at level 6.",
+    "grammar_points": [
+      "Prepositions of place"
+    ],
+    "vocabulary_topics": [
+      "Accommodation",
+      "Nature"
+    ],
+    "communication_goals": [
+      "Describe your daily routine",
+      "Talk about health issues",
+      "Tell a story"
+    ]
+  },
+  {
+    "lesson_number": 7,
+    "title": "Lesson 7",
+    "description": "This lesson will teach key language needed for everyday communication at level 7.",
+    "grammar_points": [
+      "Imperatives"
+    ],
+    "vocabulary_topics": [
+      "School",
+      "Shopping"
+    ],
+    "communication_goals": [
+      "Express obligation",
+      "Express preferences",
+      "Make comparisons"
+    ]
+  },
+  {
+    "lesson_number": 8,
+    "title": "Lesson 8",
+    "description": "This lesson will teach key language needed for everyday communication at level 8.",
+    "grammar_points": [
+      "Modal verb 'can' (ability)"
+    ],
+    "vocabulary_topics": [
+      "Opinions",
+      "Numbers"
+    ],
+    "communication_goals": [
+      "Talk about health issues",
+      "Describe people and places",
+      "Discuss news and events"
+    ]
+  },
+  {
+    "lesson_number": 9,
+    "title": "Lesson 9",
+    "description": "This lesson will teach key language needed for everyday communication at level 9.",
+    "grammar_points": [
+      "Present continuous"
+    ],
+    "vocabulary_topics": [
+      "Transport",
+      "Daily routines"
+    ],
+    "communication_goals": [
+      "Talk about hobbies",
+      "Talk about hypothetical situations",
+      "Describe people and places"
+    ]
+  },
+  {
+    "lesson_number": 10,
+    "title": "Lesson 10",
+    "description": "This lesson will teach key language needed for everyday communication at level 10.",
+    "grammar_points": [
+      "Question words (what, where, when, etc.)"
+    ],
+    "vocabulary_topics": [
+      "Home",
+      "Greetings"
+    ],
+    "communication_goals": [
+      "Talk about your family",
+      "Express preferences",
+      "Make comparisons"
+    ]
+  },
+  {
+    "lesson_number": 11,
+    "title": "Lesson 11",
+    "description": "This lesson will teach key language needed for everyday communication at level 11.",
+    "grammar_points": [
+      "Countable and uncountable nouns"
+    ],
+    "vocabulary_topics": [
+      "Travel",
+      "Banking"
+    ],
+    "communication_goals": [
+      "Handle a phone conversation",
+      "Introduce yourself",
+      "Talk about health issues"
+    ]
+  },
+  {
+    "lesson_number": 12,
+    "title": "Lesson 12",
+    "description": "This lesson will teach key language needed for everyday communication at level 12.",
+    "grammar_points": [
+      "Some / Any"
+    ],
+    "vocabulary_topics": [
+      "Nature",
+      "Technology"
+    ],
+    "communication_goals": [
+      "Talk about your family",
+      "Express obligation",
+      "Make future plans"
+    ]
+  },
+  {
+    "lesson_number": 13,
+    "title": "Lesson 13",
+    "description": "This lesson will teach key language needed for everyday communication at level 13.",
+    "grammar_points": [
+      "Much / Many"
+    ],
+    "vocabulary_topics": [
+      "Restaurants",
+      "Greetings"
+    ],
+    "communication_goals": [
+      "Ask and answer personal questions",
+      "Tell a story",
+      "Talk about your family"
+    ]
+  },
+  {
+    "lesson_number": 14,
+    "title": "Lesson 14",
+    "description": "This lesson will teach key language needed for everyday communication at level 14.",
+    "grammar_points": [
+      "Comparatives"
+    ],
+    "vocabulary_topics": [
+      "Body and health",
+      "Daily routines"
+    ],
+    "communication_goals": [
+      "Talk about likes and dislikes",
+      "Use polite requests",
+      "Order food and drinks"
+    ]
+  },
+  {
+    "lesson_number": 15,
+    "title": "Lesson 15",
+    "description": "This lesson will teach key language needed for everyday communication at level 15.",
+    "grammar_points": [
+      "Superlatives"
+    ],
+    "vocabulary_topics": [
+      "Environment",
+      "Banking"
+    ],
+    "communication_goals": [
+      "Express preferences",
+      "Make future plans",
+      "Order food and drinks"
+    ]
+  },
+  {
+    "lesson_number": 16,
+    "title": "Lesson 16",
+    "description": "This lesson will teach key language needed for everyday communication at level 16.",
+    "grammar_points": [
+      "Past simple (regular verbs)"
+    ],
+    "vocabulary_topics": [
+      "Clothes",
+      "Environment"
+    ],
+    "communication_goals": [
+      "Describe problems",
+      "Make suggestions",
+      "Ask and answer personal questions"
+    ]
+  },
+  {
+    "lesson_number": 17,
+    "title": "Lesson 17",
+    "description": "This lesson will teach key language needed for everyday communication at level 17.",
+    "grammar_points": [
+      "Past simple (irregular verbs)"
+    ],
+    "vocabulary_topics": [
+      "Emotions",
+      "Transport"
+    ],
+    "communication_goals": [
+      "Make future plans",
+      "Express preferences",
+      "Handle a phone conversation"
+    ]
+  },
+  {
+    "lesson_number": 18,
+    "title": "Lesson 18",
+    "description": "This lesson will teach key language needed for everyday communication at level 18.",
+    "grammar_points": [
+      "Past simple (questions and negatives)"
+    ],
+    "vocabulary_topics": [
+      "News",
+      "Shopping"
+    ],
+    "communication_goals": [
+      "Express opinions",
+      "Express preferences",
+      "Give advice"
+    ]
+  },
+  {
+    "lesson_number": 19,
+    "title": "Lesson 19",
+    "description": "This lesson will teach key language needed for everyday communication at level 19.",
+    "grammar_points": [
+      "Adverbs of frequency"
+    ],
+    "vocabulary_topics": [
+      "Days and months",
+      "Celebrations"
+    ],
+    "communication_goals": [
+      "Make suggestions",
+      "Express preferences",
+      "Describe your daily routine"
+    ]
+  },
+  {
+    "lesson_number": 20,
+    "title": "Lesson 20",
+    "description": "This lesson will teach key language needed for everyday communication at level 20.",
+    "grammar_points": [
+      "Like + gerund"
+    ],
+    "vocabulary_topics": [
+      "Time",
+      "Environment"
+    ],
+    "communication_goals": [
+      "Complain politely",
+      "Discuss news and events",
+      "Make future plans"
+    ]
+  },
+  {
+    "lesson_number": 21,
+    "title": "Lesson 21",
+    "description": "This lesson will teach key language needed for everyday communication at level 21.",
+    "grammar_points": [
+      "Future with 'going to'"
+    ],
+    "vocabulary_topics": [
+      "Environment",
+      "School"
+    ],
+    "communication_goals": [
+      "Describe your daily routine",
+      "Talk about your family",
+      "Express opinions"
+    ]
+  },
+  {
+    "lesson_number": 22,
+    "title": "Lesson 22",
+    "description": "This lesson will teach key language needed for everyday communication at level 22.",
+    "grammar_points": [
+      "Future with 'will'"
+    ],
+    "vocabulary_topics": [
+      "Airport",
+      "Home"
+    ],
+    "communication_goals": [
+      "Make comparisons",
+      "Handle a phone conversation",
+      "Give advice"
+    ]
+  },
+  {
+    "lesson_number": 23,
+    "title": "Lesson 23",
+    "description": "This lesson will teach key language needed for everyday communication at level 23.",
+    "grammar_points": [
+      "Object pronouns"
+    ],
+    "vocabulary_topics": [
+      "Transport",
+      "Opinions"
+    ],
+    "communication_goals": [
+      "Give advice",
+      "Ask for and give directions",
+      "Talk about health issues"
+    ]
+  },
+  {
+    "lesson_number": 24,
+    "title": "Lesson 24",
+    "description": "This lesson will teach key language needed for everyday communication at level 24.",
+    "grammar_points": [
+      "Should / shouldn't"
+    ],
+    "vocabulary_topics": [
+      "Education",
+      "Shopping"
+    ],
+    "communication_goals": [
+      "Discuss news and events",
+      "Talk about past experiences",
+      "Talk about hypothetical situations"
+    ]
+  },
+  {
+    "lesson_number": 25,
+    "title": "Lesson 25",
+    "description": "This lesson will teach key language needed for everyday communication at level 25.",
+    "grammar_points": [
+      "Present perfect (introduction)"
+    ],
+    "vocabulary_topics": [
+      "Home",
+      "Jobs"
+    ],
+    "communication_goals": [
+      "Make future plans",
+      "Talk about hobbies",
+      "Describe your daily routine"
+    ]
+  },
+  {
+    "lesson_number": 26,
+    "title": "Lesson 26",
+    "description": "This lesson will teach key language needed for everyday communication at level 26.",
+    "grammar_points": [
+      "Present perfect vs past simple"
+    ],
+    "vocabulary_topics": [
+      "Colors",
+      "Time"
+    ],
+    "communication_goals": [
+      "Give advice",
+      "Talk about hobbies",
+      "Discuss news and events"
+    ]
+  },
+  {
+    "lesson_number": 27,
+    "title": "Lesson 27",
+    "description": "This lesson will teach key language needed for everyday communication at level 27.",
+    "grammar_points": [
+      "Too / Enough"
+    ],
+    "vocabulary_topics": [
+      "Emergencies",
+      "Body and health"
+    ],
+    "communication_goals": [
+      "Order food and drinks",
+      "Handle a phone conversation",
+      "Give advice"
+    ]
+  },
+  {
+    "lesson_number": 28,
+    "title": "Lesson 28",
+    "description": "This lesson will teach key language needed for everyday communication at level 28.",
+    "grammar_points": [
+      "So / Such"
+    ],
+    "vocabulary_topics": [
+      "News",
+      "Travel"
+    ],
+    "communication_goals": [
+      "Introduce yourself",
+      "Order food and drinks",
+      "Ask and answer personal questions"
+    ]
+  },
+  {
+    "lesson_number": 29,
+    "title": "Lesson 29",
+    "description": "This lesson will teach key language needed for everyday communication at level 29.",
+    "grammar_points": [
+      "First conditional"
+    ],
+    "vocabulary_topics": [
+      "Clothes",
+      "Colors"
+    ],
+    "communication_goals": [
+      "Make comparisons",
+      "Express opinions",
+      "Order food and drinks"
+    ]
+  },
+  {
+    "lesson_number": 30,
+    "title": "Lesson 30",
+    "description": "This lesson will teach key language needed for everyday communication at level 30.",
+    "grammar_points": [
+      "Second conditional"
+    ],
+    "vocabulary_topics": [
+      "Numbers",
+      "Restaurants"
+    ],
+    "communication_goals": [
+      "Describe problems",
+      "Introduce yourself",
+      "Make future plans"
+    ]
+  },
+  {
+    "lesson_number": 31,
+    "title": "Lesson 31",
+    "description": "This lesson will teach key language needed for everyday communication at level 31.",
+    "grammar_points": [
+      "Modal verbs (must, have to, need to)"
+    ],
+    "vocabulary_topics": [
+      "Daily routines",
+      "Restaurants"
+    ],
+    "communication_goals": [
+      "Express preferences",
+      "Give advice",
+      "Talk about likes and dislikes"
+    ]
+  },
+  {
+    "lesson_number": 32,
+    "title": "Lesson 32",
+    "description": "This lesson will teach key language needed for everyday communication at level 32.",
+    "grammar_points": [
+      "Reflexive pronouns"
+    ],
+    "vocabulary_topics": [
+      "Clothes",
+      "Time"
+    ],
+    "communication_goals": [
+      "Complain politely",
+      "Describe your daily routine",
+      "Ask and answer personal questions"
+    ]
+  },
+  {
+    "lesson_number": 33,
+    "title": "Lesson 33",
+    "description": "This lesson will teach key language needed for everyday communication at level 33.",
+    "grammar_points": [
+      "Gerunds and infinitives"
+    ],
+    "vocabulary_topics": [
+      "Sports",
+      "Airport"
+    ],
+    "communication_goals": [
+      "Handle a phone conversation",
+      "Complain politely",
+      "Talk about health issues"
+    ]
+  },
+  {
+    "lesson_number": 34,
+    "title": "Lesson 34",
+    "description": "This lesson will teach key language needed for everyday communication at level 34.",
+    "grammar_points": [
+      "Relative clauses (who, which, that)"
+    ],
+    "vocabulary_topics": [
+      "Culture",
+      "Emotions"
+    ],
+    "communication_goals": [
+      "Ask and answer personal questions",
+      "Complain politely",
+      "Handle a phone conversation"
+    ]
+  },
+  {
+    "lesson_number": 35,
+    "title": "Lesson 35",
+    "description": "This lesson will teach key language needed for everyday communication at level 35.",
+    "grammar_points": [
+      "Used to"
+    ],
+    "vocabulary_topics": [
+      "Greetings",
+      "Food and drink"
+    ],
+    "communication_goals": [
+      "Ask for and give directions",
+      "Talk about hobbies",
+      "Ask and answer personal questions"
+    ]
+  },
+  {
+    "lesson_number": 36,
+    "title": "Lesson 36",
+    "description": "This lesson will teach key language needed for everyday communication at level 36.",
+    "grammar_points": [
+      "Past continuous"
+    ],
+    "vocabulary_topics": [
+      "Entertainment",
+      "Social media"
+    ],
+    "communication_goals": [
+      "Ask for and give directions",
+      "Talk about your family",
+      "Express obligation"
+    ]
+  },
+  {
+    "lesson_number": 37,
+    "title": "Lesson 37",
+    "description": "This lesson will teach key language needed for everyday communication at level 37.",
+    "grammar_points": [
+      "Passive voice (present and past)"
+    ],
+    "vocabulary_topics": [
+      "Environment",
+      "Shopping"
+    ],
+    "communication_goals": [
+      "Express opinions",
+      "Express preferences",
+      "Make suggestions"
+    ]
+  },
+  {
+    "lesson_number": 38,
+    "title": "Lesson 38",
+    "description": "This lesson will teach key language needed for everyday communication at level 38.",
+    "grammar_points": [
+      "Reported speech (statements)"
+    ],
+    "vocabulary_topics": [
+      "Countries",
+      "Shopping"
+    ],
+    "communication_goals": [
+      "Give advice",
+      "Talk about past experiences",
+      "Introduce yourself"
+    ]
+  },
+  {
+    "lesson_number": 39,
+    "title": "Lesson 39",
+    "description": "This lesson will teach key language needed for everyday communication at level 39.",
+    "grammar_points": [
+      "Question tags"
+    ],
+    "vocabulary_topics": [
+      "Travel",
+      "Workplace"
+    ],
+    "communication_goals": [
+      "Express preferences",
+      "Talk about past experiences",
+      "Talk about hypothetical situations"
+    ]
+  },
+  {
+    "lesson_number": 40,
+    "title": "Lesson 40",
+    "description": "This lesson will teach key language needed for everyday communication at level 40.",
+    "grammar_points": [
+      "Indirect questions"
+    ],
+    "vocabulary_topics": [
+      "Countries",
+      "Airport"
+    ],
+    "communication_goals": [
+      "Introduce yourself",
+      "Ask for and give directions",
+      "Give advice"
+    ]
+  },
+  {
+    "lesson_number": 41,
+    "title": "Lesson 41",
+    "description": "This lesson will teach key language needed for everyday communication at level 41.",
+    "grammar_points": [
+      "Connecting words (and, but, because, etc.)"
+    ],
+    "vocabulary_topics": [
+      "Accommodation",
+      "Emotions"
+    ],
+    "communication_goals": [
+      "Talk about likes and dislikes",
+      "Express opinions",
+      "Ask and answer personal questions"
+    ]
+  },
+  {
+    "lesson_number": 42,
+    "title": "Lesson 42",
+    "description": "This lesson will teach key language needed for everyday communication at level 42.",
+    "grammar_points": [
+      "Making comparisons (as...as)"
+    ],
+    "vocabulary_topics": [
+      "Time",
+      "Relationships"
+    ],
+    "communication_goals": [
+      "Talk about health issues",
+      "Describe problems",
+      "Describe your daily routine"
+    ]
+  },
+  {
+    "lesson_number": 43,
+    "title": "Lesson 43",
+    "description": "This lesson will teach key language needed for everyday communication at level 43.",
+    "grammar_points": [
+      "Quantifiers (a few, a little, etc.)"
+    ],
+    "vocabulary_topics": [
+      "Opinions",
+      "Culture"
+    ],
+    "communication_goals": [
+      "Talk about your family",
+      "Tell a story",
+      "Describe people and places"
+    ]
+  },
+  {
+    "lesson_number": 44,
+    "title": "Lesson 44",
+    "description": "This lesson will teach key language needed for everyday communication at level 44.",
+    "grammar_points": [
+      "Present perfect continuous"
+    ],
+    "vocabulary_topics": [
+      "Time",
+      "Jobs"
+    ],
+    "communication_goals": [
+      "Talk about your family",
+      "Express preferences",
+      "Handle a phone conversation"
+    ]
+  },
+  {
+    "lesson_number": 45,
+    "title": "Lesson 45",
+    "description": "This lesson will teach key language needed for everyday communication at level 45.",
+    "grammar_points": [
+      "Future continuous"
+    ],
+    "vocabulary_topics": [
+      "Numbers",
+      "Greetings"
+    ],
+    "communication_goals": [
+      "Introduce yourself",
+      "Discuss news and events",
+      "Complain politely"
+    ]
+  },
+  {
+    "lesson_number": 46,
+    "title": "Lesson 46",
+    "description": "This lesson will teach key language needed for everyday communication at level 46.",
+    "grammar_points": [
+      "Past perfect"
+    ],
+    "vocabulary_topics": [
+      "Education",
+      "Clothes"
+    ],
+    "communication_goals": [
+      "Complain politely",
+      "Express obligation",
+      "Express preferences"
+    ]
+  },
+  {
+    "lesson_number": 47,
+    "title": "Lesson 47",
+    "description": "This lesson will teach key language needed for everyday communication at level 47.",
+    "grammar_points": [
+      "Second conditional review"
+    ],
+    "vocabulary_topics": [
+      "School",
+      "Days and months"
+    ],
+    "communication_goals": [
+      "Give advice",
+      "Describe problems",
+      "Introduce yourself"
+    ]
+  },
+  {
+    "lesson_number": 48,
+    "title": "Lesson 48",
+    "description": "This lesson will teach key language needed for everyday communication at level 48.",
+    "grammar_points": [
+      "Wish / If only"
+    ],
+    "vocabulary_topics": [
+      "Greetings",
+      "Environment"
+    ],
+    "communication_goals": [
+      "Express preferences",
+      "Talk about hypothetical situations",
+      "Order food and drinks"
+    ]
+  },
+  {
+    "lesson_number": 49,
+    "title": "Lesson 49",
+    "description": "This lesson will teach key language needed for everyday communication at level 49.",
+    "grammar_points": [
+      "Narrative tenses"
+    ],
+    "vocabulary_topics": [
+      "Days and months",
+      "Culture"
+    ],
+    "communication_goals": [
+      "Express preferences",
+      "Talk about health issues",
+      "Ask for and give directions"
+    ]
+  },
+  {
+    "lesson_number": 50,
+    "title": "Lesson 50",
+    "description": "This lesson will teach key language needed for everyday communication at level 50.",
+    "grammar_points": [
+      "Phrasal verbs (introduction)"
+    ],
+    "vocabulary_topics": [
+      "Jobs",
+      "Environment"
+    ],
+    "communication_goals": [
+      "Make future plans",
+      "Express opinions",
+      "Talk about likes and dislikes"
+    ]
+  },
+  {
+    "lesson_number": 51,
+    "title": "Lesson 51",
+    "description": "This lesson will teach key language needed for everyday communication at level 51.",
+    "grammar_points": [
+      "Collocations"
+    ],
+    "vocabulary_topics": [
+      "Hobbies",
+      "Social media"
+    ],
+    "communication_goals": [
+      "Make future plans",
+      "Order food and drinks",
+      "Give advice"
+    ]
+  },
+  {
+    "lesson_number": 52,
+    "title": "Lesson 52",
+    "description": "This lesson will teach key language needed for everyday communication at level 52.",
+    "grammar_points": [
+      "Modals of deduction (must, might, can't)"
+    ],
+    "vocabulary_topics": [
+      "Food and drink",
+      "Numbers"
+    ],
+    "communication_goals": [
+      "Talk about hobbies",
+      "Talk about health issues",
+      "Talk about hypothetical situations"
+    ]
+  },
+  {
+    "lesson_number": 53,
+    "title": "Lesson 53",
+    "description": "This lesson will teach key language needed for everyday communication at level 53.",
+    "grammar_points": [
+      "Reported speech (questions and commands)"
+    ],
+    "vocabulary_topics": [
+      "Home",
+      "Jobs"
+    ],
+    "communication_goals": [
+      "Express opinions",
+      "Talk about hobbies",
+      "Talk about past experiences"
+    ]
+  },
+  {
+    "lesson_number": 54,
+    "title": "Lesson 54",
+    "description": "This lesson will teach key language needed for everyday communication at level 54.",
+    "grammar_points": [
+      "Passive voice (future and modal)"
+    ],
+    "vocabulary_topics": [
+      "Food and drink",
+      "Emotions"
+    ],
+    "communication_goals": [
+      "Describe your daily routine",
+      "Describe problems",
+      "Express opinions"
+    ]
+  },
+  {
+    "lesson_number": 55,
+    "title": "Lesson 55",
+    "description": "This lesson will teach key language needed for everyday communication at level 55.",
+    "grammar_points": [
+      "Mixed conditionals"
+    ],
+    "vocabulary_topics": [
+      "Technology",
+      "Entertainment"
+    ],
+    "communication_goals": [
+      "Talk about hypothetical situations",
+      "Express obligation",
+      "Talk about health issues"
+    ]
+  },
+  {
+    "lesson_number": 56,
+    "title": "Lesson 56",
+    "description": "This lesson will teach key language needed for everyday communication at level 56.",
+    "grammar_points": [
+      "Subject pronouns",
+      "Verb 'to be' (present simple)"
+    ],
+    "vocabulary_topics": [
+      "Jobs",
+      "Numbers"
+    ],
+    "communication_goals": [
+      "Make future plans",
+      "Talk about health issues",
+      "Make suggestions"
+    ]
+  },
+  {
+    "lesson_number": 57,
+    "title": "Lesson 57",
+    "description": "This lesson will teach key language needed for everyday communication at level 57.",
+    "grammar_points": [],
+    "vocabulary_topics": [
+      "Food and drink",
+      "Days and months"
+    ],
+    "communication_goals": [
+      "Describe your daily routine",
+      "Talk about hypothetical situations",
+      "Describe problems"
+    ]
+  },
+  {
+    "lesson_number": 58,
+    "title": "Lesson 58",
+    "description": "This lesson will teach key language needed for everyday communication at level 58.",
+    "grammar_points": [],
+    "vocabulary_topics": [
+      "Jobs",
+      "Airport"
+    ],
+    "communication_goals": [
+      "Discuss news and events",
+      "Make future plans",
+      "Handle a phone conversation"
+    ]
+  },
+  {
+    "lesson_number": 59,
+    "title": "Lesson 59",
+    "description": "This lesson will teach key language needed for everyday communication at level 59.",
+    "grammar_points": [],
+    "vocabulary_topics": [
+      "Culture",
+      "Workplace"
+    ],
+    "communication_goals": [
+      "Ask and answer personal questions",
+      "Ask for and give directions",
+      "Make comparisons"
+    ]
+  },
+  {
+    "lesson_number": 60,
+    "title": "Lesson 60",
+    "description": "This lesson will teach key language needed for everyday communication at level 60.",
+    "grammar_points": [],
+    "vocabulary_topics": [
+      "Social media",
+      "Restaurants"
+    ],
+    "communication_goals": [
+      "Handle a phone conversation",
+      "Describe people and places",
+      "Express obligation"
+    ]
+  },
+  {
+    "lesson_number": 61,
+    "title": "Lesson 61",
+    "description": "This lesson will teach key language needed for everyday communication at level 61.",
+    "grammar_points": [],
+    "vocabulary_topics": [
+      "Entertainment",
+      "Banking"
+    ],
+    "communication_goals": [
+      "Talk about past experiences",
+      "Introduce yourself",
+      "Talk about hypothetical situations"
+    ]
+  },
+  {
+    "lesson_number": 62,
+    "title": "Lesson 62",
+    "description": "This lesson will teach key language needed for everyday communication at level 62.",
+    "grammar_points": [],
+    "vocabulary_topics": [
+      "Emotions",
+      "Food and drink"
+    ],
+    "communication_goals": [
+      "Make comparisons",
+      "Discuss news and events",
+      "Express opinions"
+    ]
+  },
+  {
+    "lesson_number": 63,
+    "title": "Lesson 63",
+    "description": "This lesson will teach key language needed for everyday communication at level 63.",
+    "grammar_points": [],
+    "vocabulary_topics": [
+      "Celebrations",
+      "Daily routines"
+    ],
+    "communication_goals": [
+      "Express preferences",
+      "Use polite requests",
+      "Talk about likes and dislikes"
+    ]
+  },
+  {
+    "lesson_number": 64,
+    "title": "Lesson 64",
+    "description": "This lesson will teach key language needed for everyday communication at level 64.",
+    "grammar_points": [],
+    "vocabulary_topics": [
+      "Days and months",
+      "Travel"
+    ],
+    "communication_goals": [
+      "Talk about likes and dislikes",
+      "Express preferences",
+      "Talk about past experiences"
+    ]
+  },
+  {
+    "lesson_number": 65,
+    "title": "Lesson 65",
+    "description": "This lesson will teach key language needed for everyday communication at level 65.",
+    "grammar_points": [],
+    "vocabulary_topics": [
+      "Holidays",
+      "Shopping"
+    ],
+    "communication_goals": [
+      "Ask and answer personal questions",
+      "Describe problems",
+      "Order food and drinks"
+    ]
+  },
+  {
+    "lesson_number": 66,
+    "title": "Lesson 66",
+    "description": "This lesson will teach key language needed for everyday communication at level 66.",
+    "grammar_points": [],
+    "vocabulary_topics": [
+      "Banking",
+      "City and directions"
+    ],
+    "communication_goals": [
+      "Make future plans",
+      "Use polite requests",
+      "Talk about your family"
+    ]
+  },
+  {
+    "lesson_number": 67,
+    "title": "Lesson 67",
+    "description": "This lesson will teach key language needed for everyday communication at level 67.",
+    "grammar_points": [],
+    "vocabulary_topics": [
+      "Environment",
+      "Celebrations"
+    ],
+    "communication_goals": [
+      "Express preferences",
+      "Order food and drinks",
+      "Talk about past experiences"
+    ]
+  },
+  {
+    "lesson_number": 68,
+    "title": "Lesson 68",
+    "description": "This lesson will teach key language needed for everyday communication at level 68.",
+    "grammar_points": [],
+    "vocabulary_topics": [
+      "Days and months",
+      "Celebrations"
+    ],
+    "communication_goals": [
+      "Give advice",
+      "Tell a story",
+      "Handle a phone conversation"
+    ]
+  },
+  {
+    "lesson_number": 69,
+    "title": "Lesson 69",
+    "description": "This lesson will teach key language needed for everyday communication at level 69.",
+    "grammar_points": [],
+    "vocabulary_topics": [
+      "Sports",
+      "Jobs"
+    ],
+    "communication_goals": [
+      "Make comparisons",
+      "Discuss news and events",
+      "Talk about hobbies"
+    ]
+  },
+  {
+    "lesson_number": 70,
+    "title": "Lesson 70",
+    "description": "This lesson will teach key language needed for everyday communication at level 70.",
+    "grammar_points": [],
+    "vocabulary_topics": [
+      "Sports",
+      "Clothes"
+    ],
+    "communication_goals": [
+      "Use polite requests",
+      "Describe your daily routine",
+      "Express obligation"
+    ]
+  },
+  {
+    "lesson_number": 71,
+    "title": "Lesson 71",
+    "description": "This lesson will teach key language needed for everyday communication at level 71.",
+    "grammar_points": [],
+    "vocabulary_topics": [
+      "Clothes",
+      "Education"
+    ],
+    "communication_goals": [
+      "Tell a story",
+      "Talk about past experiences",
+      "Talk about likes and dislikes"
+    ]
+  },
+  {
+    "lesson_number": 72,
+    "title": "Lesson 72",
+    "description": "This lesson will teach key language needed for everyday communication at level 72.",
+    "grammar_points": [],
+    "vocabulary_topics": [
+      "Home",
+      "Celebrations"
+    ],
+    "communication_goals": [
+      "Describe people and places",
+      "Describe your daily routine",
+      "Complain politely"
+    ]
+  },
+  {
+    "lesson_number": 73,
+    "title": "Lesson 73",
+    "description": "This lesson will teach key language needed for everyday communication at level 73.",
+    "grammar_points": [],
+    "vocabulary_topics": [
+      "Nature",
+      "Jobs"
+    ],
+    "communication_goals": [
+      "Talk about likes and dislikes",
+      "Describe people and places",
+      "Describe your daily routine"
+    ]
+  },
+  {
+    "lesson_number": 74,
+    "title": "Lesson 74",
+    "description": "This lesson will teach key language needed for everyday communication at level 74.",
+    "grammar_points": [],
+    "vocabulary_topics": [
+      "Daily routines",
+      "Environment"
+    ],
+    "communication_goals": [
+      "Express preferences",
+      "Ask for and give directions",
+      "Express opinions"
+    ]
+  },
+  {
+    "lesson_number": 75,
+    "title": "Lesson 75",
+    "description": "This lesson will teach key language needed for everyday communication at level 75.",
+    "grammar_points": [],
+    "vocabulary_topics": [
+      "Airport",
+      "Relationships"
+    ],
+    "communication_goals": [
+      "Discuss news and events",
+      "Use polite requests",
+      "Talk about likes and dislikes"
+    ]
+  },
+  {
+    "lesson_number": 76,
+    "title": "Lesson 76",
+    "description": "This lesson will teach key language needed for everyday communication at level 76.",
+    "grammar_points": [],
+    "vocabulary_topics": [
+      "Days and months",
+      "Food and drink"
+    ],
+    "communication_goals": [
+      "Talk about your family",
+      "Discuss news and events",
+      "Express preferences"
+    ]
+  },
+  {
+    "lesson_number": 77,
+    "title": "Lesson 77",
+    "description": "This lesson will teach key language needed for everyday communication at level 77.",
+    "grammar_points": [],
+    "vocabulary_topics": [
+      "Education",
+      "Colors"
+    ],
+    "communication_goals": [
+      "Talk about past experiences",
+      "Talk about hypothetical situations",
+      "Ask for and give directions"
+    ]
+  },
+  {
+    "lesson_number": 78,
+    "title": "Lesson 78",
+    "description": "This lesson will teach key language needed for everyday communication at level 78.",
+    "grammar_points": [],
+    "vocabulary_topics": [
+      "Jobs",
+      "Body and health"
+    ],
+    "communication_goals": [
+      "Make future plans",
+      "Talk about hobbies",
+      "Express preferences"
+    ]
+  },
+  {
+    "lesson_number": 79,
+    "title": "Lesson 79",
+    "description": "This lesson will teach key language needed for everyday communication at level 79.",
+    "grammar_points": [],
+    "vocabulary_topics": [
+      "Time",
+      "Transport"
+    ],
+    "communication_goals": [
+      "Make future plans",
+      "Describe problems",
+      "Ask for and give directions"
+    ]
+  },
+  {
+    "lesson_number": 80,
+    "title": "Lesson 80",
+    "description": "This lesson will teach key language needed for everyday communication at level 80.",
+    "grammar_points": [],
+    "vocabulary_topics": [
+      "Banking",
+      "Relationships"
+    ],
+    "communication_goals": [
+      "Handle a phone conversation",
+      "Talk about your family",
+      "Order food and drinks"
+    ]
+  },
+  {
+    "lesson_number": 81,
+    "title": "Lesson 81",
+    "description": "This lesson will teach key language needed for everyday communication at level 81.",
+    "grammar_points": [],
+    "vocabulary_topics": [
+      "Nature",
+      "Holidays"
+    ],
+    "communication_goals": [
+      "Talk about past experiences",
+      "Handle a phone conversation",
+      "Give advice"
+    ]
+  },
+  {
+    "lesson_number": 82,
+    "title": "Lesson 82",
+    "description": "This lesson will teach key language needed for everyday communication at level 82.",
+    "grammar_points": [],
+    "vocabulary_topics": [
+      "Education",
+      "Clothes"
+    ],
+    "communication_goals": [
+      "Discuss news and events",
+      "Ask and answer personal questions",
+      "Make future plans"
+    ]
+  },
+  {
+    "lesson_number": 83,
+    "title": "Lesson 83",
+    "description": "This lesson will teach key language needed for everyday communication at level 83.",
+    "grammar_points": [],
+    "vocabulary_topics": [
+      "Jobs",
+      "Hobbies"
+    ],
+    "communication_goals": [
+      "Describe problems",
+      "Describe your daily routine",
+      "Talk about your family"
+    ]
+  },
+  {
+    "lesson_number": 84,
+    "title": "Lesson 84",
+    "description": "This lesson will teach key language needed for everyday communication at level 84.",
+    "grammar_points": [],
+    "vocabulary_topics": [
+      "Social media",
+      "Accommodation"
+    ],
+    "communication_goals": [
+      "Introduce yourself",
+      "Express opinions",
+      "Discuss news and events"
+    ]
+  },
+  {
+    "lesson_number": 85,
+    "title": "Lesson 85",
+    "description": "This lesson will teach key language needed for everyday communication at level 85.",
+    "grammar_points": [],
+    "vocabulary_topics": [
+      "Colors",
+      "Days and months"
+    ],
+    "communication_goals": [
+      "Express preferences",
+      "Talk about likes and dislikes",
+      "Describe problems"
+    ]
+  },
+  {
+    "lesson_number": 86,
+    "title": "Lesson 86",
+    "description": "This lesson will teach key language needed for everyday communication at level 86.",
+    "grammar_points": [],
+    "vocabulary_topics": [
+      "Time",
+      "Relationships"
+    ],
+    "communication_goals": [
+      "Describe problems",
+      "Handle a phone conversation",
+      "Use polite requests"
+    ]
+  },
+  {
+    "lesson_number": 87,
+    "title": "Lesson 87",
+    "description": "This lesson will teach key language needed for everyday communication at level 87.",
+    "grammar_points": [],
+    "vocabulary_topics": [
+      "Emotions",
+      "Holidays"
+    ],
+    "communication_goals": [
+      "Talk about health issues",
+      "Talk about past experiences",
+      "Make comparisons"
+    ]
+  },
+  {
+    "lesson_number": 88,
+    "title": "Lesson 88",
+    "description": "This lesson will teach key language needed for everyday communication at level 88.",
+    "grammar_points": [],
+    "vocabulary_topics": [
+      "Emergencies",
+      "Emotions"
+    ],
+    "communication_goals": [
+      "Use polite requests",
+      "Discuss news and events",
+      "Handle a phone conversation"
+    ]
+  },
+  {
+    "lesson_number": 89,
+    "title": "Lesson 89",
+    "description": "This lesson will teach key language needed for everyday communication at level 89.",
+    "grammar_points": [],
+    "vocabulary_topics": [
+      "Education",
+      "Daily routines"
+    ],
+    "communication_goals": [
+      "Complain politely",
+      "Ask and answer personal questions",
+      "Talk about likes and dislikes"
+    ]
+  },
+  {
+    "lesson_number": 90,
+    "title": "Lesson 90",
+    "description": "This lesson will teach key language needed for everyday communication at level 90.",
+    "grammar_points": [],
+    "vocabulary_topics": [
+      "Emotions",
+      "Weather"
+    ],
+    "communication_goals": [
+      "Ask and answer personal questions",
+      "Introduce yourself",
+      "Discuss news and events"
+    ]
+  },
+  {
+    "lesson_number": 91,
+    "title": "Lesson 91",
+    "description": "This lesson will teach key language needed for everyday communication at level 91.",
+    "grammar_points": [],
+    "vocabulary_topics": [
+      "City and directions",
+      "Colors"
+    ],
+    "communication_goals": [
+      "Describe people and places",
+      "Express preferences",
+      "Ask for and give directions"
+    ]
+  },
+  {
+    "lesson_number": 92,
+    "title": "Lesson 92",
+    "description": "This lesson will teach key language needed for everyday communication at level 92.",
+    "grammar_points": [],
+    "vocabulary_topics": [
+      "Food and drink",
+      "Airport"
+    ],
+    "communication_goals": [
+      "Introduce yourself",
+      "Talk about health issues",
+      "Talk about hypothetical situations"
+    ]
+  },
+  {
+    "lesson_number": 93,
+    "title": "Lesson 93",
+    "description": "This lesson will teach key language needed for everyday communication at level 93.",
+    "grammar_points": [],
+    "vocabulary_topics": [
+      "Travel",
+      "Body and health"
+    ],
+    "communication_goals": [
+      "Talk about hobbies",
+      "Ask for and give directions",
+      "Make suggestions"
+    ]
+  },
+  {
+    "lesson_number": 94,
+    "title": "Lesson 94",
+    "description": "This lesson will teach key language needed for everyday communication at level 94.",
+    "grammar_points": [],
+    "vocabulary_topics": [
+      "Clothes",
+      "Countries"
+    ],
+    "communication_goals": [
+      "Describe your daily routine",
+      "Give advice",
+      "Express preferences"
+    ]
+  },
+  {
+    "lesson_number": 95,
+    "title": "Lesson 95",
+    "description": "This lesson will teach key language needed for everyday communication at level 95.",
+    "grammar_points": [],
+    "vocabulary_topics": [
+      "Sports",
+      "Weather"
+    ],
+    "communication_goals": [
+      "Express preferences",
+      "Handle a phone conversation",
+      "Discuss news and events"
+    ]
+  },
+  {
+    "lesson_number": 96,
+    "title": "Lesson 96",
+    "description": "This lesson will teach key language needed for everyday communication at level 96.",
+    "grammar_points": [],
+    "vocabulary_topics": [
+      "Transport",
+      "Accommodation"
+    ],
+    "communication_goals": [
+      "Introduce yourself",
+      "Tell a story",
+      "Discuss news and events"
+    ]
+  },
+  {
+    "lesson_number": 97,
+    "title": "Lesson 97",
+    "description": "This lesson will teach key language needed for everyday communication at level 97.",
+    "grammar_points": [],
+    "vocabulary_topics": [
+      "Home",
+      "Accommodation"
+    ],
+    "communication_goals": [
+      "Make suggestions",
+      "Describe people and places",
+      "Talk about your family"
+    ]
+  },
+  {
+    "lesson_number": 98,
+    "title": "Lesson 98",
+    "description": "This lesson will teach key language needed for everyday communication at level 98.",
+    "grammar_points": [],
+    "vocabulary_topics": [
+      "Opinions",
+      "Hobbies"
+    ],
+    "communication_goals": [
+      "Express opinions",
+      "Describe people and places",
+      "Express obligation"
+    ]
+  },
+  {
+    "lesson_number": 99,
+    "title": "Lesson 99",
+    "description": "This lesson will teach key language needed for everyday communication at level 99.",
+    "grammar_points": [],
+    "vocabulary_topics": [
+      "Emotions",
+      "Entertainment"
+    ],
+    "communication_goals": [
+      "Talk about hobbies",
+      "Express obligation",
+      "Describe your daily routine"
+    ]
+  },
+  {
+    "lesson_number": 100,
+    "title": "Lesson 100",
+    "description": "This lesson will teach key language needed for everyday communication at level 100.",
+    "grammar_points": [],
+    "vocabulary_topics": [
+      "Technology",
+      "Relationships"
+    ],
+    "communication_goals": [
+      "Describe problems",
+      "Tell a story",
+      "Talk about hobbies"
+    ]
+  }
+]

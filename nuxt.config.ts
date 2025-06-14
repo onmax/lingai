@@ -72,10 +72,10 @@ export default defineNuxtConfig({
       ],
     },
     routeRules: {
-      '/**': { cors: true }
+      '/**': { cors: true },
     },
     devProxy: {},
-    devServer: {}
+    devServer: {},
   },
 
   // https://eslint.nuxt.com

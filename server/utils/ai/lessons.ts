@@ -10,7 +10,7 @@ import { generateObject } from 'ai'
 import { and, eq } from 'drizzle-orm'
 import OpenAI from 'openai'
 import { array, string, object as valibotObject } from 'valibot'
-import { fetchCourseContent, type CourseLesson } from '../../data/course-content'
+import { type CourseLesson, fetchCourseContent } from '../../data/course-content'
 
 export interface GenerateLessonsArgs {
   topics: string[]
