@@ -48,11 +48,11 @@ useHead({
         <!-- Continue Learning Button -->
         <div v-if="currentLessonId && lessons.some(l => l.id === currentLessonId)" class="mb-8">
           <button
-            class="flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-blue-800 hover:shadow-lg hover:scale-105 transition-all duration-200 shadow-md"
+            class="flex items-center gap-3 px-8 py-4 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 hover:shadow-lg hover:scale-105 transition-all duration-200 shadow-md"
             @click="navigateTo(`/courses/spanish/${currentLessonId}`)"
           >
             <div class="i-heroicons-play w-6 h-6" />
-            <span>Continue Learning</span>
+            <span class="text-white font-semibold">Continue Learning</span>
           </button>
         </div>
       </header>
