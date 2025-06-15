@@ -12,6 +12,10 @@ export interface Lesson {
   totalSentences: number
   comicImageUrl?: string
   comicImageGenerated: boolean
+  // Recap lesson fields
+  isRecapLesson: boolean
+  recapMarkdownUrl?: string
+  recapGenerated: boolean
   createdAt: Date
   updatedAt: Date
 }

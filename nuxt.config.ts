@@ -21,6 +21,7 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     'motion-v/nuxt',
     '@nuxtjs/color-mode',
+    '@nuxt/content',
   ],
   devtools: { enabled: true },
 

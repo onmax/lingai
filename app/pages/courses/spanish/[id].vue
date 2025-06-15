@@ -171,11 +171,14 @@ useHead({
             <div>
               <div class="flex items-center gap-4 mb-4">
                 <span
-                  class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium"
+                  :class="lesson.isRecapLesson
+                    ? 'bg-purple-100 text-purple-800'
+                    : 'bg-blue-100 text-blue-800'"
+                  class="px-4 py-2 rounded-full text-sm font-medium"
                 >
-                  Lesson {{ lesson.lessonNumber }}
+                  {{ lesson.isRecapLesson ? 'Recap' : 'Lesson' }} {{ lesson.lessonNumber }}
                 </span>
-                <div class="flex items-center gap-6 text-sm text-neutral-500">
+                <div v-if="!lesson.isRecapLesson" class="flex items-center gap-6 text-sm text-neutral-500">
                   <div class="flex items-center gap-2">
                     <div class="i-heroicons-document-text w-4 h-4" />
                     <span>{{ lesson.totalSentences }} sentences</span>
@@ -183,6 +186,12 @@ useHead({
                   <div class="flex items-center gap-2">
                     <div class="i-heroicons-academic-cap w-4 h-4" />
                     <span class="capitalize">{{ lesson.difficulty }}</span>
+                  </div>
+                </div>
+                <div v-else class="flex items-center gap-6 text-sm text-neutral-500">
+                  <div class="flex items-center gap-2">
+                    <div class="i-heroicons-bookmark w-4 h-4" />
+                    <span>Review & Practice</span>
                   </div>
                 </div>
               </div>
@@ -193,8 +202,13 @@ useHead({
           </div>
         </header>
 
-        <!-- Sentences -->
-        <div v-if="lesson.sentences && lesson.sentences.length > 0" class="space-y-6 mb-16">
+        <!-- Recap Content -->
+        <div v-if="lesson.isRecapLesson && lesson.recapMarkdownUrl" class="mb-16">
+          <RecapContent :markdown-url="lesson.recapMarkdownUrl" />
+        </div>
+
+        <!-- Regular Lesson Sentences -->
+        <div v-else-if="lesson.sentences && lesson.sentences.length > 0" class="space-y-6 mb-16">
           <SentenceCard
             v-for="sentence in lesson.sentences"
             :key="sentence.id"

@@ -62,16 +62,22 @@ useHead({
         <div
           v-for="lesson in lessons"
           :key="lesson.id"
-          class="bg-white border border-neutral-200 rounded-xl p-6 hover:bg-neutral-50 hover:border-neutral-300 hover:shadow-lg hover:scale-105 transition-all duration-200 cursor-pointer group"
+          :class="lesson.isRecapLesson
+            ? 'bg-gradient-to-br from-purple-50 to-purple-100 border-purple-200 hover:border-purple-300'
+            : 'bg-white border-neutral-200 hover:border-neutral-300'"
+          class="border rounded-xl p-6 hover:shadow-lg hover:scale-105 transition-all duration-200 cursor-pointer group"
           @click="navigateTo(`/courses/spanish/${lesson.id}`)"
         >
           <div class="flex flex-col h-full">
             <!-- Lesson Header -->
             <div class="flex items-center justify-between mb-4">
               <span
-                class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium"
+                :class="lesson.isRecapLesson
+                  ? 'bg-purple-100 text-purple-800'
+                  : 'bg-blue-100 text-blue-800'"
+                class="px-3 py-1 rounded-full text-sm font-medium"
               >
-                Lesson {{ lesson.lessonNumber }}
+                {{ lesson.isRecapLesson ? 'Recap' : 'Lesson' }} {{ lesson.lessonNumber }}
               </span>
               <div
                 class="i-heroicons-chevron-right w-5 h-5 text-neutral-400 group-hover:text-neutral-600 group-hover:translate-x-1 transition-all duration-200"
@@ -79,15 +85,24 @@ useHead({
             </div>
 
             <!-- Lesson Title -->
-            <h2 class="text-xl font-semibold text-neutral-900 mb-3 group-hover:text-blue-600 transition-colors duration-200">
+            <h2
+              :class="lesson.isRecapLesson
+                ? 'group-hover:text-purple-600'
+                : 'group-hover:text-blue-600'"
+              class="text-xl font-semibold text-neutral-900 mb-3 transition-colors duration-200"
+            >
               {{ lesson.title }}
             </h2>
 
             <!-- Lesson Stats -->
             <div class="flex items-center gap-6 text-sm text-neutral-500 mt-auto">
-              <div class="flex items-center gap-2">
+              <div v-if="!lesson.isRecapLesson" class="flex items-center gap-2">
                 <div class="i-heroicons-document-text w-4 h-4" />
                 <span>{{ lesson.totalSentences }} sentences</span>
+              </div>
+              <div v-else class="flex items-center gap-2">
+                <div class="i-heroicons-bookmark w-4 h-4" />
+                <span>Review & Practice</span>
               </div>
               <div class="flex items-center gap-2">
                 <div class="i-heroicons-academic-cap w-4 h-4" />

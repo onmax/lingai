@@ -31,6 +31,10 @@ export const lessons = sqliteTable('lessons', {
   totalSentences: integer('total_sentences').notNull().default(0),
   comicImageUrl: text('comic_image_url'), // URL to comic image in blob storage
   comicImageGenerated: integer('comic_image_generated', { mode: 'boolean' }).notNull().default(false),
+  // Recap lesson fields
+  isRecapLesson: integer('is_recap_lesson', { mode: 'boolean' }).notNull().default(false),
+  recapMarkdownUrl: text('recap_markdown_url'), // URL to markdown file in blob storage
+  recapGenerated: integer('recap_generated', { mode: 'boolean' }).notNull().default(false),
   createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`(unixepoch())`),
   updatedAt: integer('updated_at', { mode: 'timestamp' }).notNull().default(sql`(unixepoch())`),
 })

@@ -11,6 +11,7 @@ import { and, eq, sql } from 'drizzle-orm'
 import OpenAI from 'openai'
 import { array, string, object as valibotObject } from 'valibot'
 import { type CourseLesson, fetchCourseContent } from '../../data/course-content'
+import { generateRecapLesson, isRecapLesson } from '../recap'
 
 export interface GenerateLessonsArgs {
   topics: string[]
@@ -35,6 +36,59 @@ export async function generateLessons({
   lessonNumber,
 }: GenerateLessonsArgs): Promise<GeneratedLessonResult> {
   try {
+    // Check if this is a recap lesson
+    if (lessonNumber && isRecapLesson(lessonNumber)) {
+      consola.info(`Generating recap lesson ${lessonNumber}`)
+
+      // Get course content for this lesson to get the title structure
+      const courseContent = await fetchCourseContent()
+      const courseLesson = courseContent.find(lesson => lesson.lesson_number === lessonNumber)
+      if (!courseLesson) {
+        throw new Error(`No course content found for lesson ${lessonNumber}`)
+      }
+
+      const db = useDrizzle()
+
+      // Create a recap lesson record
+      const recapTitle = `Recap: Lessons ${lessonNumber - 6} to ${lessonNumber - 1}`
+
+      const [newLesson] = await db.insert(tables.lessons).values({
+        userId,
+        title: recapTitle,
+        targetLanguage: 'spanish',
+        userLanguage: 'english',
+        difficulty: 'intermediate',
+        topics: JSON.stringify(topics),
+        lessonNumber,
+        totalSentences: 0, // Recap lessons don't have sentences
+        isRecapLesson: true,
+        recapGenerated: false,
+      }).returning()
+
+      if (!newLesson) {
+        throw new Error('Failed to create recap lesson')
+      }
+
+      // Generate the recap markdown content
+      const { markdownUrl, content } = await generateRecapLesson(userId, lessonNumber)
+
+      // Parse lesson data for return
+      const lessonData: Lesson = {
+        ...newLesson,
+        topics: JSON.parse(newLesson.topics || '[]'),
+        comicImageUrl: newLesson.comicImageUrl || undefined,
+        recapMarkdownUrl: newLesson.recapMarkdownUrl || undefined,
+        createdAt: new Date(newLesson.createdAt),
+        updatedAt: new Date(newLesson.updatedAt),
+      }
+
+      return {
+        lesson: lessonData,
+        sentences: [], // Recap lessons don't have sentences
+      }
+    }
+
+    // Regular lesson generation continues here...
     // Get the course content for this lesson
     const courseContent = await fetchCourseContent()
     const courseLesson = courseContent.find(lesson => lesson.lesson_number === lessonNumber)
@@ -118,6 +172,7 @@ export async function generateLessons({
       ...newLesson,
       topics: JSON.parse(newLesson.topics || '[]'),
       comicImageUrl: newLesson.comicImageUrl || undefined,
+      recapMarkdownUrl: newLesson.recapMarkdownUrl || undefined,
       createdAt: new Date(newLesson.createdAt),
       updatedAt: new Date(newLesson.updatedAt),
     }

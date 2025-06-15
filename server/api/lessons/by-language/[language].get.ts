@@ -30,6 +30,7 @@ export default defineEventHandler(async (event) => {
         ...lesson,
         topics: JSON.parse(lesson.topics || '[]'),
         comicImageUrl: lesson.comicImageUrl || undefined,
+        recapMarkdownUrl: lesson.recapMarkdownUrl || undefined,
         createdAt: new Date(lesson.createdAt),
         updatedAt: new Date(lesson.updatedAt),
       }))
