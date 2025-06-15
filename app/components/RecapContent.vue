@@ -14,13 +14,17 @@ const { data: markdownContent, pending, error } = await useFetch<string>(props.m
     <!-- Loading state -->
     <div v-if="pending" class="text-center py-12">
       <div class="i-heroicons-arrow-path w-8 h-8 text-neutral-300 mx-auto mb-4 animate-spin" />
-      <p class="text-neutral-600">Loading recap content...</p>
+      <p class="text-neutral-600">
+        Loading recap content...
+      </p>
     </div>
 
     <!-- Error state -->
     <div v-else-if="error" class="text-center py-12">
       <div class="i-heroicons-exclamation-triangle w-8 h-8 text-red-400 mx-auto mb-4" />
-      <p class="text-red-600">Failed to load recap content</p>
+      <p class="text-red-600">
+        Failed to load recap content
+      </p>
     </div>
 
     <!-- Render markdown content with enhanced prose styling -->

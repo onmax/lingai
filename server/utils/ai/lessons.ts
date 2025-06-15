@@ -100,7 +100,7 @@ export async function generateLessons({
       }
 
       // Generate the recap markdown content
-      const { markdownUrl, content } = await generateRecapLesson(userId, lessonNumber)
+      const { markdownUrl: _markdownUrl, content: _content } = await generateRecapLesson(userId, lessonNumber)
 
       // Parse lesson data for return
       const lessonData: Lesson = {
