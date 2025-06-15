@@ -30,6 +30,36 @@ interface ParsedSentence {
   context: string
 }
 
+/**
+ * Determine the number of sentences to generate based on difficulty level and score
+ */
+function getSentenceCountForDifficulty(difficultyLevel: string, difficultyScore: number): number {
+  let base: number
+  let maxSentences: number
+
+  // Set base and max sentences based on difficulty level
+  switch (difficultyLevel) {
+    case 'A1':
+      base = 8
+      maxSentences = 12
+      break
+    case 'A2':
+      base = 12
+      maxSentences = 18
+      break
+    default:
+      // B1, B2, C1, C2, etc.
+      base = 18
+      maxSentences = 25
+      break
+  }
+
+  // Scale linearly within the band based on difficulty_score (1-10)
+  const sentenceCount = base + Math.round((difficultyScore - 1) / 9 * (maxSentences - base))
+
+  return sentenceCount
+}
+
 export async function generateLessons({
   topics,
   userId,
@@ -104,7 +134,7 @@ export async function generateLessons({
       ...courseLesson.communication_goals,
     ]
 
-    // Generate 5 Spanish sentences using AI
+    // Generate Spanish sentences using AI (count based on difficulty level)
     const topicsString = allTopics.join(', ')
     consola.info(`Generating sentences for lesson ${lessonNumber} with topics: ${topicsString}`)
 
@@ -276,6 +306,10 @@ async function generateSpanishSentences(topicsString: string, courseLesson: Cour
   try {
     consola.info(`Starting Spanish sentence generation for lesson ${courseLesson.lesson_number}`)
 
+    // Determine sentence count based on difficulty level
+    const sentenceCount = getSentenceCountForDifficulty(courseLesson.difficulty_level, courseLesson.difficulty_score)
+    consola.info(`Generating ${sentenceCount} sentences for difficulty level ${courseLesson.difficulty_level}`)
+
     const sentenceSchema = valibotObject({
       targetText: string('Natural Spanish sentence as it would be spoken by native speakers'),
       userText: string('Natural English translation that captures the meaning and tone'),
@@ -283,7 +317,7 @@ async function generateSpanishSentences(topicsString: string, courseLesson: Cour
     })
 
     const sentencesSchema = valibotObject({
-      sentences: array(sentenceSchema, 'Exactly 5 conversational Spanish sentences following Assimil methodology'),
+      sentences: array(sentenceSchema, `Exactly ${sentenceCount} conversational Spanish sentences following Assimil methodology`),
     })
 
     // Generate structured object using AI SDK
@@ -292,7 +326,7 @@ async function generateSpanishSentences(topicsString: string, courseLesson: Cour
       schema: valibotSchema(sentencesSchema),
       schemaName: 'assimil_spanish_sentences',
       schemaDescription: 'Spanish sentences with its translation and with Assimil-style contextual notes for natural language acquisition',
-      system: `You are an expert Spanish language instructor following the ASSIMIL METHOD for natural language acquisition. Generate exactly 5 Spanish sentences that form a natural conversation.
+      system: `You are an expert Spanish language instructor following the ASSIMIL METHOD for natural language acquisition. Generate exactly ${sentenceCount} Spanish sentences that form a natural conversation.
 
 ASSIMIL METHOD PRINCIPLES:
 - Present language as it's naturally spoken by native speakers
@@ -332,7 +366,7 @@ Good: "Spanish speakers use this construction when they're not entirely sure abo
     
 Target level: ${courseLesson.difficulty_level} (difficulty ${courseLesson.difficulty_score}/10)
 
-Generate 5 sentences that tell a story or present a realistic scenario. Each sentence should feel authentic and include rich Assimil-style context that helps learners understand not just WHAT is being said, but HOW, WHEN, and WHY Spanish speakers use these expressions.`,
+Generate ${sentenceCount} sentences that tell a story or present a realistic scenario. Each sentence should feel authentic and include rich Assimil-style context that helps learners understand not just WHAT is being said, but HOW, WHEN, and WHY Spanish speakers use these expressions.`,
       maxTokens: 3000,
       temperature: 0.4,
       maxRetries: 2,
