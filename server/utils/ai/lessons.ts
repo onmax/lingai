@@ -53,7 +53,7 @@ export async function generateLessons({
     // Generate 5 Spanish sentences using AI
     const topicsString = allTopics.join(', ')
     consola.info(`Generating sentences for lesson ${lessonNumber} with topics: ${topicsString}`)
-    
+
     const parsedSentences = await generateSpanishSentences(topicsString, courseLesson)
 
     if (!parsedSentences || parsedSentences.length === 0) {
@@ -220,7 +220,7 @@ Generate a funny, engaging one-sentence title that captures what this lesson is 
 async function generateSpanishSentences(topicsString: string, courseLesson: CourseLesson): Promise<ParsedSentence[]> {
   try {
     consola.info(`Starting Spanish sentence generation for lesson ${courseLesson.lesson_number}`)
-    
+
     const sentenceSchema = valibotObject({
       targetText: string('Natural Spanish sentence as it would be spoken by native speakers'),
       userText: string('Natural English translation that captures the meaning and tone'),
@@ -233,11 +233,11 @@ async function generateSpanishSentences(topicsString: string, courseLesson: Cour
 
     // Generate structured object using AI SDK
     const { object } = await generateObject({
-    model: openai('gpt-4o-mini'),
-    schema: valibotSchema(sentencesSchema),
-    schemaName: 'assimil_spanish_sentences',
-    schemaDescription: 'Spanish sentences with its translation and with Assimil-style contextual notes for natural language acquisition',
-    system: `You are an expert Spanish language instructor following the ASSIMIL METHOD for natural language acquisition. Generate exactly 5 Spanish sentences that form a natural conversation.
+      model: openai('gpt-4o-mini'),
+      schema: valibotSchema(sentencesSchema),
+      schemaName: 'assimil_spanish_sentences',
+      schemaDescription: 'Spanish sentences with its translation and with Assimil-style contextual notes for natural language acquisition',
+      system: `You are an expert Spanish language instructor following the ASSIMIL METHOD for natural language acquisition. Generate exactly 5 Spanish sentences that form a natural conversation.
 
 ASSIMIL METHOD PRINCIPLES:
 - Present language as it's naturally spoken by native speakers
@@ -273,19 +273,20 @@ Good: "This is how Spanish speakers naturally greet a friend they haven't seen i
 
 Bad: "Subjunctive mood is used here."
 Good: "Spanish speakers use this construction when they're not entirely sure about something. It's softer and more polite than stating it as a fact. You'll hear this pattern a lot in everyday conversation when people are being courteous."`,
-    prompt: `Create a natural Spanish conversation about: ${topicsString}
+      prompt: `Create a natural Spanish conversation about: ${topicsString}
     
 Target level: ${courseLesson.difficulty_level} (difficulty ${courseLesson.difficulty_score}/10)
 
 Generate 5 sentences that tell a story or present a realistic scenario. Each sentence should feel authentic and include rich Assimil-style context that helps learners understand not just WHAT is being said, but HOW, WHEN, and WHY Spanish speakers use these expressions.`,
-    maxTokens: 3000,
-    temperature: 0.4,
-    maxRetries: 2,
-  })
+      maxTokens: 3000,
+      temperature: 0.4,
+      maxRetries: 2,
+    })
 
-  consola.success(`Successfully generated ${object.sentences.length} Spanish sentences`)
-  return object.sentences
-  } catch (error) {
+    consola.success(`Successfully generated ${object.sentences.length} Spanish sentences`)
+    return object.sentences
+  }
+  catch (error) {
     consola.error(`Failed to generate Spanish sentences for lesson ${courseLesson.lesson_number}:`, error)
     throw error
   }
