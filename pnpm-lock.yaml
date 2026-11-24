@@ -99,9 +99,6 @@ catalogs:
     nuxt-mcp:
       specifier: ^0.2.2
       version: 0.2.2
-    nuxt-safe-runtime-config:
-      specifier: ^0.0.3
-      version: 0.0.3
     ofetch:
       specifier: ^1.4.1
       version: 1.4.1
@@ -151,7 +148,7 @@ importers:
         version: 1.3.22(zod@3.25.64)
       '@ai-sdk/valibot':
         specifier: 'catalog:'
-        version: 0.1.28(@valibot/to-json-schema@1.3.0(valibot@1.5.0(typescript@5.8.3)))(react@19.1.0)(valibot@1.5.0(typescript@5.8.3))(zod@3.25.64)
+        version: 0.1.28(@valibot/to-json-schema@1.8.0(valibot@1.5.0(typescript@5.8.3)))(react@19.1.0)(valibot@1.5.0(typescript@5.8.3))(zod@3.25.64)
       '@atinux/kysely-d1':
         specifier: 'catalog:'
         version: 0.3.1(kysely@0.28.2)
@@ -173,6 +170,9 @@ importers:
       '@nuxtjs/color-mode':
         specifier: 'catalog:'
         version: 3.5.2(magicast@0.5.5)
+      '@valibot/to-json-schema':
+        specifier: ~1.8.0
+        version: 1.8.0(valibot@1.5.0(typescript@5.8.3))
       '@vueuse/core':
         specifier: 'catalog:'
         version: 13.3.0(vue@3.5.16(typescript@5.8.3))
@@ -200,9 +200,6 @@ importers:
       nuxt:
         specifier: 'catalog:'
         version: 4.7.0(c0720c1c337ebe75a83ecb729e0e2b0b)
-      nuxt-safe-runtime-config:
-        specifier: 'catalog:'
-        version: 0.0.3(magicast@0.5.5)
       ofetch:
         specifier: 'catalog:'
         version: 1.4.1
@@ -2369,9 +2366,6 @@ packages:
     resolution: {integrity: sha512-yH4M/SHN98NibniIwTVk6rwTJjy7n39l7zwWY3u+qsfZBGTi4lC1uEl2NDvIlkzsFtfCBvHBJJFJ1iuU3UzzEQ==}
     hasBin: true
 
-  '@standard-schema/spec@1.0.0':
-    resolution: {integrity: sha512-m2bOd0f2RT9k8QJx1JN85cZYyH1RqFBdlwtkSlf4tBDYLCiiZnv1fIIwacK6cqwXavOydf0NPToMQgpKq+dVlA==}
-
   '@stylistic/eslint-plugin@4.4.1':
     resolution: {integrity: sha512-CEigAk7eOLyHvdgmpZsKFwtiqS2wFwI1fn4j09IU9GmD4euFM4jEBAViWeCqaNLlbX2k2+A/Fq9cje4HQBXuJQ==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
@@ -2745,10 +2739,10 @@ packages:
   '@uploadthing/mime-types@0.3.5':
     resolution: {integrity: sha512-iYOmod80XXOSe4NVvaUG9FsS91YGPUaJMTBj52Nwu0G2aTzEN6Xcl0mG1rWqXJ4NUH8MzjVqg+tQND5TPkJWhg==}
 
-  '@valibot/to-json-schema@1.3.0':
-    resolution: {integrity: sha512-82Vv6x7sOYhv5YmTRgSppSqj1nn2pMCk5BqCMGWYp0V/fq+qirrbGncqZAtZ09/lrO40ne/7z8ejwE728aVreg==}
+  '@valibot/to-json-schema@1.8.0':
+    resolution: {integrity: sha512-a0M+uwCuQZEPAo65NYkFSJ14O5c213KoSZmPdoCfuFvUhfULi4T2Z6Tpjv6lTVMW9RoLm74RpRAjNEa43KcN+g==}
     peerDependencies:
-      valibot: ^1.1.0
+      valibot: ^1.5.0
 
   '@vercel/nft@1.11.12':
     resolution: {integrity: sha512-ePL2SvDfnlxOAOFIk9353i4YTWIcNS4RV86wGlRQ5S14eVYHDgPdDHxiyjS6bB2lJ6XZrs6Hu8kjcqWjsNivJA==}
@@ -5592,9 +5586,6 @@ packages:
       nuxt: '>=3.5.0'
       vite: '>=6'
 
-  nuxt-safe-runtime-config@0.0.3:
-    resolution: {integrity: sha512-Unts9lCXlTF6q35GT0Com2iidQfLuwcgsUZ8vCSRNz1JhIuPmaOrce54VsAvUQCwlQw60jtT790b/bBB0pxZAA==}
-
   nuxt@4.7.0:
     resolution: {integrity: sha512-EancrkdwxojFZn0cjmB1xe1eBHml1j5JUCZM7oIaPqyYsgU21UUqxEOuNn1hdnBM3lcRiBqS85DlU/9Fcx9NTg==}
     engines: {node: ^22.22.3 || ^24.15.0 || >=26.0.0}
@@ -7474,9 +7465,9 @@ snapshots:
       zod: 3.25.64
       zod-to-json-schema: 3.24.5(zod@3.25.64)
 
-  '@ai-sdk/valibot@0.1.28(@valibot/to-json-schema@1.3.0(valibot@1.5.0(typescript@5.8.3)))(react@19.1.0)(valibot@1.5.0(typescript@5.8.3))(zod@3.25.64)':
+  '@ai-sdk/valibot@0.1.28(@valibot/to-json-schema@1.8.0(valibot@1.5.0(typescript@5.8.3)))(react@19.1.0)(valibot@1.5.0(typescript@5.8.3))(zod@3.25.64)':
     dependencies:
-      '@valibot/to-json-schema': 1.3.0(valibot@1.5.0(typescript@5.8.3))
+      '@valibot/to-json-schema': 1.8.0(valibot@1.5.0(typescript@5.8.3))
       ai: 4.3.16(react@19.1.0)(zod@3.25.64)
       valibot: 1.5.0(typescript@5.8.3)
     transitivePeerDependencies:
@@ -9752,8 +9743,6 @@ snapshots:
 
   '@sqlite.org/sqlite-wasm@3.50.1-build1': {}
 
-  '@standard-schema/spec@1.0.0': {}
-
   '@stylistic/eslint-plugin@4.4.1(eslint@9.28.0(jiti@2.7.0))(typescript@5.8.3)':
     dependencies:
       '@typescript-eslint/utils': 8.34.0(eslint@9.28.0(jiti@2.7.0))(typescript@5.8.3)
@@ -10241,7 +10230,7 @@ snapshots:
 
   '@uploadthing/mime-types@0.3.5': {}
 
-  '@valibot/to-json-schema@1.3.0(valibot@1.5.0(typescript@5.8.3))':
+  '@valibot/to-json-schema@1.8.0(valibot@1.5.0(typescript@5.8.3))':
     dependencies:
       valibot: 1.5.0(typescript@5.8.3)
 
@@ -13641,14 +13630,6 @@ snapshots:
     transitivePeerDependencies:
       - magicast
       - supports-color
-
-  nuxt-safe-runtime-config@0.0.3(magicast@0.5.5):
-    dependencies:
-      '@nuxt/kit': 3.17.5(magicast@0.5.5)
-      '@standard-schema/spec': 1.0.0
-      consola: 3.4.2
-    transitivePeerDependencies:
-      - magicast
 
   nuxt@4.7.0(c0720c1c337ebe75a83ecb729e0e2b0b):
     dependencies:

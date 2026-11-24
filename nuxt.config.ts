@@ -2,7 +2,6 @@ import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import process from 'node:process'
 import { fileURLToPath } from 'node:url'
-import { object, string } from 'valibot'
 
 // Read course content
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
@@ -14,7 +13,6 @@ export default defineNuxtConfig({
   modules: [
     '@nuxthub/core',
     '@nuxt/eslint',
-    'nuxt-safe-runtime-config',
     'reka-ui/nuxt',
     '@unocss/nuxt',
     'nuxt-mcp',
@@ -36,20 +34,6 @@ export default defineNuxtConfig({
     public: {
       courseContent,
     },
-  },
-  safeRuntimeConfig: {
-    $schema: object({
-      betterAuthSecret: string(),
-      betterAuthUrl: string(),
-      openaiApiKey: string(),
-      github: object({
-        clientSecret: string(),
-        clientId: string(),
-      }),
-      public: object({
-        courseContent: object({}),
-      }),
-    }),
   },
 
   compatibilityDate: '2025-06-14',
