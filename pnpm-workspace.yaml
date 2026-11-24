@@ -31,7 +31,7 @@ catalog:
   lint-staged: ^16.1.0
   marked: ^15.0.12
   motion-v: ^1.2.1
-  nuxt: ^4.0.0-alpha.1
+  nuxt: ^4.7.0
   nuxt-mcp: ^0.2.2
   nuxt-safe-runtime-config: ^0.0.3
   ofetch: ^1.4.1
