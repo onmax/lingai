@@ -1,5 +1,5 @@
 import { toStandardJsonSchema } from '@valibot/to-json-schema'
-import { object, string } from 'valibot'
+import { array, object, string, unknown } from 'valibot'
 
 export default defineNuxtConfig({
   runtimeConfig: toStandardJsonSchema(object({
@@ -11,7 +11,7 @@ export default defineNuxtConfig({
       clientId: string(),
     }),
     public: object({
-      courseContent: object({}),
+      courseContent: array(unknown()),
     }),
   })),
 })
